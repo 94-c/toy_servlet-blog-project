@@ -32,10 +32,10 @@ public class JoinProcController implements Controller{
         if (result) {
             request.setAttribute("message", "회원가입을 축하합니다.");
             request.setAttribute("target", "/login.do");
-            return "/WEB-INF/views/login.jsp";
+            return "/WEB-INF/common/redirect.jsp";
         }
         request.setAttribute("message", "회원가압이 실패하였습니다.");
         request.setAttribute("target", "/login.do");
-        return "/WEB-INF/views/login.jsp";
+        return "/WEB-INF/common/redirect.jsp";
     }
 }

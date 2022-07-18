@@ -45,14 +45,19 @@ public class LoginProcController implements Controller {
 
             userLogService.createUserLog(userLogDTO);
 
-            return "/WEB-INF/views/main.jsp";
+            System.out.println("로그인 성공");
+            request.setAttribute("message", user.getName() + " 님 환영합니다.");
+            request.setAttribute("target", "/main.do");
+
+            return "/WEB-INF/common/redirect.jsp";
 
         }catch (Exception e) {
             e.printStackTrace();
             System.out.println("로그인 실패");
             request.setAttribute("message", "로그인 실패");
+            request.setAttribute("target", "/login.do");
 
-            return "/WEB-INF/views/login.jsp";
+            return "/WEB-INF/common/redirect.jsp";
         }
     }
 }
