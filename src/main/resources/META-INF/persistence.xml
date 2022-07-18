@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="blog">
+        <!-- 엔티티 클래스 -->
+        <class>com.blog.entity.User</class>
+        <class>com.blog.entity.UserLog</class>
+
+        <properties>
+            <!-- 필수 속성 -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://175.210.112.200:3006/blog_test?autoReconnect=true"/>
+            <property name="javax.persistence.jdbc.user" value="bizplus"/>
+            <property name="javax.persistence.jdbc.password" value="bizplus"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+
+            <!-- 옵션 속성 -->
+            <!-- 콘솔에 하이버네이트가 실행하는 SQL문 출력 -->
+            <property name="hibernate.show_sql" value="true"/>
+            <!-- SQL 출력 시 보기 쉽게 정렬 -->
+            <property name="hibernate.format_sql" value="true"/>
+            <!-- 애플리케이션 실행 시점에 데이터베이스 테이블 자동 생성 -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
