@@ -16,6 +16,7 @@ public class MainController implements Controller{
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         return "/WEB-INF/views/main.jsp";
     }
 }

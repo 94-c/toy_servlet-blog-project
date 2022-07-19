@@ -18,10 +18,6 @@ public class LoginController implements Controller {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (request.getSession().getAttribute("session_id") != null) {
-            request.setAttribute("target", "/main.do");
-            request.setAttribute("message", "입장을 환영합니다.");
-        }
         return "/WEB-INF/views/login.jsp";
     }
 }
