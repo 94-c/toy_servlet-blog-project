@@ -28,6 +28,7 @@ public class MailEntityTestController {
 
     public static void main(String[] args) throws Exception {
         Properties props = System.getProperties();
+
         props.put("mail.transport.protocol", "TLSv1.2");
         props.put("mail.smtp.port", PORT);
         props.put("mail.smtp.starttls.enable", "true");

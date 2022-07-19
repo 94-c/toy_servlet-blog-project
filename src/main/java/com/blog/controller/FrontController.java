@@ -23,6 +23,7 @@ public class FrontController extends HttpServlet {
         router.put("/loginProc.do", new LoginProcController());
         router.put("/join.do", new JoinController());
         router.put("/joinProc.do", new JoinProcController());
+        router.put("/main.do", new MainController());
     }
 
 

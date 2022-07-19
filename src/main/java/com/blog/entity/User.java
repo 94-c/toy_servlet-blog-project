@@ -10,7 +10,7 @@ import java.util.Date;
 @Table(name = "user")
 @Getter
 @Setter
-@NamedQuery(name = "User_Login_Check", query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+@NamedQuery(name = "User_Login_Check", query = "SELECT u FROM User u WHERE u.email = :email")
 public class User {
 
     @Id

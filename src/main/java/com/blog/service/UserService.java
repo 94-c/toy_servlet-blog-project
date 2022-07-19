@@ -25,12 +25,24 @@ public class UserService {
     }
 
     public boolean join(UserDTO dto) {
-        try{
+        try {
             User user = new User();
             userField(user, dto);
             userDAO.create(user);
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean login(String email) {
+        try {
+            User user = new User();
+            user.setEmail(request.getParameter("email"));
+            userDAO.findWithNamedQuery("User_Login_Check", "email", email);
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
