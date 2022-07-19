@@ -34,7 +34,7 @@ public class JoinProcController implements Controller{
             request.setAttribute("target", "/login.do");
             return "/WEB-INF/common/redirect.jsp";
         }
-        request.setAttribute("message", "회원가압이 실패하였습니다.");
+        request.setAttribute("message", "회원가입이 실패하였습니다.");
         request.setAttribute("target", "/login.do");
         return "/WEB-INF/common/redirect.jsp";
     }

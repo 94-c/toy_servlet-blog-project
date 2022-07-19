@@ -10,6 +10,4 @@ public interface Controller {
     String getMethod();
     String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
-
-
 }

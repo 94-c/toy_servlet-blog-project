@@ -22,7 +22,7 @@ public class UserLog {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "user_id")
+    @Column(name = "user_ip")
     private String userIp;
 
     @Column(name = "user_agent")
@@ -31,10 +31,5 @@ public class UserLog {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at")
-    private Date updatedAt;
-
 
 }

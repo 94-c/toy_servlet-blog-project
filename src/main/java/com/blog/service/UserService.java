@@ -28,9 +28,8 @@ public class UserService {
     public boolean join(UserDTO dto) {
         try{
             User user = new User();
-            user.setEmail(dto.getEmail());
-            user.setPassword(dto.getPassword());
-            user.setName(dto.getName());
+            userField(user, dto);
+            userDAO.create(user);
             return true;
         }catch (Exception e) {
             e.printStackTrace();
