@@ -28,10 +28,8 @@ public class UserLogService {
     }
 
     private String userIp() {
-
         String ip = null;
         InetAddress address;
-
         try{
             address = Inet4Address.getLocalHost();
             ip = address.getHostAddress();
@@ -43,6 +41,8 @@ public class UserLogService {
 
     public UserLog createUserLog(UserLogDTO dto) {
         UserLog userLog = new UserLog();
+        userLog.setUserId(dto.getUserId());
+        userLog.setUserIp(userIp());
         userLogField(userLog, dto);
         return userLogDAO.create(userLog);
     }

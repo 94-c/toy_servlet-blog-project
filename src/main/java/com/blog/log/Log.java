@@ -2,7 +2,7 @@ package com.blog.log;
 
 import com.blog.entity.User;
 
-public class UserLog {
+public class Log {
 
     public void userLogin(User user){
         System.out.println(user.toString());

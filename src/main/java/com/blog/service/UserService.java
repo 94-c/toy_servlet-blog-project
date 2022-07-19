@@ -3,8 +3,7 @@ package com.blog.service;
 import com.blog.dao.UserDAO;
 import com.blog.dto.UserDTO;
 import com.blog.entity.User;
-import com.blog.log.UserLog;
-import com.sun.deploy.net.HttpRequest;
+import com.blog.log.Log;
 import lombok.RequiredArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UserService {
 
     private final HttpServletRequest request;
-    private final UserLog userLog = new UserLog();
+    private final Log userLog = new Log();
     private final UserDAO userDAO = new UserDAO();
 
     private void userField(User user, UserDTO dto) {
