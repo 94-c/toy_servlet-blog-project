@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class JpaDAO<E> {
 
@@ -93,15 +95,16 @@ public class JpaDAO<E> {
         return resultList;
     }
 
-    public List<E> findWithNamedQuery(String queryName, String paramName, Object paramValue) {
+    public List<E> findWithNamedQuery(String queryName, Map<String, Object> parameters) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         Query query = entityManager.createNamedQuery(queryName);
-        query.setParameter(paramName, paramValue);
-        List<E> result = query.getResultList();
 
-        entityManager.close();
-        return result;
+        Set<Map.Entry<String, Object>> setParameters = parameters.entrySet();
+
+        for (Map.Entry<String, Object> entry : setParameters) {
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
+        return query.getResultList();
     }
 
 

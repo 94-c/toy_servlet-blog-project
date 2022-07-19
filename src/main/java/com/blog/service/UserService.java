@@ -1,6 +1,7 @@
 package com.blog.service;
 
 import com.blog.dao.UserDAO;
+import com.blog.dto.LoginDTO;
 import com.blog.dto.UserDTO;
 import com.blog.entity.User;
 import com.blog.log.Log;
@@ -36,16 +37,12 @@ public class UserService {
         }
     }
 
-    public boolean login(String email) {
-        try {
-            User user = new User();
-            user.setEmail(request.getParameter("email"));
-            userDAO.findWithNamedQuery("User_Login_Check", "email", email);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+    public boolean login(LoginDTO dto) {
+        User user = userDAO.login(dto.getEmail(), dto.getPassword());
+        if (user == null) {
             return false;
         }
+        return true;
     }
 
 
