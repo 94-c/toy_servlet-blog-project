@@ -17,17 +17,22 @@ public class JoinProcController implements Controller{
         return JoinProcController.METHOD;
     }
 
+    public UserDTO makeDTO (HttpServletRequest request) {
+        UserDTO dto = new UserDTO();
+        dto.setEmail(request.getParameter("email"));
+        dto.setPassword(request.getParameter("password"));
+        dto.setName(request.getParameter("name"));
+
+        return dto;
+    }
+
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        UserDTO userDTO = new UserDTO();
+        UserDTO dto = makeDTO(request);
         UserService userService = new UserService(request);
 
-        userDTO.setEmail(request.getParameter("email"));
-        userDTO.setPassword(request.getParameter("password"));
-        userDTO.setName(request.getParameter("name"));
-
-        boolean result = userService.join(userDTO);
+        boolean result = userService.join(dto);
 
         if (result) {
             request.setAttribute("message", "회원가입을 축하합니다.");
