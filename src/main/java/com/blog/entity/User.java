@@ -23,6 +23,9 @@ public class User {
 
     private String name;
 
+    @Column(columnDefinition = "tinyint(1) default 0")
+    private Integer state;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdAt;

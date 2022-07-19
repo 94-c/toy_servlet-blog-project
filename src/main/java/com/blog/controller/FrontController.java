@@ -24,7 +24,7 @@ public class FrontController extends HttpServlet {
         router.put("/join.do", new JoinController());
         router.put("/joinProc.do", new JoinProcController());
         router.put("/main.do", new MainController());
-        router.put("/emailConfirm.do", new emailConfirmController());
+        router.put("/emailConfirm.do", new EmailConfirmController());
     }
 
 

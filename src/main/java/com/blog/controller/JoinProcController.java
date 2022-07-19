@@ -2,6 +2,8 @@ package com.blog.controller;
 
 
 import com.blog.dto.UserDTO;
+import com.blog.entity.User;
+import com.blog.service.EmailService;
 import com.blog.service.UserService;
 
 import javax.servlet.ServletException;
@@ -31,10 +33,15 @@ public class JoinProcController implements Controller{
 
         UserDTO dto = makeDTO(request);
         UserService userService = new UserService(request);
+        EmailService emailService = new EmailService();
 
         boolean result = userService.join(dto);
 
         if (result) {
+            User user = new User();
+            user.setEmail(dto.getEmail());
+            emailService.sendEmail(user);
+            request.setAttribute("message", "회원가입 확인 메일이 전송 되었습니다.");
             request.setAttribute("message", "회원가입을 축하합니다.");
             request.setAttribute("target", "/login.do");
             return "/WEB-INF/common/redirect.jsp";

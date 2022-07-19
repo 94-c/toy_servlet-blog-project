@@ -2,6 +2,7 @@ package com.blog.controller;
 
 
 import com.blog.dto.LoginDTO;
+import com.blog.entity.User;
 import com.blog.service.UserService;
 
 import javax.servlet.ServletException;

@@ -5,13 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class emailConfirmController implements Controller{
+public class EmailConfirmController implements Controller{
 
     private static final String METHOD = "GET";
 
     @Override
     public String getMethod() {
-        return emailConfirmController.METHOD;
+        return EmailConfirmController.METHOD;
     }
 
     @Override
