@@ -18,7 +18,7 @@
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="blog_project/web/웹" />
+      <element id="javaee-facet-resources" facet="blog_project/web/Web" />
     </root>
   </artifact>
 </component>

@@ -10,11 +10,10 @@ import java.util.Map;
 
 public class UserDAO extends JpaDAO<User> {
 
-    private EntityManager entityManager;
-
     @Override
     public User create(User entity) {
         entity.setCreatedAt(new Date());
+        entity.setState(0);
         return super.create(entity);
     }
 

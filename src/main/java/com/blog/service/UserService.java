@@ -1,8 +1,10 @@
 package com.blog.service;
 
+import com.blog.dao.EmailTokensDAO;
 import com.blog.dao.UserDAO;
 import com.blog.dto.LoginDTO;
 import com.blog.dto.UserDTO;
+import com.blog.entity.EmailTokens;
 import com.blog.entity.User;
 import com.blog.log.Log;
 import lombok.RequiredArgsConstructor;
@@ -22,19 +24,19 @@ public class UserService {
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
         user.setName(dto.getName());
+        user.setState(dto.getState());
 
     }
 
-    public boolean join(UserDTO dto) {
+    public User join(UserDTO dto) {
+        User user = new User();
         try {
-            User user = new User();
             userField(user, dto);
             userDAO.create(user);
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return user;
     }
 
     public boolean login(LoginDTO dto) {

@@ -14,23 +14,29 @@ public class EmailService {
     String guest = "d8ffd2a2082783";    //발신자 메일
     String password = "35d7b6d03152c0"; //발신자 비밀번호
 
-    public String Random() {
-        Random random = new Random();
-        String key = "";
+    int size = 0;
 
-        for (int i=0; i<3; i++) {
-            int index = random.nextInt(25) + 65; //A-Z까 랜덤 알파벳 생성
-            key += (char)index;
-        }
-
-        int numIndex = random.nextInt(9999) + 1000; //4자리 랜덤 정수를 생성
-        key += numIndex;
-        return key;
+    private String getKey(int size) {
+        this.size = size;
+        return getAuthCode();
     }
 
-    public void sendEmail(User user) {
+    private String getAuthCode() {
+        int num = 0;
+        Random random = new Random();
+        StringBuffer buffer = new StringBuffer();
 
-        String from = user.getEmail();
+        while (buffer.length() < size) {
+            num = random.nextInt(10);
+            buffer.append(num);
+        }
+        return buffer.toString();
+    }
+
+    public String sendEmail(String email) {
+
+        //6자리 난수 인증번호 발생
+        String authKey = getKey(6);
 
         Properties props = new Properties();
         props.put("mail.smtp.ssl.protocols", "TLSv1.2");
@@ -46,17 +52,21 @@ public class EmailService {
                 }
         );
 
+        String content = "<h1>[이메일 인증]</h1><br><p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>"
+                + "<a href='http://localhost:8080/emailConfirm.do?email="
+                + email + "&authKey=" + authKey + "' target='_blenk'>이메일 인증 확인</a>";
+
         try {
             MimeMessage mimeMessage = new MimeMessage(session);
             mimeMessage.setFrom(new InternetAddress(guest));
             //메일 대상
-            mimeMessage.addRecipients(Message.RecipientType.TO, InternetAddress.parse(from));
+            mimeMessage.addRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 
             //메일 제목
-            mimeMessage.setSubject("블로그 회원가입을 진심으로 축하드립니다.");
+            mimeMessage.setSubject("블로그 회원가입을 진심으로 축하드립니다.", "utf-8");
 
             //메일 본문
-            mimeMessage.setText("<a href = " + Random() + " > </a>");
+            mimeMessage.setText(content, "utf-8", "html");
 
             // send the message
             Transport.send(mimeMessage);
@@ -65,5 +75,6 @@ public class EmailService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+        return authKey;
     }
 }
