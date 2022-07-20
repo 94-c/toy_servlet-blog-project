@@ -23,7 +23,8 @@
 
 --------------------------------------------------------
 
-![](https://velog.velcdn.com/images/hyeongwoo26/post/3b91dd24-2d79-40d1-be59-4a5a7a430d1a/image.png)
+![](https://velog.velcdn.com/images/hyeongwoo26/post/771d2f57-bc47-4e64-a102-e4a668215812/image.png)
+
 * **"blog_project.spl"** 에  DDL로 작성
 
 ### ⎊ 주요 기능 설명
