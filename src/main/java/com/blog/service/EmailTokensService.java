@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 public class EmailTokensService {
 
-    private HttpServletRequest request;
-    private EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
+    private final HttpServletRequest request;
+    private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
 
     private void emailTokenField(EmailTokens emailTokens, EmailTokensDTO dto) {
 
@@ -38,4 +38,6 @@ public class EmailTokensService {
             return false;
         }
     }
+
+
 }

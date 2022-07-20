@@ -1,15 +1,13 @@
 package com.blog.log;
 
-import com.blog.entity.User;
+import com.blog.dto.LogDTO;
 
 public class Log {
 
-    public void userLogin(User user){
-        System.out.println(user.toString());
+    public String userLogin(LogDTO dto) {
+        return dto.login;
     }
 
-    public void userLogOut(){
-        System.out.println("로그아웃");
-    }
+
 
 }

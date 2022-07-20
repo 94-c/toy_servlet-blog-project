@@ -42,7 +42,7 @@ public class JoinProcController implements Controller {
         EmailTokensDTO emailTokensDTO = new EmailTokensDTO();
         UserService userService = new UserService(request);
         EmailService emailService = new EmailService();
-        EmailTokensService emailTokensService = new EmailTokensService();
+        EmailTokensService emailTokensService = new EmailTokensService(request);
 
         User result = userService.join(dto);
 
