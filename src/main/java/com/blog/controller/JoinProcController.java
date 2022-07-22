@@ -56,11 +56,11 @@ public class JoinProcController implements Controller {
             request.setAttribute("target", "/login.do");
         }
 
-        //인증 메일 보내기
+        /*//인증 메일 보내기
         String authKey = emailService.sendEmail(dto.getEmail());
         emailTokensDTO.setToken(authKey);
         emailTokensDTO.setUserId(result.getId());
-        emailTokensService.updateTokens(emailTokensDTO);
+        emailTokensService.updateTokens(emailTokensDTO);*/
 
         return "/WEB-INF/common/redirect.jsp";
 
