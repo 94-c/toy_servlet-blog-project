@@ -1,25 +1,26 @@
 package com.blog.service;
 
-import com.blog.dao.EmailTokensDAO;
 import com.blog.dao.UserDAO;
 import com.blog.dto.EmailTokensDTO;
 import com.blog.dto.LoginDTO;
 import com.blog.dto.UserDTO;
-import com.blog.entity.EmailTokens;
 import com.blog.entity.User;
 import com.blog.log.Log;
-import lombok.RequiredArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RequiredArgsConstructor
+
 public class UserService {
 
     private final HttpServletRequest request;
     private final Log userLog = new Log();
-    private final UserDAO userDAO = new UserDAO();
+    private static final UserDAO userDAO = new UserDAO();
     private final EmailService emailService = new EmailService();
-    private final EmailTokensService emailTokensService = new EmailTokensService(request);
+    private final EmailTokensService emailTokensService = new EmailTokensService();
+
+    public UserService(HttpServletRequest request) {
+        this.request = request;
+    }
 
     private void userField(User user, UserDTO dto) {
 
@@ -55,6 +56,11 @@ public class UserService {
             return false;
         }
         return true;
+    }
+
+    public static User emailCheck(String email) {
+        User result = userDAO.emailCheck(email);
+        return result;
     }
 
 

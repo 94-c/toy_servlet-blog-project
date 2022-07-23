@@ -12,8 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class JoinProcController implements Controller {
 
@@ -42,7 +40,7 @@ public class JoinProcController implements Controller {
         EmailTokensDTO emailTokensDTO = new EmailTokensDTO();
         UserService userService = new UserService(request);
         EmailService emailService = new EmailService();
-        EmailTokensService emailTokensService = new EmailTokensService(request);
+        EmailTokensService emailTokensService = new EmailTokensService();
 
         User result = userService.join(dto);
 

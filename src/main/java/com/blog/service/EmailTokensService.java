@@ -3,16 +3,16 @@ package com.blog.service;
 import com.blog.dao.EmailTokensDAO;
 import com.blog.dto.EmailTokensDTO;
 import com.blog.entity.EmailTokens;
-import com.blog.entity.User;
-import lombok.RequiredArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RequiredArgsConstructor
+
 public class EmailTokensService {
 
-    private final HttpServletRequest request;
+    private static final HttpServletRequest request = null;
     private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
+
+
 
     private void emailTokenField(EmailTokens emailTokens, EmailTokensDTO dto) {
 

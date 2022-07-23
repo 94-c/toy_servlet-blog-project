@@ -2,7 +2,6 @@ package com.blog.dao;
 
 import com.blog.entity.User;
 
-import javax.persistence.EntityManager;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -31,5 +30,13 @@ public class UserDAO extends JpaDAO<User> {
         List<User> userList = super.findWithNamedQuery("User_Login_Check", parameters);
 
         return userList.size() == 1 ? userList.get(0) : null;
+    }
+
+    public User emailCheck(String email) {
+        List<User> result = super.findWithNamedQuery("User_Email_Check", "email", email);
+        if (result != null && result.size() > 0) {
+            return result.get(0);
+        }
+        return null;
     }
 }
