@@ -1,6 +1,7 @@
 package com.blog.controller;
 
 import com.blog.controller.post.CreatePostController;
+import com.blog.controller.post.CreateProcPostController;
 import com.blog.util.HibernateUtil;
 
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ public class FrontController extends HttpServlet {
         router.put("/emailConfirm.do", new EmailConfirmController());
         router.put("/emailConfirmProc.do", new EmailConfirmProcController());
         router.put("/post/create.do", new CreatePostController());
-
+        router.put("/post/createProc.do", new CreateProcPostController());
     }
 
 
