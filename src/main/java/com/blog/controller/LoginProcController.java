@@ -33,18 +33,20 @@ public class LoginProcController implements Controller {
         LoginDTO dto = makeDTO(request);
         UserService userService = new UserService(request);
 
-        boolean user = userService.login(dto);
+        User user = userService.login(dto);
 
-        if (user) {
-            session.setAttribute("session_email", dto.getEmail());
+        try{
+            session.setAttribute("session_id", user.getId());
+            session.setAttribute("session_name", user.getName());
+            session.setAttribute("session_email", user.getEmail());
             request.setAttribute("message", "로그인을 환영합니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
+        }catch (Exception e){
+            request.setAttribute("message", "아이디 및 비밀번호 다시 확인 부탁드립니다.");
+            request.setAttribute("target", "/login.do");
+            return "/WEB-INF/common/redirect.jsp";
         }
-        request.setAttribute("message", "아이디 및 비밀번호 다시 확인 부탁드립니다.");
-        request.setAttribute("target", "/login.do");
-        return "/WEB-INF/common/redirect.jsp";
-
 
     }
 }

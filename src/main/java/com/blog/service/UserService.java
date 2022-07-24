@@ -1,7 +1,6 @@
 package com.blog.service;
 
 import com.blog.dao.UserDAO;
-import com.blog.dto.EmailTokensDTO;
 import com.blog.dto.LoginDTO;
 import com.blog.dto.UserDTO;
 import com.blog.entity.User;
@@ -36,34 +35,20 @@ public class UserService {
         User user = new User();
         try {
             userField(user, dto);
-            User result = userDAO.create(user);
-            if (result != null) {
-                String authKey = emailService.sendEmail(dto.getEmail());
-                EmailTokensDTO emailTokensDTO = new EmailTokensDTO();
-                emailTokensDTO.setToken(authKey);
-                emailTokensDTO.setUserId(dto.getId());
-                emailTokensService.updateTokens(emailTokensDTO);
-            }
+            userDAO.create(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return user;
     }
 
-    public boolean login(LoginDTO dto) {
+    public User login(LoginDTO dto) {
         User user = userDAO.login(dto.getEmail(), dto.getPassword());
         if (user == null) {
-            return false;
+            System.out.println("로그인 실패");
         }
-        return true;
+        return user;
     }
-
-    public static User emailCheck(String email) {
-        User result = userDAO.emailCheck(email);
-        return result;
-    }
-
-
 
 
 }
