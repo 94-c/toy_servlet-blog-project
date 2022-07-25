@@ -13,18 +13,19 @@
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <td>글쓰기</td>
             </table>
-            <input type="hidden" name="userId" value="${sessionScope.session_id}">
+
             <table>
+                <input type="hidden" id="userId" name="userId" value="${sessionScope.session_id}">
                 <tr>
                     <td>&nbsp;</td>
                     <td align="center">제목</td>
-                    <td><input name="title" size="50" maxlength="100"></td>
+                    <td><input id="title" name="title" size="50" maxlength="100"></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td align="center">내용</td>
-                    <td><textarea name="body" cols="50" rows="13"></textarea></td>
+                    <td><textarea id="body" name="body" cols="50" rows="13"></textarea></td>
                     <td>&nbsp;</td>
                 </tr>
 

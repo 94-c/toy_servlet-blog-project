@@ -9,6 +9,11 @@
         <class>com.blog.entity.User</class>
         <class>com.blog.entity.UserLog</class>
         <class>com.blog.entity.EmailTokens</class>
+        <class>com.blog.entity.Post</class>
+        <class>com.blog.entity.Tag</class>
+        <class>com.blog.entity.PostTag</class>
+        <class>com.blog.entity.Comment</class>
+        <class>com.blog.entity.Like</class>
 
         <properties>
             <!-- 필수 속성 -->
