@@ -5,22 +5,17 @@ import com.blog.dto.LoginDTO;
 import com.blog.dto.UserDTO;
 import com.blog.entity.User;
 import com.blog.log.Log;
+import lombok.RequiredArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
 
 
+@RequiredArgsConstructor
 public class UserService {
 
     private final HttpServletRequest request;
     private final Log userLog = new Log();
     private static final UserDAO userDAO = new UserDAO();
-    private final EmailService emailService = new EmailService();
-    private final EmailTokensService emailTokensService = new EmailTokensService();
-
-    public UserService(HttpServletRequest request) {
-        this.request = request;
-    }
-
     private void userField(User user, UserDTO dto) {
 
         user.setId(dto.getId());
@@ -47,6 +42,12 @@ public class UserService {
         if (user == null) {
             System.out.println("로그인 실패");
         }
+        return user;
+    }
+
+    public User updateState(Integer id) {
+        User user = userDAO.find(User.class, id);
+        userDAO.updateState(user);
         return user;
     }
 

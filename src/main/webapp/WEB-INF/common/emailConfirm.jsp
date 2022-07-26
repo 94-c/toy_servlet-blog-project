@@ -5,8 +5,8 @@
 <html>
 <body>
 <form action="/emailConfirmProc.do" method="post">
-    <input type="hidden" name="userId" value="${param.userId}">
-    <input type="hidden" name="token" value="${param.token}">
+    <input type="hidden" name="userId" value="${param.id}">
+    <input type="hidden" name="token" value="${param.authKey}">
     <input type="hidden" name="email" value="${param.email}">
     <h1>회원가입을 축하드립니다.</h1>
     <h2>하단의 버튼 클릭 시, 블로그 접속이 가능합니다.</h2>

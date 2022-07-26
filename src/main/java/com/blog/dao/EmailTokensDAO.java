@@ -17,4 +17,10 @@ public class EmailTokensDAO extends JpaDAO<EmailTokens> {
         emailTokens.setState(0);
         return super.update(emailTokens);
     }
+
+    public EmailTokens updateState(EmailTokens emailTokens) {
+        emailTokens.setState(1);
+        emailTokens.setAuthAt(new Date());
+        return super.update(emailTokens);
+    }
 }

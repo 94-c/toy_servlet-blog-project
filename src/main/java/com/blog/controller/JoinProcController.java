@@ -40,7 +40,7 @@ public class JoinProcController implements Controller {
         EmailTokensDTO emailTokensDTO = new EmailTokensDTO();
         UserService userService = new UserService(request);
         EmailService emailService = new EmailService();
-        EmailTokensService emailTokensService = new EmailTokensService();
+        EmailTokensService emailTokensService = new EmailTokensService(request);
 
         User result = userService.join(dto);
 
@@ -55,7 +55,7 @@ public class JoinProcController implements Controller {
         }
 
         //인증 메일 보내기
-        String authKey = emailService.sendEmail(dto.getEmail());
+        String authKey = emailService.sendEmail(result  .getId(), dto.getEmail());
         emailTokensDTO.setToken(authKey);
         emailTokensDTO.setUserId(result.getId());
         emailTokensService.updateTokens(emailTokensDTO);

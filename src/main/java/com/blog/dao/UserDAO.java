@@ -39,4 +39,9 @@ public class UserDAO extends JpaDAO<User> {
         }
         return null;
     }
+
+    public User updateState(User user) {
+        user.setState(1);
+        return super.update(user);
+    }
 }
