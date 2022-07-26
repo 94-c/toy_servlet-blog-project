@@ -26,6 +26,15 @@ public class UserService {
 
     }
 
+    public boolean userIdCheck(String email) {
+        try {
+            userDAO.emailCheck(email);
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     public User join(UserDTO dto) {
         User user = new User();
         try {

@@ -35,6 +35,7 @@ public class JoinProcController implements Controller {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         UserDTO dto = makeDTO(request);
         EmailTokensDTO emailTokensDTO = new EmailTokensDTO();
@@ -43,22 +44,27 @@ public class JoinProcController implements Controller {
         EmailTokensService emailTokensService = new EmailTokensService(request);
 
         User result = userService.join(dto);
+        boolean emailCheck = userService.userIdCheck(dto.getEmail());
 
         if (result == null) {
             request.setAttribute("message", "회원가입이 실패하였습니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
         } else {
-            request.setAttribute("message", "회원가입 확인 메일이 전송 되었습니다.");
-            request.setAttribute("message", "회원가입을 축하합니다.");
-            request.setAttribute("target", "/main.do");
+            if (emailCheck) {
+                request.setAttribute("message", "회원가입 확인 메일이 전송 되었습니다.");
+                request.setAttribute("message", "회원가입을 축하합니다.");
+                request.setAttribute("target", "/main.do");
+                //인증 메일 보내기
+                String authKey = emailService.sendEmail(result.getId(), dto.getEmail());
+                emailTokensDTO.setToken(authKey);
+                emailTokensDTO.setUserId(result.getId());
+                emailTokensService.updateTokens(emailTokensDTO);
+            }else{
+                request.setAttribute("message", "중복되는 이메일이 있습니다.");
+                request.setAttribute("target", "/join.do");
+            }
         }
-
-        //인증 메일 보내기
-        String authKey = emailService.sendEmail(result  .getId(), dto.getEmail());
-        emailTokensDTO.setToken(authKey);
-        emailTokensDTO.setUserId(result.getId());
-        emailTokensService.updateTokens(emailTokensDTO);
 
         return "/WEB-INF/common/redirect.jsp";
 

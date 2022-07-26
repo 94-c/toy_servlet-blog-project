@@ -32,11 +32,13 @@ public class CreateProcPostController implements Controller {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         PostDTO dto = makeDTO(request);
         PostService postService = new PostService(request);
 
         boolean result = postService.createPost(dto);
+
         if (result) {
             request.setAttribute("message", "게시글이 작성이 되었습니다.");
             request.setAttribute("target", "/main.do");
