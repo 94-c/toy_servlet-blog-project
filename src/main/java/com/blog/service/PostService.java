@@ -6,7 +6,6 @@ import com.blog.entity.Post;
 import com.blog.entity.User;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -27,22 +26,26 @@ public class PostService {
 
     }
 
-    public Post createPost(PostDTO dto) {
+    public void findAllPost(){
+        List<Post> postList = postDAO.findAllCreateQuery();
+        request.setAttribute("postList", postList);
+    }
+
+    public boolean createPost(PostDTO dto) {
         Post post = new Post();
         try {
             postField(post, dto);
             postDAO.create(post);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return post;
     }
 
     public boolean findByPostId(Integer id) {
         Post post = postDAO.find(Post.class, id);
         if (post != null) {
-            List<Post> posts = postDAO.findAllCreateQuery("Post_Find_All");
-            request.setAttribute("posts", posts);
             return true;
         }
         return false;
@@ -56,7 +59,7 @@ public class PostService {
         try {
             postField(post, dto);
             postDAO.update(post);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return true;

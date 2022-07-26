@@ -3,6 +3,7 @@ package com.blog.dao;
 import com.blog.entity.Post;
 
 import java.util.Date;
+import java.util.List;
 
 public class PostDAO extends JpaDAO<Post> {
 
@@ -18,4 +19,7 @@ public class PostDAO extends JpaDAO<Post> {
         return super.update(entity);
     }
 
+    public List<Post> findAllCreateQuery() {
+        return super.findWithNamedQuery("Post.findAll");
+    }
 }

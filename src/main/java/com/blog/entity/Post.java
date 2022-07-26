@@ -13,7 +13,7 @@ import java.util.Date;
 @Setter
 @ToString
 @NamedQueries({
-        @NamedQuery(name = "Post_Find_All", query = "SELECT p FROM Post p INNER JOIN User u ON p.user.id = u.id")
+        @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p INNER JOIN User u ON p.user.id = u.id")
 })
 public class Post {
 

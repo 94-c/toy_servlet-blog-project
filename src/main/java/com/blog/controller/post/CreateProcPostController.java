@@ -36,8 +36,14 @@ public class CreateProcPostController implements Controller {
         PostDTO dto = makeDTO(request);
         PostService postService = new PostService(request);
 
-        postService.createPost(dto);
-
-        return "/WEB-INF/common/redirect.jsp";
+        boolean result = postService.createPost(dto);
+        if (result) {
+            request.setAttribute("message", "게시글이 작성이 되었습니다.");
+            request.setAttribute("target", "/main.do");
+            return "/WEB-INF/views/main.jsp";
+        }
+        request.setAttribute("message", "게시글이 작성 실패하였습니다.");
+        request.setAttribute("target", "/main.do");
+        return "/WEB-INF/views/main.jsp";
     }
 }
