@@ -22,4 +22,8 @@ public class PostDAO extends JpaDAO<Post> {
     public List<Post> findAllCreateQuery() {
         return super.findWithNamedQuery("Post.findAll");
     }
+
+    public List<Post> findWithNamedQuery(Integer id) {
+        return super.findWithNamedQuery("Post.findById", "id", id);
+    }
 }

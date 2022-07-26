@@ -3,7 +3,7 @@
 <html>
 <body>
 <script type="text/javascript">
-    window.location.href = "/login.do";
+    window.location.href = "/main.do";
 </script>
 </body>
 </html>

@@ -26,7 +26,7 @@ public class PostService {
 
     }
 
-    public void findAllPost(){
+    public void findAllPost() {
         List<Post> postList = postDAO.findAllCreateQuery();
         request.setAttribute("postList", postList);
     }
@@ -46,6 +46,7 @@ public class PostService {
     public boolean findByPostId(Integer id) {
         Post post = postDAO.find(Post.class, id);
         if (post != null) {
+            request.setAttribute("posts", post);
             return true;
         }
         return false;

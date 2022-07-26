@@ -46,12 +46,12 @@ public class JoinProcController implements Controller {
 
         if (result == null) {
             request.setAttribute("message", "회원가입이 실패하였습니다.");
-            request.setAttribute("target", "/login.do");
+            request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
         } else {
             request.setAttribute("message", "회원가입 확인 메일이 전송 되었습니다.");
             request.setAttribute("message", "회원가입을 축하합니다.");
-            request.setAttribute("target", "/login.do");
+            request.setAttribute("target", "/main.do");
         }
 
         //인증 메일 보내기

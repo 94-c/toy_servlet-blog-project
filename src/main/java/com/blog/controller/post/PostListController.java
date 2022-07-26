@@ -24,6 +24,6 @@ public class PostListController implements Controller {
 
         postService.findAllPost();
 
-        return "/WEB-INF/views/list.jsp";
+        return "/WEB-INF/views/main.jsp";
     }
 }

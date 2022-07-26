@@ -44,7 +44,7 @@ public class LoginProcController implements Controller {
             return "/WEB-INF/common/redirect.jsp";
         }catch (Exception e){
             request.setAttribute("message", "아이디 및 비밀번호 다시 확인 부탁드립니다.");
-            request.setAttribute("target", "/login.do");
+            request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
         }
 
