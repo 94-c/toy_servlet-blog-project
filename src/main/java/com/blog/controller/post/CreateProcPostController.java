@@ -42,10 +42,11 @@ public class CreateProcPostController implements Controller {
         if (result) {
             request.setAttribute("message", "게시글이 작성이 되었습니다.");
             request.setAttribute("target", "/main.do");
-            return "/WEB-INF/views/main.jsp";
+            return "/WEB-INF/common/redirect.jsp";
         }
         request.setAttribute("message", "게시글이 작성 실패하였습니다.");
         request.setAttribute("target", "/main.do");
-        return "/WEB-INF/views/main.jsp";
+        return "/WEB-INF/common/redirect.jsp";
+
     }
 }
