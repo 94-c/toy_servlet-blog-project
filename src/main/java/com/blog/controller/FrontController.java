@@ -31,6 +31,7 @@ public class FrontController extends HttpServlet {
         router.put("/post/createProc.do", new CreateProcPostController());
         router.put("/post/edit.do", new EditPostController());
         router.put("/post/editProc.do", new EditProcPostController());
+        router.put("/post/deleteProc.do", new DeleteProcPostController());
         router.put("/main.do", new PostListController());
     }
 

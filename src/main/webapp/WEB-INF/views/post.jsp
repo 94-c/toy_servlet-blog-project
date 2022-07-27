@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <td align="center">내용</td>
-            <td><input type="text" id="body" name="body"  value="${posts.body}">
+            <td><input type="text" id="body" name="body" value="${posts.body}">
         </tr>
 
         <tr align="center">
@@ -31,8 +31,18 @@
                 <button type="submit">수정</button>
                 </c:if>
                 <button type="button" onclick="location.href='/main.do'">이전</button>
+                <c:if test="${sessionScope.session_id == posts.user.id}">
+                <button type="button" onclick="deleteBtn()">삭제</button>
+                </c:if>
         </tr>
     </table>
 </form>
+<script type="javascript">
+    function deleteBtn(){
+        const id = document.getElementById("id");
+        location.href = "/post/deleteProc.do";
+    }
+
+</script>
 </body>
 </html>

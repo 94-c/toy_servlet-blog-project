@@ -65,4 +65,18 @@ public class PostService {
         }
         return true;
     }
+
+    public boolean deletePost(PostDTO dto) {
+        Post post = postDAO.find(Post.class, dto.getId());
+        if (post == null) {
+            return false;
+        }
+        try {
+            postField(post, dto);
+            postDAO.deleteUpdate(post);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 }
