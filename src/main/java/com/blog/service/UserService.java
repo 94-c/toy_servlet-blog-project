@@ -70,5 +70,20 @@ public class UserService {
         return true;
     }
 
+    public boolean updateUser(UserDTO dto) {
+        User user = userDAO.find(User.class, dto.getId());
+        if (user == null) {
+            return false;
+        }
+        try {
+            userField(user, dto);
+            userDAO.update(user);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }

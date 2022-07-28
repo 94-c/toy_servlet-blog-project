@@ -29,7 +29,7 @@ public class EditUserController implements Controller {
         boolean result = userService.findUserId(id);
 
         if (result) {
-            return "/WEB-INF/user/userInputForm.jsp";
+            return "/WEB-INF/views/user/userInputForm.jsp";
         }
         request.setAttribute("message", "회원 정보를  찾을 수 없습니다.");
         request.setAttribute("target", "/main.do");

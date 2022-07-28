@@ -1,6 +1,8 @@
 package com.blog.controller;
 
 import com.blog.controller.post.*;
+import com.blog.controller.user.EditProcUserController;
+import com.blog.controller.user.EditUserController;
 import com.blog.util.HibernateUtil;
 
 import javax.servlet.ServletException;
@@ -32,6 +34,10 @@ public class FrontController extends HttpServlet {
         router.put("/post/edit.do", new EditPostController());
         router.put("/post/editProc.do", new EditProcPostController());
         router.put("/post/deleteProc.do", new DeleteProcPostController());
+
+        router.put("/user/edit.do", new EditUserController());
+        router.put("/user/editProc.do", new EditProcUserController());
+
         router.put("/main.do", new PostListController());
     }
 

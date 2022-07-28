@@ -17,8 +17,9 @@
     </form>
 </c:if>
 <c:if test="${sessionScope.session_id != null}">
+    <input type="hidden" id="id" value="${sessionScope.session_id}">
     ${sessionScope.session_name} 님 환영 합니다.
-    <button type="button" onclick="">회원정보</button>
+    <button type="button" onclick="location.href='/user/edit.do?id=${sessionScope.session_id}'">회원정보</button>
     <button type="button" onclick="location.href='/logOut.do'">로그아웃</button>
 </c:if>
 <c:if test="${sessionScope.session_id != null}">
