@@ -60,5 +60,15 @@ public class UserService {
         return user;
     }
 
+    public boolean findUserId(Integer id) {
+        User user = userDAO.find(User.class, id);
+        if (user == null) {
+            return false;
+        }
+        request.setAttribute("user", user);
+
+        return true;
+    }
+
 
 }
