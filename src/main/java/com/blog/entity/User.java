@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NamedQueries({
-        @NamedQuery(name = "User_Login_Check", query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password AND u.state = 1"),
+        @NamedQuery(name = "User_Login_Check", query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password AND u.state = :state"),
         @NamedQuery(name = "User_Email_Check", query = "SELECT COUNT (u.email) FROM User u WHERE u.email = :email")
 })
 public class User {

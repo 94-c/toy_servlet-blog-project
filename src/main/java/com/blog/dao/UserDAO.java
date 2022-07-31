@@ -23,9 +23,14 @@ public class UserDAO extends JpaDAO<User> {
     }
 
     public User login(String email, String password) {
+
+        Integer state = 1;
+
         Map<String, Object> parameters = new HashMap<>();
+
         parameters.put("email", email);
         parameters.put("password", password);
+        parameters.put("state", state);
 
         List<User> userList = super.findWithNamedQuery("User_Login_Check", parameters);
 

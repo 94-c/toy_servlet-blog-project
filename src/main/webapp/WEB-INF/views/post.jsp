@@ -32,17 +32,10 @@
                 </c:if>
                 <button type="button" onclick="location.href='/main.do'">이전</button>
                 <c:if test="${sessionScope.session_id == posts.user.id}">
-                <button type="button" onclick="deleteBtn()">삭제</button>
+                <button type="button" onclick="location.href='/post/deleteProc.do?id='+${posts.id}">삭제</button>
                 </c:if>
         </tr>
     </table>
 </form>
-<script type="javascript">
-    function deleteBtn(){
-        const id = document.getElementById("id");
-        location.href = "/post/deleteProc.do";
-    }
-
-</script>
 </body>
 </html>
