@@ -31,6 +31,7 @@ public class PostService {
         request.setAttribute("postList", postList);
     }
 
+
     public boolean createPost(PostDTO dto) {
         Post post = new Post();
         try {

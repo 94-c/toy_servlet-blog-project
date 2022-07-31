@@ -9,6 +9,7 @@
 <c:set var="action" value="${'/user/editProc.do'}"/>
 <form id="user_edit_form" method="post" action="${action}">
     <input type="hidden" name="id" value="${param.id}">
+    <input type="hidden" name="state" value="${user.state}">
     <table class="table">
         <tr>
             <th>이메일</th>
@@ -27,6 +28,5 @@
     <input type="submit" value="수정">
     <input type="button" value="이전" onclick="location.href='/main.do'">
 </form>
-    <jsp:include page="userPost.jsp"/>
 </body>
 </html>

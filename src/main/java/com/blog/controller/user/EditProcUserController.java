@@ -25,6 +25,7 @@ public class EditProcUserController implements Controller {
         dto.setName(request.getParameter("name"));
         dto.setEmail(request.getParameter("email"));
         dto.setPassword(request.getParameter("password"));
+        dto.setState(Integer.valueOf(request.getParameter("state")));
 
         return dto;
     }
