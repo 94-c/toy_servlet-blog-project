@@ -8,6 +8,4 @@ public class Log {
         return dto.login;
     }
 
-
-
 }

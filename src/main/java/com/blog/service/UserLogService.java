@@ -4,6 +4,7 @@ import com.blog.dao.UserLogDAO;
 import com.blog.dto.UserLogDTO;
 import com.blog.entity.User;
 import com.blog.entity.UserLog;
+import com.blog.log.Log;
 import lombok.RequiredArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +12,11 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-@RequiredArgsConstructor
 public class UserLogService {
 
-    private final HttpServletRequest request;
     private final UserLogDAO userLogDAO = new UserLogDAO();
+
+    private final Log log = new Log();
 
     private void userLogField(UserLog userLog, UserLogDTO dto){
         User user = new User();
