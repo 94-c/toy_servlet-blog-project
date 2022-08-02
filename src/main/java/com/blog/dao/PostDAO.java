@@ -23,10 +23,6 @@ public class PostDAO extends JpaDAO<Post> {
         return super.findWithNamedQuery("Post.findAll");
     }
 
-    public List<Post> findWithNamedQuery(Integer id) {
-        return super.findWithNamedQuery("Post.findById", "id", id);
-    }
-
     public Post deleteUpdate(Post post) {
         post.setDeletedAt(new Date());
         return super.update(post);

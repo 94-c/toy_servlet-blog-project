@@ -12,6 +12,9 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@NamedQueries({
+        @NamedQuery(name = "Commnet.findAll", query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id INNER JOIN Post p ON c.post.id = p.id WHERE c.deleteState = 0 AND c.post.id = :postId" )
+})
 public class Comment {
 
     @Id
@@ -27,10 +30,12 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    private String body;
+
     @Column(name = "user_ip")
     private String userIp;
 
-    @Column(name = "parents_id")
+    @Column(name = "parents_comment_id")
     private Integer parentsId;
 
     @Temporal(TemporalType.TIMESTAMP)

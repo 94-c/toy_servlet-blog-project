@@ -1,6 +1,7 @@
 package com.blog.controller.post;
 
 import com.blog.controller.Controller;
+import com.blog.service.CommentService;
 import com.blog.service.PostService;
 
 import javax.servlet.ServletException;
@@ -23,10 +24,12 @@ public class EditPostController implements Controller {
         Integer id = Integer.valueOf(request.getParameter("id"));
 
         PostService postService = new PostService(request);
+        CommentService commentService = new CommentService(request);
 
         boolean result = postService.findByPostId(id);
 
         if (result) {
+            commentService.findAllCommentByPostId(id);
             return "/WEB-INF/views/post.jsp";
         }
 

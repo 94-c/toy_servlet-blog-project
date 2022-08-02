@@ -10,7 +10,7 @@
     <c:if test="${posts != null}">
         <input type="hidden" id="id" name="id" value="${posts.id}">
     </c:if>
-    <td>글쓰기</td>
+    <h2>글쓰기</h2>
     <table>
         <input type="hidden" id="userId" name="userId" value="${sessionScope.session_id}">
         <tr>
@@ -37,5 +37,8 @@
         </tr>
     </table>
 </form>
+<c:if test="${posts != null}">
+    <jsp:include page="comment.jsp"/>
+</c:if>
 </body>
 </html>

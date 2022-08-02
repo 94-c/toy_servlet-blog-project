@@ -32,7 +32,6 @@ public class CreateProcPostController implements Controller {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
 
         PostDTO dto = makeDTO(request);
         PostService postService = new PostService(request);
