@@ -2,6 +2,8 @@ package com.blog.controller.post;
 
 import com.blog.controller.Controller;
 import com.blog.dto.PostDTO;
+import com.blog.entity.Comment;
+import com.blog.service.CommentService;
 import com.blog.service.PostService;
 
 import javax.servlet.ServletException;
@@ -31,8 +33,10 @@ public class DeleteProcPostController implements Controller {
 
         PostDTO dto = makeDTO(request);
         PostService postService = new PostService(request);
+        CommentService commentService = new CommentService(request);
 
         boolean result = postService.deletePost(dto);
+
 
         if (result) {
             request.setAttribute("message", "게시글이 삭제 되었습니다.");

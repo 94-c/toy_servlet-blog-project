@@ -49,6 +49,7 @@ public class CommentService {
         }
     }
 
+
     public boolean deleteComment(CommentDTO dto) {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {

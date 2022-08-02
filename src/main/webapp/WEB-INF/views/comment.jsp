@@ -41,7 +41,7 @@
                     <c:if test="${comment.user.id == sessionScope.session_id}">
                         <input type="hidden" name="postId" value="${param.id}">
                         <a href="#">수정</a>
-                        <button type="button" onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}">삭제</button>
+                        <button type="button" onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}+'&postId='+${param.id}">삭제</button>
                     </c:if>
                 </div>
             </td>
