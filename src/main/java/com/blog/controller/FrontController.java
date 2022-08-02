@@ -1,5 +1,6 @@
 package com.blog.controller;
 
+import com.blog.controller.comment.CreateParentCommentController;
 import com.blog.controller.comment.CreateProcCommentController;
 import com.blog.controller.comment.DeleteProcCommentController;
 import com.blog.controller.post.*;
@@ -42,6 +43,8 @@ public class FrontController extends HttpServlet {
 
         router.put("/comment/createProc.do", new CreateProcCommentController());
         router.put("/comment/deleteProc.do", new DeleteProcCommentController());
+
+        router.put("/parenComment/create.do", new CreateParentCommentController());
 
         router.put("/main.do", new PostListController());
     }

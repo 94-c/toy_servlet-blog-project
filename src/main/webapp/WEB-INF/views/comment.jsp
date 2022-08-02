@@ -37,9 +37,9 @@
             </td>
             <td>
                 <div id="button">
-                    <a href="#">답변</a>
                     <c:if test="${comment.user.id == sessionScope.session_id}">
                         <input type="hidden" name="postId" value="${param.id}">
+                        <button type="button" onclick="replyComment(${comment.id})">답변</button>
                         <a href="#">수정</a>
                         <button type="button" onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}+'&postId='+${param.id}">삭제</button>
                     </c:if>
@@ -48,6 +48,11 @@
         </tr>
     </c:forEach>
 </c:if>
-
-
 </body>
+<script type="text/javascript">
+    function replyComment(commentId)
+    {
+        window.name = "parentForm";
+        window.open("/parenComment/create.do?commentId="+commentId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
+    }
+</script>
