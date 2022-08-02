@@ -13,7 +13,7 @@
         </td>
         <td>
             <div>
-                <input type="text" id="body">
+                <input type="text" name="body">
             </div>
         </td>
         <td>
@@ -27,7 +27,7 @@
         <tr>
             <td>
                 <div>
-                        ${comment.id}
+                        ${comment.user.name}
                 </div>
             </td>
             <td>
@@ -39,8 +39,9 @@
                 <div id="button">
                     <a href="#">답변</a>
                     <c:if test="${comment.user.id == sessionScope.session_id}">
+                        <input type="hidden" name="postId" value="${param.id}">
                         <a href="#">수정</a>
-                        <a href="#">삭제</a>
+                        <button type="button" onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}">삭제</button>
                     </c:if>
                 </div>
             </td>

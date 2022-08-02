@@ -2,6 +2,7 @@ package com.blog.service;
 
 import com.blog.dao.CommentDAO;
 import com.blog.dto.CommentDTO;
+import com.blog.dto.PostDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.User;
@@ -48,5 +49,18 @@ public class CommentService {
         }
     }
 
+    public boolean deleteComment(CommentDTO dto) {
+        Comment comment = commentDAO.find(dto.getId());
+        if (comment == null) {
+            return false;
+        }
+        try {
+            commentField(comment, dto);
+            commentDAO.deleteUpdate(comment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 
 }

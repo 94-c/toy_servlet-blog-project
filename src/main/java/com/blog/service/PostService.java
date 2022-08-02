@@ -14,7 +14,6 @@ public class PostService {
 
     private final HttpServletRequest request;
     private static final PostDAO postDAO = new PostDAO();
-
     private void postField(Post post, PostDTO dto) {
         User user = new User();
         user.setId(dto.getUserId());
