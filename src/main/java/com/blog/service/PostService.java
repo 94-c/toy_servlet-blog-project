@@ -14,6 +14,7 @@ public class PostService {
 
     private final HttpServletRequest request;
     private static final PostDAO postDAO = new PostDAO();
+
     private void postField(Post post, PostDTO dto) {
         User user = new User();
         user.setId(dto.getUserId());
@@ -45,11 +46,11 @@ public class PostService {
 
     public boolean findByPostId(Integer id) {
         Post post = postDAO.find(Post.class, id);
-        if (post != null) {
-            request.setAttribute("posts", post);
-            return true;
+        if (post == null) {
+            return false;
         }
-        return false;
+        request.setAttribute("posts", post);
+        return true;
     }
 
     public boolean updatePost(PostDTO dto) {

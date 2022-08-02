@@ -2,7 +2,6 @@ package com.blog.service;
 
 import com.blog.dao.CommentDAO;
 import com.blog.dto.CommentDTO;
-import com.blog.dto.PostDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.User;
@@ -32,7 +31,7 @@ public class CommentService {
 
     }
 
-    public void findAllCommentByPostId(Integer postId){
+    public void findAllCommentByPostId(Integer postId) {
         List<Comment> commentList = commentDAO.findAllCommentByPostId(postId);
         request.setAttribute("commentList", commentList);
     }
@@ -49,6 +48,28 @@ public class CommentService {
         }
     }
 
+    public boolean findByCommentId(Integer commentId) {
+        Comment comment = commentDAO.find(commentId);
+        if (comment == null) {
+            return false;
+        }
+        request.setAttribute("comment", comment);
+        return true;
+    }
+
+    public boolean updateComment(CommentDTO dto) {
+        Comment comment = commentDAO.find(dto.getId());
+        if (comment == null) {
+            return false;
+        }
+        try {
+            commentField(comment, dto);
+            commentDAO.update(comment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 
     public boolean deleteComment(CommentDTO dto) {
         Comment comment = commentDAO.find(dto.getId());
