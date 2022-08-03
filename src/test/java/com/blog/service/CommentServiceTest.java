@@ -61,7 +61,7 @@ public class CommentServiceTest {
 
     @Test
     public void findByCommentId() {
-        Integer id = 11;
+        Integer id = 14;
         try {
             CommentDTO dto = new CommentDTO();
             dto.setId(id);
@@ -71,6 +71,7 @@ public class CommentServiceTest {
 
         } catch (Exception e) {
             e.printStackTrace();
+            assertNotNull(e);
         }
     }
 

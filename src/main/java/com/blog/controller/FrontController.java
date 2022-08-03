@@ -5,6 +5,7 @@ import com.blog.controller.post.*;
 import com.blog.controller.user.EditProcUserController;
 import com.blog.controller.user.EditUserController;
 import com.blog.util.HibernateUtil;
+import lombok.SneakyThrows;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,6 +53,7 @@ public class FrontController extends HttpServlet {
 
 
 
+    @SneakyThrows
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
