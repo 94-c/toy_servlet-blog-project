@@ -32,7 +32,6 @@ public class EditCommentController implements Controller {
         }
 
         request.setAttribute("message", "해당 댓글을 확인 할 수 없습니다.");
-        request.setAttribute("target", "");
         return "/WEB-INF/views/commentInput.jsp";
 
     }

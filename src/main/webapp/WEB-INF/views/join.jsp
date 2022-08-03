@@ -21,7 +21,7 @@
         </tr>
     </table>
     <input type="submit" value="완료">
-    <input type="button" value="이전" onclick="location.href='/login.do'">
+    <input type="button" value="이전" onclick="location.href='/main.do'">
 </form>
 </body>
 </html>

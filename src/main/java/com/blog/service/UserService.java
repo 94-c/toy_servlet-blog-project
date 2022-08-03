@@ -28,13 +28,13 @@ public class UserService {
 
     }
 
-    public boolean userIdCheck(String email) {
+    public boolean userEmailCheck(String email) {
         try {
             userDAO.emailCheck(email);
-            return true;
+            return false;
         }catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return true;
         }
     }
     public User join(UserDTO dto) {
@@ -55,6 +55,7 @@ public class UserService {
         }
         return user;
     }
+
 
     public User updateState(Integer id) {
         User user = userDAO.find(User.class, id);

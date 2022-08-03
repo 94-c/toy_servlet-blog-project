@@ -33,7 +33,7 @@ public class EmailService {
         return buffer.toString();
     }
 
-    public String sendEmail(Integer id, String email) {
+    public String sendEmail(Integer userId, String email) {
 
         //6자리 난수 인증번호 발생
         String authKey = getKey(6);
@@ -52,8 +52,9 @@ public class EmailService {
                 }
         );
 
+
         String content = "<h1>[이메일 인증]</h1><br><p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>"
-                + "<a href='http://localhost:8080/emailConfirm.do?id=" + id + "&email="
+                + "<a href='http://localhost:8080/emailConfirm.do?userId=" + userId + "&email="
                 + email + "&authKey=" + authKey + "' target='_blenk'>이메일 인증 확인</a>";
 
         try {

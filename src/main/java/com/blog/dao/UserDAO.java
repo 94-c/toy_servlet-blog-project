@@ -37,6 +37,7 @@ public class UserDAO extends JpaDAO<User> {
         return userList.size() == 1 ? userList.get(0) : null;
     }
 
+
     public User emailCheck(String email) {
         List<User> result = super.findWithNamedQuery("User_Email_Check", "email", email);
         if (result != null && result.size() > 0) {
