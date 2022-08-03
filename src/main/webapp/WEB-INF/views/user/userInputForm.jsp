@@ -13,8 +13,8 @@
     <table class="table">
         <tr>
             <th>이메일</th>
-            <td><input type="text" id="email" name="email" value="${user.email}" readonly/>
-            </td>
+            <td><input type="hidden" id="email" name="email" value="${user.email}"/>
+                ${user.email}</td>
         </tr>
         <tr>
             <th>비밀번호</th>

@@ -5,13 +5,14 @@ import com.blog.dto.CommentDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.User;
+import com.blog.log.Log;
 import lombok.RequiredArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class CommentService {
+public class CommentService extends Log {
 
     private final HttpServletRequest request;
     private static final CommentDAO commentDAO = new CommentDAO();

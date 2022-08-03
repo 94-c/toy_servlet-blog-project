@@ -47,7 +47,7 @@ public class EmailTokensService {
             EmailTokens emailTokens = new EmailTokens();
             emailTokens.setUserId(dto.getUserId());
             emailTokens.setToken(dto.getToken());
-            EmailTokens result = emailTokensDAO.updateState(emailTokens);
+            emailTokensDAO.updateState(emailTokens);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

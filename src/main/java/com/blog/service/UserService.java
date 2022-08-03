@@ -15,8 +15,8 @@ import java.util.List;
 public class UserService {
 
     private final HttpServletRequest request;
-    private final Log userLog = new Log();
     private static final UserDAO userDAO = new UserDAO();
+
     private void userField(User user, UserDTO dto) {
 
         user.setId(dto.getId());
