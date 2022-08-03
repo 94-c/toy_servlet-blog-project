@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class CommentService extends Log {
+public class CommentService {
 
     private final HttpServletRequest request;
     private static final CommentDAO commentDAO = new CommentDAO();

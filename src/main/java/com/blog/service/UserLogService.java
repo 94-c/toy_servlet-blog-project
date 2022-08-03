@@ -23,27 +23,13 @@ public class UserLogService {
         user.setId(dto.getUserId());
 
         userLog.setId(dto.getId());
-        userLog.setUserIp(dto.getUserIp());
         userLog.setUserAgent(dto.getUserAgent());
 
-    }
-
-    private String userIp() {
-        String ip = null;
-        InetAddress address;
-        try{
-            address = Inet4Address.getLocalHost();
-            ip = address.getHostAddress();
-        }catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        return ip;
     }
 
     public UserLog createUserLog(UserLogDTO dto) {
         UserLog userLog = new UserLog();
         userLog.setUserId(dto.getUserId());
-        userLog.setUserIp(userIp());
         userLogField(userLog, dto);
         return userLogDAO.create(userLog);
     }

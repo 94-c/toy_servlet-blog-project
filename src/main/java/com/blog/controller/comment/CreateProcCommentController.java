@@ -6,6 +6,8 @@ import com.blog.dto.PostDTO;
 import com.blog.entity.Comment;
 import com.blog.service.CommentService;
 import com.blog.service.PostService;
+import com.blog.service.UserLogService;
+import com.blog.util.UserIpUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +28,7 @@ public class CreateProcCommentController implements Controller {
 
         dto.setUserId(Integer.valueOf(request.getParameter("userId")));
         dto.setPostId(Integer.valueOf(request.getParameter("postId")));
-        dto.setUserIp(request.getParameter("userIp"));
+        dto.setUserIp(UserIpUtil.userIp(request.getParameter("userIp")));
         dto.setBody(request.getParameter("body"));
 
         return dto;

@@ -42,7 +42,6 @@ public class PostServiceTest {
             post.setTitle(dto.getTitle());
             post.setBody(dto.getBody());
             post.setUser(user);
-            post.setCreatedAt(new Date());
 
             Post result = postDAO.create(post);
 
@@ -121,7 +120,7 @@ public class PostServiceTest {
             post.setId(dto.getId());
             post.setDeletedAt(new Date());
 
-            Post result = postDAO.update(post);
+            Post result = postDAO.deleteUpdate(post);
 
             assertEquals(post, result);
 
