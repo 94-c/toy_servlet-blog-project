@@ -1,6 +1,7 @@
 package com.blog.service;
 
-import com.blog.entity.User;
+import com.blog.dao.EmailTokensDAO;
+import com.blog.entity.EmailTokens;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -9,6 +10,8 @@ import java.util.Properties;
 import java.util.Random;
 
 public class EmailService {
+
+    private static final EmailTokensDAO emailTokenDAO = new EmailTokensDAO();
 
     String host = "smtp.mailtrap.io";
     String guest = "d8ffd2a2082783";    //발신자 메일
@@ -38,6 +41,12 @@ public class EmailService {
         //6자리 난수 인증번호 발생
         String authKey = getKey(6);
 
+        //이메일 토근의 id값으로 인하여
+        EmailTokens emailToken = new EmailTokens();
+        emailToken.setToken(authKey);
+        emailToken.setUserId(userId);
+        EmailTokens emailTokens = emailTokenDAO.create(emailToken);
+
         Properties props = new Properties();
         props.put("mail.smtp.ssl.protocols", "TLSv1.2");
         props.put("mail.smtp.auth", "true");
@@ -54,7 +63,7 @@ public class EmailService {
 
 
         String content = "<h1>[이메일 인증]</h1><br><p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>"
-                + "<a href='http://localhost:8080/emailConfirm.do?userId=" + userId + "&email="
+                + "<a href='http://localhost:8080/emailConfirm.do?id=" + emailTokens.getId() +"&userId=" + userId + "&email="
                 + email + "&authKey=" + authKey + "' target='_blenk'>이메일 인증 확인</a>";
 
         try {

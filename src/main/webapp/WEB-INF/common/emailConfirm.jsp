@@ -8,6 +8,8 @@
     <input type="hidden" name="userId" value="${param.userId}">
     <input type="hidden" name="token" value="${param.authKey}">
     <input type="hidden" name="email" value="${param.email}">
+    <input type="hidden" name="id" value="${param.id}">
+
     <h1>회원가입을 축하드립니다.</h1>
     <h2>하단의 버튼 클릭 시, 블로그 접속이 가능합니다.</h2>
 

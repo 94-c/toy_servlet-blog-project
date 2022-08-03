@@ -4,6 +4,7 @@ package com.blog.controller;
 import com.blog.dto.LoginDTO;
 import com.blog.entity.User;
 import com.blog.service.UserService;
+import com.blog.util.Md5Util;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,7 @@ public class LoginProcController implements Controller {
     private LoginDTO makeDTO(HttpServletRequest request) {
         LoginDTO dto = new LoginDTO();
         dto.setEmail(request.getParameter("email"));
-        dto.setPassword(request.getParameter("password"));
+        dto.setPassword(Md5Util.md5(request.getParameter("password")));
         return dto;
     }
 

@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class EmailTokensDAO extends JpaDAO<EmailTokens> {
 
+
     @Override
     public EmailTokens create(EmailTokens emailTokens) {
         emailTokens.setSendedAt(new Date());

@@ -35,7 +35,6 @@ public class JoinProcController implements Controller {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
 
         UserDTO dto = makeDTO(request);
         EmailTokensDTO emailTokensDTO = new EmailTokensDTO();
@@ -56,12 +55,7 @@ public class JoinProcController implements Controller {
             return "/WEB-INF/common/redirect.jsp";
         } else {
             //인증 메일 보내기
-            String authKey = emailService.sendEmail(result.getId(), dto.getEmail());
-
-            emailTokensDTO.setToken(authKey);
-            emailTokensDTO.setUserId(result.getId());
-
-            emailTokensService.createTokens(emailTokensDTO);
+            emailService.sendEmail(result.getId(), dto.getEmail());
 
             request.setAttribute("message", "회원가입 확인 메일이 전송 되었습니다.");
             request.setAttribute("message", "회원가입을 축하합니다.");
