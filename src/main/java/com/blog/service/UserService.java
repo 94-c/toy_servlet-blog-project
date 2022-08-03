@@ -5,6 +5,7 @@ import com.blog.dto.LoginDTO;
 import com.blog.dto.UserDTO;
 import com.blog.entity.User;
 import com.blog.log.Log;
+import com.blog.util.Md5Util;
 import lombok.RequiredArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class UserService {
 
         user.setId(dto.getId());
         user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
+        user.setPassword(Md5Util.md5(dto.getPassword()));
         user.setName(dto.getName());
         user.setState(dto.getState());
 
