@@ -12,20 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
-@RequiredArgsConstructor
 public class UserService {
 
-    private final HttpServletRequest request;
-    private static final UserDAO userDAO = new UserDAO();
+    protected final HttpServletRequest request;
+    protected final UserDAO userDAO = new UserDAO();
+
+    public UserService(HttpServletRequest request) {
+        this.request = request;
+    }
 
     private void userField(User user, UserDTO dto) {
-
         user.setId(dto.getId());
         user.setEmail(dto.getEmail());
         user.setPassword(Md5Util.md5(dto.getPassword()));
         user.setName(dto.getName());
         user.setState(dto.getState());
-
     }
 
     public boolean userEmailCheck(String email) {
@@ -37,6 +38,7 @@ public class UserService {
             return true;
         }
     }
+
     public User join(UserDTO dto) {
         User user = new User();
         try {
@@ -48,10 +50,10 @@ public class UserService {
         return user;
     }
 
-    public User login(LoginDTO dto) {
+    public User login(LoginDTO dto) throws Exception {
         User user = userDAO.login(dto.getEmail(), dto.getPassword());
         if (user == null) {
-            System.out.println("로그인 실패");
+            throw new Exception();
         }
         return user;
     }

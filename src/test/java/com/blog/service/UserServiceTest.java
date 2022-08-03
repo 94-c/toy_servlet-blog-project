@@ -66,8 +66,8 @@ public class UserServiceTest {
 
     @Test
     public void findByUserId() {
-        Integer id = 28;
-        try {
+        Integer id = 2789788;
+
             UserDTO dto = new UserDTO();
             dto.setId(id);
 
@@ -75,9 +75,7 @@ public class UserServiceTest {
 
             assertNotNull(result);
             System.out.println(result.getId() + " " + result.getEmail());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Test

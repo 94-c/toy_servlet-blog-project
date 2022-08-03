@@ -17,6 +17,7 @@
                 ${user.email}</td>
         </tr>
         <tr>
+            <!-- 수정 시, 비밀번호 변경도 같이 할 수 있도록 -->
             <th>비밀번호</th>
             <td><input type="password" name="password" value="${user.password}"/></td>
         </tr>

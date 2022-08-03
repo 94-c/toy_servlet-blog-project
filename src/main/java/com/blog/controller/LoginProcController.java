@@ -29,7 +29,7 @@ public class LoginProcController implements Controller {
     }
 
     @Override
-    public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         LoginDTO dto = makeDTO(request);
         UserService userService = new UserService(request);

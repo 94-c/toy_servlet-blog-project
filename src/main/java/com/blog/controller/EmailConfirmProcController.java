@@ -34,7 +34,9 @@ public class EmailConfirmProcController implements Controller {
         EmailTokensDTO dto = makeDTO(request);
         EmailTokensService emailTokensService = new EmailTokensService(request);
         UserService userService = new UserService(request);
-
+        
+        
+        //TODO 이메일 토큰 보낼 때, 토큰 파라미터를 토대로 검색하여 가져오기
         boolean result = emailTokensService.updateState(dto);
 
         if (result) {
