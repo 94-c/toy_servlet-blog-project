@@ -39,6 +39,7 @@ public class EmailConfirmProcController implements Controller {
         //TODO 이메일 토큰 보낼 때, 토큰 파라미터를 토대로 검색하여 가져오기
         boolean result = emailTokensService.updateState(dto);
 
+        //TODO 토큰 값으로 하여 인증번호 찾기
         if (result) {
 
             userService.updateState(dto.getUserId());
