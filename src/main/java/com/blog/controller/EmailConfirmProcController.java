@@ -29,6 +29,7 @@ public class EmailConfirmProcController implements Controller {
         return dto;
     }
 
+
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EmailTokensDTO dto = makeDTO(request);
