@@ -22,8 +22,6 @@ public class EmailConfirmProcController implements Controller {
     private EmailTokensDTO makeDTO(HttpServletRequest request) {
         EmailTokensDTO dto = new EmailTokensDTO();
 
-        dto.setId(Integer.valueOf(request.getParameter("id")));
-        dto.setUserId(Integer.valueOf(request.getParameter("userId")));
         dto.setToken(request.getParameter("token"));
 
         return dto;

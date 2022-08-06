@@ -8,18 +8,25 @@ import lombok.RequiredArgsConstructor;
 import javax.servlet.http.HttpServletRequest;
 
 
-@RequiredArgsConstructor
 public class EmailTokensService {
 
     private final HttpServletRequest request;
     private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
 
+    public EmailTokensService(HttpServletRequest request) {
+        this.request = request;
+    }
+
     public boolean updateState(EmailTokensDTO dto) {
-        EmailTokens emailTokens = emailTokensDAO.find(EmailTokens.class, dto.getId());
+        EmailTokens emailTokens = emailTokensDAO.findByToken(dto.getToken());
         if (emailTokens == null) {
             return false;
         }
         try {
+            EmailTokens findByEmailTokenId = emailTokensDAO.find(EmailTokens.class, emailTokens.getId());
+            if (findByEmailTokenId == null) {
+                return false;
+            }
             emailTokensDAO.update(emailTokens);
             return true;
         } catch (Exception e) {

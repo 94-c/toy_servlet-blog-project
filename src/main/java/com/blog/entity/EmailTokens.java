@@ -12,6 +12,9 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@NamedQueries(
+        @NamedQuery(name = "emailToken.findByToken", query = "SELECT e.token FROM EmailTokens e WHERE e.token = :token")
+)
 public class EmailTokens {
 
     @Id
