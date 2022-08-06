@@ -24,6 +24,7 @@ public class EmailTokensDAO extends JpaDAO<EmailTokens> {
 
     public EmailTokens findByToken(String token) {
         List<EmailTokens> result = super.findWithNamedQuery("emailToken.findByToken", "token", token);
+        //TODO 여기가 문제
         if (result != null && result.size() > 0) {
             return result.get(0);
         }
