@@ -17,17 +17,28 @@ public class EmailTokensService {
         this.request = request;
     }
 
+    public EmailTokens findByToken(String token) {
+        try {
+            EmailTokens emailTokens = emailTokensDAO.emailTokens(token);
+            return emailTokens;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public boolean updateState(EmailTokensDTO dto) {
-        EmailTokens emailTokens = emailTokensDAO.findByToken(dto.getToken());
-        if (emailTokens == null) {
+        EmailTokens result = findByToken(dto.getToken());
+        if (result == null) {
             return false;
         }
         try {
-            EmailTokens findByEmailTokenId = emailTokensDAO.find(EmailTokens.class, emailTokens.getId());
+            EmailTokens findByEmailTokenId = emailTokensDAO.find(EmailTokens.class, result.getId());
             if (findByEmailTokenId == null) {
                 return false;
             }
-            emailTokensDAO.update(emailTokens);
+            result.setState(1);
+            emailTokensDAO.update(result);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

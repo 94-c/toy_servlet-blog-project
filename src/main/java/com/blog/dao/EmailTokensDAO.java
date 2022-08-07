@@ -33,4 +33,13 @@ public class EmailTokensDAO extends JpaDAO<EmailTokens> {
         return emailTokens.size() == 1 ? emailTokens.get(0) : null;
     }
 
+    public EmailTokens emailTokens(String token) {
+        List<EmailTokens> result = super.findWithNamedQuery("emailToken.findByToken", "token", token);
+
+        if (result != null && result.size() > 0) {
+            return result.get(0);
+        }
+        return null;
+    }
+
 }

@@ -32,10 +32,10 @@ public class UserService {
     public boolean userEmailCheck(String email) {
         try {
             userDAO.emailCheck(email);
-            return true;
+            return false;
         }catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return true;
         }
     }
 
