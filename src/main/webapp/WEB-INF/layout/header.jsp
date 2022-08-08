@@ -1,9 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<head>
-    <title>Title</title>
-</head>
-<body>
+
 <c:if test="${sessionScope.session_id == null}">
 <form id="login_form" method="post" action="/loginProc.do">
     <div class="container">
