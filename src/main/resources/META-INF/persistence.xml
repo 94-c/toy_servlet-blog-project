@@ -34,7 +34,7 @@
             <!-- SQL 출력 시 보기 쉽게 정렬 -->
             <property name="hibernate.format_sql" value="true"/>
             <!-- 애플리케이션 실행 시점에 데이터베이스 테이블 자동 생성 -->
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>
