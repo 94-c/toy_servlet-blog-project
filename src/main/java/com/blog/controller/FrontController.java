@@ -47,6 +47,7 @@ public class FrontController extends HttpServlet {
 
         router.put("/parenComment/create.do", new CreateParentCommentController());
 
+        router.put("/login.do", new LoginController());
         router.put("/main.do", new PostListController());
 
     }
