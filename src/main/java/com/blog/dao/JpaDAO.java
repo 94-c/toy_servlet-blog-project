@@ -22,6 +22,7 @@ public class JpaDAO<E> {
             entityTransaction.begin();
             entityManager.persist(entity);
             entityTransaction.commit();
+            System.out.println("commit");
             return entity;
         } catch (Exception e) {
             e.printStackTrace();

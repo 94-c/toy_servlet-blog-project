@@ -31,21 +31,11 @@ public class UserServiceTest {
 
     @Test
     public void login() {
-        User user = new User();
-        user.setId(96);
-        user.setName("hyeongwoo26@naver.com");
-        user.setPassword(Md5Util.md5("123"));
-        try {
-            LoginDTO dto = new LoginDTO();
-            dto.setEmail(user.getEmail());
-            dto.setPassword(user.getPassword());
+        LoginDTO dto = new LoginDTO();
+        dto.setEmail("hyeongwoo26@naver.com");
+        dto.setPassword(Md5Util.md5("1234"));
 
-            User result = userService.login(dto);
-            assertNotNull(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-            assertNotNull(e);
-        }
+        User login = userService.login(dto);
     }
 
     @Test

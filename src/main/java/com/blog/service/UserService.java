@@ -44,12 +44,8 @@ public class UserService {
         return user;
     }
 
-    public User login(LoginDTO dto) throws Exception {
-        User user = userDAO.login(dto.getEmail(), dto.getPassword());
-        if (user == null) {
-            throw new Exception();
-        }
-        return user;
+    public User login(LoginDTO dto) {
+        return userDAO.login(dto.getEmail(), dto.getPassword());
     }
 
 

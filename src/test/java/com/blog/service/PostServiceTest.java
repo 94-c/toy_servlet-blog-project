@@ -1,23 +1,13 @@
 package com.blog.service;
 
-import com.blog.dao.PostDAO;
 import com.blog.dto.PostDTO;
-import com.blog.dto.UserDTO;
 import com.blog.entity.Post;
 import com.blog.entity.User;
-import com.blog.util.HibernateUtil;
-import lombok.RequiredArgsConstructor;
-import org.easymock.Mock;
 import org.junit.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.List;
 
 import static org.easymock.EasyMock.createMock;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 
 public class PostServiceTest {
@@ -27,8 +17,29 @@ public class PostServiceTest {
 
     private final PostService postService = new PostService(request);
 
+
     @Test
-    void createPost(){
+    void successfulCreatePost() {
+        PostDTO dto = new PostDTO();
+        // TODO
+        dto.setTitle("TEST");
+
+        Post post = postService.createPost(dto);
+
+        assertNotNull(post);
+        assertEquals(post.getTitle(), dto.getTitle());
+    }
+
+    @Test
+    void failedCreatePost() {
+        PostDTO dto = new PostDTO();
+        Post post = postService.createPost(dto);
+
+        assertNull(post);
+    }
+
+    @Test
+    void createPost() {
         User user = new User();
         user.setId(96);
         Post post = new Post();
@@ -55,7 +66,7 @@ public class PostServiceTest {
     }
 
     @Test
-    void updatePost(){
+    void updatePost() {
         User user = new User();
         user.setId(96);
 

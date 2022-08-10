@@ -28,15 +28,12 @@ public class EmailTokensService {
         if (result == null) {
             return false;
         }
-        try {
+
             result.setToken(result.getToken());
             result.setState(1);
             emailTokensDAO.update(result);
             return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+
     }
 
 
