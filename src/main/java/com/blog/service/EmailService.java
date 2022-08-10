@@ -63,7 +63,7 @@ public class EmailService {
 
 
         String content = "<h1>[이메일 인증]</h1><br><p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>"
-                + "<a href='http://localhost:8080/emailConfirm.do?token=" + token + "' target='_blenk'>이메일 인증 확인</a>";
+                + "<a href='http:/localhost:9007/emailConfirm.do?token=" + token + "' target='_blenk'>이메일 인증 확인</a>";
 
         try {
             MimeMessage mimeMessage = new MimeMessage(session);

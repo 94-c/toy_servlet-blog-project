@@ -78,6 +78,7 @@ public class CommentService {
             return false;
         }
         try {
+            comment.setDeleteState(1);
             commentField(comment, dto);
             commentDAO.deleteUpdate(comment);
         } catch (Exception e) {

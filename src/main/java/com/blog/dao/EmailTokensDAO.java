@@ -17,20 +17,14 @@ public class EmailTokensDAO extends JpaDAO<EmailTokens> {
         return super.create(emailTokens);
     }
 
+    public EmailTokens find(Integer id) {
+        return super.find(EmailTokens.class, id);
+    }
+
     @Override
     public EmailTokens update(EmailTokens emailTokens) {
         emailTokens.setAuthAt(new Date());
         return super.update(emailTokens);
-    }
-
-    public EmailTokens findByToken(String token) {
-        Map<String, Object> parameters = new HashMap<>();
-
-        parameters.put("token", token);
-
-        List<EmailTokens> emailTokens = super.findWithNamedQuery("emailToken.findByToken", parameters);
-
-        return emailTokens.size() == 1 ? emailTokens.get(0) : null;
     }
 
     public EmailTokens emailTokens(String token) {

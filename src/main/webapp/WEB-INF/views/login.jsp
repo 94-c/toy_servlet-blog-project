@@ -1,24 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="../layout/header.jsp"/>
+<style>
+    .form-sign {
+        width: 600px;
+        max-width: 600px;
+        padding: 15px;
+        margin: auto;
+    }
+    .form-sign .form-floating:focus-within {
+        z-index: 2;
+    }
 
+    .form-sign input[type="email"] {
+        margin-bottom: 10px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 
+    .form-sign input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+</style>
+
+<main class="form-sign">
     <div class="container">
-        <!-- <h5 class="modal-title">Modal title</h5> -->
-        <h2 class="fw-bold mb-0">Sign up for free</h2>
-
-    <div class="modal-body p-5 pt-0">
+        <h3 class="text-center">로그인</h3>
         <form id="login_form" method="post" action="/loginProc.do">
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control rounded-3" id="email" placeholder="name@example.com">
+            <div class="form-floating">
+                <input type="email" class="form-control rounded-3" id="email" name="email" placeholder="name@example.com">
                 <label for="email">Email address</label>
+
             </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control rounded-3" id="password" placeholder="Password">
+            <div class="form-floating">
+                <input type="password" class="form-control rounded-3" id="password" name="password" placeholder="Password">
                 <label for="password">Password</label>
             </div>
-            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
-            <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+
         </form>
     </div>
-    </div>
+</main>
+<jsp:include page="../layout/footer.jsp"/>

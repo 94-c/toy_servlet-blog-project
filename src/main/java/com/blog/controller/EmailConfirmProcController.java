@@ -40,9 +40,7 @@ public class EmailConfirmProcController implements Controller {
 
         //TODO 토큰 값으로 하여 인증번호 찾기
         if (result) {
-
             userService.updateState(dto.getUserId());
-
             request.setAttribute("message", "인증이 완료되었습니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";

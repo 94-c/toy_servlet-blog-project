@@ -37,10 +37,8 @@ public class JoinProcController implements Controller {
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         UserDTO dto = makeDTO(request);
-        EmailTokensDTO emailTokensDTO = new EmailTokensDTO();
         UserService userService = new UserService(request);
         EmailService emailService = new EmailService();
-        EmailTokensService emailTokensService = new EmailTokensService(request);
 
         boolean emailCheck = userService.userEmailCheck(dto.getEmail());
         if (!emailCheck) {

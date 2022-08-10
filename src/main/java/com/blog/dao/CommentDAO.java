@@ -26,7 +26,6 @@ public class CommentDAO extends JpaDAO<Comment> {
 
     //삭제 버튼 시, delete_state = 1로 변경
     public Comment deleteUpdate(Comment comment) {
-        comment.setDeleteState(1);
         return super.update(comment);
     }
 

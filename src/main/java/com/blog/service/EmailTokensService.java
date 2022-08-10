@@ -3,7 +3,7 @@ package com.blog.service;
 import com.blog.dao.EmailTokensDAO;
 import com.blog.dto.EmailTokensDTO;
 import com.blog.entity.EmailTokens;
-import lombok.RequiredArgsConstructor;
+import com.blog.entity.Post;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,7 +21,7 @@ public class EmailTokensService {
         try {
             EmailTokens emailTokens = emailTokensDAO.emailTokens(token);
             return emailTokens;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -33,10 +33,7 @@ public class EmailTokensService {
             return false;
         }
         try {
-            EmailTokens findByEmailTokenId = emailTokensDAO.find(EmailTokens.class, result.getId());
-            if (findByEmailTokenId == null) {
-                return false;
-            }
+            result.setToken(result.getToken());
             result.setState(1);
             emailTokensDAO.update(result);
             return true;

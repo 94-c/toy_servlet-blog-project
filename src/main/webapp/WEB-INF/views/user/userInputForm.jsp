@@ -4,30 +4,63 @@
 <head>
     <title>회원정보</title>
 </head>
-<body>
-<h1>회원 정보</h1>
-<c:set var="action" value="${'/user/editProc.do'}"/>
-<form id="user_edit_form" method="post" action="${action}">
-    <input type="hidden" name="id" value="${param.id}">
-    <input type="hidden" name="state" value="${user.state}">
-    <table class="table">
-        <tr>
-            <th>이메일</th>
-            <td><input type="hidden" id="email" name="email" value="${user.email}"/>
-                ${user.email}</td>
-        </tr>
-        <tr>
-            <!-- 수정 시, 비밀번호 변경도 같이 할 수 있도록 -->
-            <th>비밀번호</th>
-            <td><input type="password" name="password" value="${user.password}"/></td>
-        </tr>
-        <tr>
-            <th>이름</th>
-            <td><input type="text" name="name" value="${user.name}"></td>
-        </tr>
-    </table>
-    <input type="submit" value="수정">
-    <input type="button" value="이전" onclick="location.href='/main.do'">
-</form>
-</body>
-</html>
+<jsp:include page="../../layout/header.jsp"/>
+<style>
+    .form-userEdit {
+        width: 600px;
+        max-width: 600px;
+        padding: 15px;
+        margin: auto;
+    }
+
+    .form-userEdit .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-userEdit input[id="email"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .form-userEdit input[id="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .form-userEdit input[id="name"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+</style>
+<main class="form-userEdit">
+    <div class="container">
+        <h3 class="text-center">회원정보</h3>
+        <c:set var="action" value="${'/user/editProc.do'}"/>
+        <form id="user_edit_form" method="post" action="${action}">
+            <input type="hidden" name="id" value="${param.id}">
+            <input type="hidden" name="state" value="${user.state}">
+            <div class="form-floating">
+                <input type="email" class="form-control rounded" id="email" name="email" value="${user.email}" readonly>
+                <label for="email">Email Address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control rounded" id="password" name="password"
+                       value="${user.password}">
+                <label for="password">Password</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control rounded" id="name" name="name"
+                       value="${user.name}">
+                <label for="name">Name</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">수정 하기</button>
+
+        </form>
+    </div>
+</main>
+
+<jsp:include page="../../layout/footer.jsp"/>
