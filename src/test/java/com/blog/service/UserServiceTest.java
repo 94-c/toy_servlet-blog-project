@@ -1,107 +1,137 @@
 package com.blog.service;
 
-import com.blog.dao.UserDAO;
+import com.blog.dto.EmailTokensDTO;
+import com.blog.dto.LoginDTO;
 import com.blog.dto.UserDTO;
+import com.blog.entity.EmailTokens;
 import com.blog.entity.User;
+import com.blog.util.Md5Util;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class UserServiceTest {
 
-    private static final UserDAO userDAO = new UserDAO();
+    private static UserService userService = new UserService();
+    private static EmailService emailService = new EmailService();
+    private static EmailTokensService emailTokensService = new EmailTokensService();
 
     @Test
-    public void userIdCheck() {
-        String email1 = "aaa@goggle.com";
+    public void findByEmail() {
+        User user = new User();
+        user.setId(96);
         try {
-            User result = userDAO.emailCheck(email1);
-
-            assertNotNull(result.getEmail(), email1);
-            System.out.println(result.getEmail());
-
-        }catch (Exception e) {
+            User result = userService.findUserId(user.getId());
+            assertNotNull(result);
+        } catch (Exception e) {
             e.printStackTrace();
+            assertNotNull(e);
         }
     }
 
     @Test
     public void login() {
-        String email = "hyeongwoo26@naver.com";
-        String password = "123";
-        try {
-            UserDTO dto = new UserDTO();
-            dto.setEmail(email);
-            dto.setPassword(password);
-            User result = userDAO.login(dto.getEmail(), dto.getPassword());
-            assertNotNull(result.getEmail(), email);
-            assertNotNull(result.getPassword(), password);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void join() {
         User user = new User();
+        user.setId(96);
+        user.setName("hyeongwoo26@naver.com");
+        user.setPassword(Md5Util.md5("123"));
         try {
-            UserDTO dto = new UserDTO();
-            dto.setEmail("hhh@naver.com");
-            dto.setPassword("1234");
-            dto.setName("관리자");
+            LoginDTO dto = new LoginDTO();
+            dto.setEmail(user.getEmail());
+            dto.setPassword(user.getPassword());
 
-            user.setEmail(dto.getEmail());
-            user.setPassword(dto.getPassword());
-            user.setName(dto.getName());
+            User result = userService.login(dto);
+            assertNotNull(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertNotNull(e);
+        }
+    }
 
-            User result = userDAO.create(user);
+    @Test
+    public void updateStateByEmailToken() {
+        User user = new User();
+        user.setId(100);
+        User userId = userService.findUserId(user.getId());
+        if (userId == null) {
+            assertNotNull("Not Find UserId");
+        }
+        EmailTokens emailTokens = new EmailTokens();
+        emailTokens.setId(77);
+        emailTokens.setUserId(user.getId());
+        emailTokens.setToken("427437");
+        try {
+            EmailTokensDTO dto = new EmailTokensDTO();
+            dto.setId(emailTokens.getId());
+            dto.setUserId(emailTokens.getUserId());
+            dto.setToken(emailTokens.getToken());
+            dto.setState(1);
 
-            assertEquals(user,result);
+            EmailTokens token = emailTokensService.findByToken(dto.getToken());
+            boolean tokens = emailTokensService.updateState(dto);
 
-            System.out.println(result.toString());
+            if (tokens) {
+                userService.updateState(user.getId());
+            }
+            assertEquals(emailTokens.getId(), dto.getId());
+            assertEquals(emailTokens.getToken(), token);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void findByUserId() {
-        Integer id = 2789788;
-
+    public void createUser() {
+        User user = new User();
+        String password = Md5Util.md5("123");
+        user.setEmail("hhh@naver.com");
+        user.setPassword(password);
+        user.setName("테스트");
+        try {
             UserDTO dto = new UserDTO();
-            dto.setId(id);
+            dto.setEmail(user.getEmail());
+            dto.setPassword(user.getPassword());
+            dto.setName(user.getName());
 
-            User result = userDAO.find(User.class, dto.getId());
+            User result = userService.join(dto);
+            assertEquals(user.getEmail(), result.getEmail());
+            assertEquals(user.getPassword(), password);
+            assertEquals(user.getName(), result.getName());
 
-            assertNotNull(result);
-            System.out.println(result.getId() + " " + result.getEmail());
-
+            if (result != null) {
+                emailService.sendEmail(result.getId(), result.getEmail());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertNotNull(e);
+        }
     }
 
     @Test
     public void updateUser() {
-        Integer id = 28;
-        User user = userDAO.find(User.class, id);
-        if (user == null) {
-            return;
-        }
+        String password = Md5Util.md5("123");
+
+        User user = new User();
+        user.setId(100);
+        user.setEmail("hhhh@naver.com");
+        user.setPassword(password);
+        user.setName("테스트");
         try {
             UserDTO dto = new UserDTO();
             dto.setId(user.getId());
-            dto.setEmail(user.getEmail());
-            dto.setName("누굴까?");
-            dto.setPassword("1234");
+            dto.setPassword(user.getPassword());
+            dto.setName(user.getName());
 
-            user.setId(dto.getId());
-            user.setEmail(dto.getEmail());
-            user.setName(dto.getName());
-            user.setPassword(dto.getPassword());
+            User result = userService.updateUser(dto);
+            assertEquals(user.getId(), result.getId());
+            assertEquals(user.getEmail(), result.getEmail());
+            assertEquals(user.getPassword(), password);
+            assertEquals(user.getName(), result.getName());
 
-            User result = userDAO.update(user);
-
-            assertEquals(user, result);
         } catch (Exception e) {
             e.printStackTrace();
+            assertNotNull(e);
         }
     }
+
 }

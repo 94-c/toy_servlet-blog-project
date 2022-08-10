@@ -4,16 +4,18 @@ import com.blog.dao.PostDAO;
 import com.blog.dto.PostDTO;
 import com.blog.entity.Post;
 import com.blog.entity.User;
-import lombok.RequiredArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RequiredArgsConstructor
 public class PostService {
 
     private final HttpServletRequest request;
-    private static final PostDAO postDAO = new PostDAO();
+    private final PostDAO postDAO = new PostDAO();
+
+    public PostService(HttpServletRequest request) {
+        this.request = request;
+    }
 
     private void postField(Post post, PostDTO dto) {
         User user = new User();
@@ -32,15 +34,15 @@ public class PostService {
     }
 
 
-    public boolean createPost(PostDTO dto) {
+    public Post createPost(PostDTO dto) throws Exception{
         Post post = new Post();
         try {
             postField(post, dto);
             postDAO.create(post);
-            return true;
+            return post;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            throw new Exception();
         }
     }
 
@@ -53,10 +55,10 @@ public class PostService {
         return true;
     }
 
-    public boolean updatePost(PostDTO dto) {
+    public Post updatePost(PostDTO dto) throws Exception {
         Post post = postDAO.find(Post.class, dto.getId());
         if (post == null) {
-            return false;
+            throw new Exception();
         }
         try {
             postField(post, dto);
@@ -64,7 +66,7 @@ public class PostService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
+        return post;
     }
 
     public boolean deletePost(PostDTO dto) {

@@ -48,8 +48,7 @@
                 <label for="email">Email Address</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control rounded" id="password" name="password"
-                       value="${user.password}">
+                <input type="password" class="form-control rounded" id="password" name="password">
                 <label for="password">Password</label>
             </div>
             <div class="form-floating">

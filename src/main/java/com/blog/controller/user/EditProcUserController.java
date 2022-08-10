@@ -31,20 +31,20 @@ public class EditProcUserController implements Controller {
     }
 
     @Override
-    public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         UserDTO dto = makeDTO(request);
-        UserService userService = new UserService(request);
+        UserService userService = new UserService();
 
-        boolean result = userService.updateUser(dto);
 
-        if (result) {
-            request.setAttribute("message", "회원 정보 수정이 완료되었습니다.");
-            request.setAttribute("target", "/main.do");
+        if (dto.getPassword().isEmpty()) {
+            request.setAttribute("message", "회원 정보 수정이 실패하였습니다.");
+            request.setAttribute("target", "/user/edit.do?id=" + dto.getId());
             return "/WEB-INF/common/redirect.jsp";
         }
-        request.setAttribute("message", "회원 정보 수정이 실패하였습니다.");
-        request.setAttribute("target", "/user/edit.do=id" + dto.getId());
+        userService.updateUser(dto);
+        request.setAttribute("message", "회원 정보 수정이 완료되었습니다.");
+        request.setAttribute("target", "/main.do");
         return "/WEB-INF/common/redirect.jsp";
     }
 }

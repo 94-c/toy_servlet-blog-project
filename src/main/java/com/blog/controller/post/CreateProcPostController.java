@@ -3,6 +3,7 @@ package com.blog.controller.post;
 import com.blog.controller.Controller;
 import com.blog.dto.PostDTO;
 import com.blog.entity.Post;
+import com.blog.entity.User;
 import com.blog.service.PostService;
 
 import javax.servlet.ServletException;
@@ -31,14 +32,14 @@ public class CreateProcPostController implements Controller {
     }
 
     @Override
-    public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         PostDTO dto = makeDTO(request);
         PostService postService = new PostService(request);
 
-        boolean result = postService.createPost(dto);
+        Post result = postService.createPost(dto);
 
-        if (result) {
+        if (result != null) {
             request.setAttribute("message", "게시글이 작성이 되었습니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";

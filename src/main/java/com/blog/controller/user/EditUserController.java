@@ -1,6 +1,7 @@
 package com.blog.controller.user;
 
 import com.blog.controller.Controller;
+import com.blog.entity.User;
 import com.blog.service.UserService;
 
 import javax.servlet.ServletException;
@@ -24,11 +25,12 @@ public class EditUserController implements Controller {
 
         Integer id = Integer.valueOf(request.getParameter("id"));
 
-        UserService userService = new UserService(request);
+        UserService userService = new UserService();
 
-        boolean result = userService.findUserId(id);
+        User result = userService.findUserId(id);
 
-        if (result) {
+        if (result != null) {
+            request.setAttribute("user", result);
             return "/WEB-INF/views/user/userInputForm.jsp";
         }
         request.setAttribute("message", "회원 정보를  찾을 수 없습니다.");

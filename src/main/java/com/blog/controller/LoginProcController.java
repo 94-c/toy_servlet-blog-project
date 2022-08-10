@@ -32,7 +32,7 @@ public class LoginProcController implements Controller {
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         LoginDTO dto = makeDTO(request);
-        UserService userService = new UserService(request);
+        UserService userService = new UserService();
 
         User user = userService.login(dto);
 

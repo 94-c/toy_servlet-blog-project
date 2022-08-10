@@ -10,12 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class EmailTokensService {
 
-    private final HttpServletRequest request;
     private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
 
-    public EmailTokensService(HttpServletRequest request) {
-        this.request = request;
-    }
 
     public EmailTokens findByToken(String token) {
         try {

@@ -31,8 +31,8 @@ public class EmailConfirmProcController implements Controller {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EmailTokensDTO dto = makeDTO(request);
-        EmailTokensService emailTokensService = new EmailTokensService(request);
-        UserService userService = new UserService(request);
+        EmailTokensService emailTokensService = new EmailTokensService();
+        UserService userService = new UserService();
         
         
         //TODO 이메일 토큰 보낼 때, 토큰 파라미터를 토대로 검색하여 가져오기

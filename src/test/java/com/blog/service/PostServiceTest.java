@@ -2,133 +2,84 @@ package com.blog.service;
 
 import com.blog.dao.PostDAO;
 import com.blog.dto.PostDTO;
+import com.blog.dto.UserDTO;
 import com.blog.entity.Post;
 import com.blog.entity.User;
 import com.blog.util.HibernateUtil;
+import lombok.RequiredArgsConstructor;
+import org.easymock.Mock;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
+import static org.easymock.EasyMock.createMock;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 
 public class PostServiceTest {
 
-    private static final PostDAO postDAO = new PostDAO();
+    HttpServletRequest request = createMock(HttpServletRequest.class);
+
+
+    private final PostService postService = new PostService(request);
 
     @Test
-    public void findAllPost() {
-        List<Post> postList = postDAO.findAllCreateQuery();
-
-        assertThat(postList, equalTo(postList));
-        System.out.println(postList.get(0));
-        System.out.println(postList.get(1));
-    }
-
-    @Test
-    public void createPost() {
+    void createPost(){
+        User user = new User();
+        user.setId(96);
         Post post = new Post();
+        post.setTitle("테스트");
+        post.setBody("가나다라마바사");
+        post.setUser(user);
+
         try {
             PostDTO dto = new PostDTO();
-            dto.setTitle("오케이");
-            dto.setBody("오케이");
+            dto.setTitle(post.getTitle());
+            dto.setBody(post.getBody());
+            dto.setUserId(post.getUser().getId());
 
-            User user = new User();
-            user.setId(18);
-
-            post.setTitle(dto.getTitle());
-            post.setBody(dto.getBody());
-            post.setUser(user);
-
-            Post result = postDAO.create(post);
+            Post result = postService.createPost(dto);
 
             assertEquals(post, result);
-
-            System.out.println(result.toString());
-            System.out.println(post.hashCode());
-            System.out.println(result.hashCode());
-
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
+            System.out.println("NullPointerException");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception");
         }
     }
 
     @Test
-    public void findByPostId() {
-        Integer id = 6;
+    void updatePost(){
+        User user = new User();
+        user.setId(96);
+
+        Post post = new Post();
+        post.setId(16);
+        post.setTitle("테스트");
+        post.setBody("가나다라마바사");
+        post.setUser(user);
+
         try {
             PostDTO dto = new PostDTO();
-            dto.setId(id);
+            dto.setTitle(post.getTitle());
+            dto.setBody(post.getBody());
+            dto.setUserId(post.getUser().getId());
 
-            Post result = postDAO.find(Post.class, dto.getId());
-            assertNotNull(result);
-
-            System.out.println(result.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void updatePost() {
-        Integer postId = 6;
-        Post post = postDAO.find(Post.class, postId);
-        if (post == null) {
-            return;
-        }
-        try {
-            PostDTO dto = new PostDTO();
-            dto.setId(post.getId());
-            dto.setTitle("수정완료");
-            dto.setBody("오케이");
-
-            User user = new User();
-            user.setId(18);
-
-            post.setId(dto.getId());
-            post.setTitle(dto.getTitle());
-            post.setBody(dto.getBody());
-            post.setUser(user);
-            post.setUpdatedAt(new Date());
-
-            Post result = postDAO.update(post);
+            Post result = postService.updatePost(dto);
 
             assertEquals(post, result);
-
-            System.out.println(result.toString());
-            System.out.println(post.hashCode());
-            System.out.println(result.hashCode());
-        }catch (Exception e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void deletePost() {
-        Integer postId = 6;
-        Post post = postDAO.find(Post.class, postId);
-        if (post == null) {
-            return;
-        }
-        try {
-            PostDTO dto = new PostDTO();
-            dto.setId(post.getId());
-
-            post.setId(dto.getId());
-            post.setDeletedAt(new Date());
-
-            Post result = postDAO.deleteUpdate(post);
-
-            assertEquals(post, result);
-
-            System.out.println(result.toString());
-            System.out.println(post.hashCode());
-            System.out.println(result.hashCode());
-        }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("NullPointerException");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Exception");
         }
     }
 }

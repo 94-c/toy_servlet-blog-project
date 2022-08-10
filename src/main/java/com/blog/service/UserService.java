@@ -11,15 +11,9 @@ import lombok.RequiredArgsConstructor;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-
 public class UserService {
 
-    protected final HttpServletRequest request;
     protected final UserDAO userDAO = new UserDAO();
-
-    public UserService(HttpServletRequest request) {
-        this.request = request;
-    }
 
     private void userField(User user, UserDTO dto) {
         user.setId(dto.getId());
@@ -65,28 +59,27 @@ public class UserService {
         return user;
     }
 
-    public boolean findUserId(Integer id) {
+    public User findUserId(Integer id) {
         User user = userDAO.find(User.class, id);
         if (user == null) {
-            return false;
+            return null;
         }
-        request.setAttribute("user", user);
 
-        return true;
+        return user;
     }
 
-    public boolean updateUser(UserDTO dto) {
+    public User updateUser(UserDTO dto) throws Exception {
         User user = userDAO.find(User.class, dto.getId());
         if (user == null) {
-            return false;
+            throw new Exception();
         }
         try {
             userField(user, dto);
             userDAO.update(user);
-            return true;
+            return user;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            throw new Exception();
         }
     }
 
