@@ -25,7 +25,7 @@ public class Post {
 
     private String title;
 
- 집에
+
     private String body;
 
     @ManyToOne
