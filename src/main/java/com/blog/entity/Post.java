@@ -25,7 +25,7 @@ public class Post {
 
     private String title;
 
-    @OneToOne
+
     private String body;
 
     @ManyToOne
