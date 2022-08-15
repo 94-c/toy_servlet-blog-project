@@ -36,7 +36,7 @@ public class EditProcPostController implements Controller {
         request.setCharacterEncoding("UTF-8");
 
         PostDTO dto = makeDTO(request);
-        PostService postService = new PostService(request);
+        PostService postService = new PostService();
 
         Post result = postService.updatePost(dto);
 

@@ -7,31 +7,23 @@ import com.blog.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 
 public class PostService {
 
-    private final HttpServletRequest request;
     private final PostDAO postDAO = new PostDAO();
-
-    public PostService(HttpServletRequest request) {
-        this.request = request;
-    }
 
     private void addPostField(Post post, PostDTO dto) {
         User user = new User();
         user.setId(dto.getUserId());
 
-        post.setId(dto.getId());
         post.setTitle(dto.getTitle());
         post.setBody(dto.getBody());
         post.setUser(user);
 
     }
 
-    public void findAllPost() {
-        List<Post> postList = postDAO.findAllCreateQuery();
-        request.setAttribute("postList", postList);
+    public List<Post> findAllPost() {
+        return postDAO.findAllCreateQuery();
     }
 
 
@@ -48,7 +40,6 @@ public class PostService {
         if (post == null) {
             return false;
         }
-        request.setAttribute("posts", post);
         return true;
     }
 

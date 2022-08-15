@@ -35,7 +35,7 @@ public class CreateProcPostController implements Controller {
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         PostDTO dto = makeDTO(request);
-        PostService postService = new PostService(request);
+        PostService postService = new PostService();
 
         Post result = postService.createPost(dto);
 

@@ -29,7 +29,7 @@ public class DeleteProcPostController implements Controller {
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         PostDTO dto = makeDTO(request);
-        PostService postService = new PostService(request);
+        PostService postService = new PostService();
 
         boolean result = postService.deletePost(dto);
 

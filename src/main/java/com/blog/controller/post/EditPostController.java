@@ -23,12 +23,13 @@ public class EditPostController implements Controller {
 
         Integer id = Integer.valueOf(request.getParameter("id"));
 
-        PostService postService = new PostService(request);
+        PostService postService = new PostService();
         CommentService commentService = new CommentService(request);
 
         boolean result = postService.findByPostId(id);
 
         if (result) {
+            request.setAttribute("posts", result);
             commentService.findAllCommentByPostId(id);
             return "/WEB-INF/views/post.jsp";
         }

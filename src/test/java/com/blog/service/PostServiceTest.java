@@ -2,95 +2,97 @@ package com.blog.service;
 
 import com.blog.dto.PostDTO;
 import com.blog.entity.Post;
-import com.blog.entity.User;
 import org.junit.Test;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.easymock.EasyMock.createMock;
 import static org.junit.Assert.*;
 
 public class PostServiceTest {
 
-    HttpServletRequest request = createMock(HttpServletRequest.class);
-
-
-    private final PostService postService = new PostService(request);
-
+    private final PostService postService = new PostService();
 
     @Test
-    void successfulCreatePost() {
+    public void postList() {
+        List<Post> postList = postService.findAllPost();
+
+        assertNotNull(postList);
+        System.out.println(Arrays.toString(postList.toArray()));
+    }
+
+    @Test
+    public void createSuccessPost() {
         PostDTO dto = new PostDTO();
-        // TODO
-        dto.setTitle("TEST");
+        dto.setTitle("테스트 코드 작성");
+        dto.setBody("테스트 코드 작성");
+        dto.setUserId(1);
 
         Post post = postService.createPost(dto);
 
-        assertNotNull(post);
-        assertEquals(post.getTitle(), dto.getTitle());
+        assertNotEquals(dto, post);
+        assertEquals(Post.class, post.getClass());
+
     }
 
-    @Test
-    void failedCreatePost() {
+    @Test(expected = NullPointerException.class)
+    public void createFailPost() {
         PostDTO dto = new PostDTO();
+        dto.setTitle("테스트 코드 작성");
+        dto.setBody("테스트 코드 작성");
+        dto.setUserId(22);
+
         Post post = postService.createPost(dto);
+        assertNotEquals(dto, post);
+        assertEquals(Post.class, post.getClass());
 
-        assertNull(post);
     }
 
     @Test
-    void createPost() {
-        User user = new User();
-        user.setId(96);
-        Post post = new Post();
-        post.setTitle("테스트");
-        post.setBody("가나다라마바사");
-        post.setUser(user);
-
-        try {
-            PostDTO dto = new PostDTO();
-            dto.setTitle(post.getTitle());
-            dto.setBody(post.getBody());
-            dto.setUserId(post.getUser().getId());
-
-            Post result = postService.createPost(dto);
-
-            assertEquals(post, result);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            System.out.println("NullPointerException");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Exception");
-        }
+    public void findByPostIdSuccess() {
+        PostDTO dto = new PostDTO();
+        dto.setId(1);
+        boolean result = postService.findByPostId(dto.getId());
+        assertTrue(result);
     }
 
     @Test
-    void updatePost() {
-        User user = new User();
-        user.setId(96);
-
-        Post post = new Post();
-        post.setId(16);
-        post.setTitle("테스트");
-        post.setBody("가나다라마바사");
-        post.setUser(user);
-
-        try {
-            PostDTO dto = new PostDTO();
-            dto.setTitle(post.getTitle());
-            dto.setBody(post.getBody());
-            dto.setUserId(post.getUser().getId());
-
-            Post result = postService.updatePost(dto);
-
-            assertEquals(post, result);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            System.out.println("NullPointerException");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Exception");
-        }
+    public void findByPostIdFail() {
+        PostDTO dto = new PostDTO();
+        dto.setId(99);
+        boolean result = postService.findByPostId(dto.getId());
+        assertFalse(result);
     }
+
+
+    @Test
+    public void updateSuccessPost() throws Exception {
+        PostDTO dto = new PostDTO();
+        dto.setId(1);
+        dto.setTitle("테스트 코드 업데이트 작성");
+        dto.setBody("테스트 코드 작성");
+        dto.setUserId(1);
+
+        Post post = postService.updatePost(dto);
+
+        assertNotEquals(dto, post);
+        assertEquals(Post.class, post.getClass());
+
+    }
+
+    @Test
+    public void updateFailPost() throws Exception {
+        PostDTO dto = new PostDTO();
+        dto.setId(99);
+        dto.setTitle("테스트 코드 업데이트 작성");
+        dto.setBody("테스트 코드 작성");
+        dto.setUserId(2);
+
+        Post post = postService.updatePost(dto);
+
+        assertNotEquals(dto, post);
+        assertEquals(Post.class, post.getClass());
+
+    }
+
 }
