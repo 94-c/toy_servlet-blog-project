@@ -16,6 +16,10 @@ public class UserDAO extends JpaDAO<User> {
         return super.create(entity);
     }
 
+    public User find(Object id) {
+        return super.find(User.class, id);
+    }
+
     @Override
     public User update(User entity) {
         entity.setUpdatedAt(new Date());

@@ -13,6 +13,10 @@ public class PostDAO extends JpaDAO<Post> {
         return super.create(post);
     }
 
+    public Post find(Object id) {
+        return super.find(Post.class, id);
+    }
+
     @Override
     public Post update(Post post) {
         post.setUpdatedAt(new Date());
