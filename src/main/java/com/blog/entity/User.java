@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "user")
@@ -27,7 +25,6 @@ public class User {
     private String password;
 
     private String name;
-
     @Column(columnDefinition = "tinyint(1) default 0")
     private Integer state;
 
@@ -39,4 +36,11 @@ public class User {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Post> postList = new ArrayList<>();
+
+    public void addPost(Post post) {
+        postList.add(post);
+        post.setUser(this);
+    }
 }

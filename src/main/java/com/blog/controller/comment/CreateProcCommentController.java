@@ -39,16 +39,16 @@ public class CreateProcCommentController implements Controller {
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         CommentDTO dto = makeDTO(request);
-        CommentService commentService = new CommentService(request);
+        CommentService commentService = new CommentService();
 
-        boolean result = commentService.createComment(dto);
+        Comment result = commentService.createComment(dto);
 
-        if (result) {
-            request.setAttribute("message", "댓글이 등록 되었습니다.");
+        if (result == null) {
+            request.setAttribute("message", "댓글 등록이 실패하었습니다.");
             request.setAttribute("target", "/post/edit.do?id="+dto.getPostId());
             return "/WEB-INF/common/redirect.jsp";
         }
-        request.setAttribute("message", "댓글 등록이 실패하었습니다.");
+        request.setAttribute("message", "댓글이 등록 되었습니다.");
         request.setAttribute("target", "/post/edit.do?id="+dto.getPostId());
         return "/WEB-INF/common/redirect.jsp";
     }

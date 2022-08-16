@@ -5,19 +5,16 @@ import com.blog.dto.CommentDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.User;
-import com.blog.log.Log;
 import lombok.RequiredArgsConstructor;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequiredArgsConstructor
 public class CommentService {
 
-    private final HttpServletRequest request;
     private static final CommentDAO commentDAO = new CommentDAO();
 
-    private void commentField(Comment comment, CommentDTO dto) {
+    private void addCommentField(Comment comment, CommentDTO dto) {
         User user = new User();
         user.setId(dto.getUserId());
 
@@ -32,59 +29,40 @@ public class CommentService {
 
     }
 
-    public void findAllCommentByPostId(Integer postId) {
-        List<Comment> commentList = commentDAO.findAllCommentByPostId(postId);
-        request.setAttribute("commentList", commentList);
+    public List<Comment> findAllCommentByPostId(Integer postId) {
+        return commentDAO.findAllCommentByPostId(postId);
     }
 
-    public boolean createComment(CommentDTO dto) {
-        Comment comment = new Comment();
-        try {
-            commentField(comment, dto);
-            commentDAO.create(comment);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public Comment createComment(CommentDTO dto) {
+        Comment newComment = new Comment();
+        addCommentField(newComment, dto);
+        commentDAO.create(newComment);
+        return newComment;
     }
 
-    public boolean findByCommentId(Integer commentId) {
-        Comment comment = commentDAO.find(commentId);
-        if (comment == null) {
-            return false;
-        }
-        request.setAttribute("comment", comment);
-        return true;
+    public Comment findByCommentId(Integer commentId) {
+        return commentDAO.find(commentId);
     }
 
-    public boolean updateComment(CommentDTO dto) {
+    public Comment updateComment(CommentDTO dto) throws Exception{
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
-            return false;
+            throw new Exception();
         }
-        try {
-            commentField(comment, dto);
-            commentDAO.update(comment);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return true;
+        addCommentField(comment, dto);
+        commentDAO.update(comment);
+        return comment;
     }
 
-    public boolean deleteComment(CommentDTO dto) {
+    public Comment deleteComment(CommentDTO dto) throws Exception {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
-            return false;
+            throw new Exception();
         }
-        try {
-            comment.setDeleteState(1);
-            commentField(comment, dto);
-            commentDAO.deleteUpdate(comment);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return true;
+        comment.setDeleteState(1);
+        addCommentField(comment, dto);
+        commentDAO.deleteUpdate(comment);
+        return comment;
     }
 
 }

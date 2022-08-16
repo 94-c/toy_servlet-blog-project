@@ -2,6 +2,7 @@ package com.blog.controller.comment;
 
 import com.blog.controller.Controller;
 import com.blog.dto.CommentDTO;
+import com.blog.entity.Comment;
 import com.blog.service.CommentService;
 
 import javax.servlet.ServletException;
@@ -31,17 +32,24 @@ public class DeleteProcCommentController implements Controller {
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         CommentDTO dto = makeDTO(request);
-        CommentService commentService = new CommentService(request);
+        CommentService commentService = new CommentService();
 
-        boolean result = commentService.deleteComment(dto);
+        Comment result = null;
 
-        if (result) {
-            request.setAttribute("message", "댓글 삭제가 성공하었습니다.");
+        try {
+            result = commentService.deleteComment(dto);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        if (result == null) {
+            request.setAttribute("message", "댓글 삭제가 실패하었습니다.");
             request.setAttribute("target", "/post/edit.do?id="+dto.getPostId());
             return "/WEB-INF/common/redirect.jsp";
         }
-        request.setAttribute("message", "댓글 삭제가 실패하었습니다.");
+        request.setAttribute("message", "댓글 삭제가 성공하었습니다.");
         request.setAttribute("target", "/post/edit.do?id="+dto.getPostId());
         return "/WEB-INF/common/redirect.jsp";
+
     }
 }

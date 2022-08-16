@@ -1,6 +1,7 @@
 package com.blog.controller.comment;
 
 import com.blog.controller.Controller;
+import com.blog.entity.Comment;
 import com.blog.service.CommentService;
 
 import javax.servlet.ServletException;
@@ -23,11 +24,12 @@ public class EditCommentController implements Controller {
 
         Integer commentId = Integer.valueOf(request.getParameter("commentId"));
 
+        CommentService commentService = new CommentService();
 
-        CommentService commentService = new CommentService(request);
-        boolean result = commentService.findByCommentId(commentId);
+        Comment result = commentService.findByCommentId(commentId);
 
-        if (result) {
+        if (result != null) {
+            request.setAttribute("comment", result);
             return "/WEB-INF/views/commentInput.jsp";
         }
 

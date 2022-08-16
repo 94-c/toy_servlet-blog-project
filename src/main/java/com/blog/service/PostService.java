@@ -5,7 +5,6 @@ import com.blog.dto.PostDTO;
 import com.blog.entity.Post;
 import com.blog.entity.User;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class PostService {
@@ -35,12 +34,8 @@ public class PostService {
         return newPost;
     }
 
-    public boolean findByPostId(Integer id) {
-        Post post = postDAO.find(Post.class, id);
-        if (post == null) {
-            return false;
-        }
-        return true;
+    public Post findByPostId(Integer id) {
+        return postDAO.find(Post.class, id);
     }
 
     public Post updatePost(PostDTO dto) throws Exception {
@@ -48,12 +43,8 @@ public class PostService {
         if (post == null) {
             throw new Exception();
         }
-        try {
-            addPostField(post, dto);
-            postDAO.update(post);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        addPostField(post, dto);
+        postDAO.update(post);
         return post;
     }
 

@@ -4,12 +4,7 @@ import com.blog.dao.UserDAO;
 import com.blog.dto.LoginDTO;
 import com.blog.dto.UserDTO;
 import com.blog.entity.User;
-import com.blog.log.Log;
 import com.blog.util.Md5Util;
-import lombok.RequiredArgsConstructor;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 public class UserService {
 
@@ -27,7 +22,7 @@ public class UserService {
         try {
             userDAO.emailCheck(email);
             return false;
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return true;
         }
@@ -35,12 +30,8 @@ public class UserService {
 
     public User join(UserDTO dto) {
         User user = new User();
-        try {
-            userField(user, dto);
-            userDAO.create(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        userField(user, dto);
+        userDAO.create(user);
         return user;
     }
 
@@ -60,7 +51,6 @@ public class UserService {
         if (user == null) {
             return null;
         }
-
         return user;
     }
 

@@ -1,6 +1,8 @@
 package com.blog.controller.post;
 
 import com.blog.controller.Controller;
+import com.blog.entity.Comment;
+import com.blog.entity.Post;
 import com.blog.service.CommentService;
 import com.blog.service.PostService;
 
@@ -8,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class EditPostController implements Controller {
 
@@ -24,18 +27,24 @@ public class EditPostController implements Controller {
         Integer id = Integer.valueOf(request.getParameter("id"));
 
         PostService postService = new PostService();
-        CommentService commentService = new CommentService(request);
+        CommentService commentService = new CommentService();
 
-        boolean result = postService.findByPostId(id);
+        Post result = postService.findByPostId(id);
 
-        if (result) {
-            request.setAttribute("posts", result);
-            commentService.findAllCommentByPostId(id);
-            return "/WEB-INF/views/post.jsp";
+
+        if (result == null) {
+            request.setAttribute("message", "등록 된 게시글이 없습니다.");
+            request.setAttribute("target", "/main.do");
+            return "/WEB-INF/common/redirect.jsp";
         }
+        request.setAttribute("posts", result);
 
-        request.setAttribute("message", "등록 된 게시글이 없습니다.");
-        request.setAttribute("target", "/main.do");
-        return "/WEB-INF/common/redirect.jsp";
+        List<Comment> commentList = commentService.findAllCommentByPostId(id);
+        commentService.findAllCommentByPostId(id);
+
+        request.setAttribute("commentList", commentList);
+
+        return "/WEB-INF/views/post.jsp";
+
     }
 }

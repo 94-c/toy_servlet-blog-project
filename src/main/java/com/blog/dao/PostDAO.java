@@ -8,15 +8,15 @@ import java.util.List;
 public class PostDAO extends JpaDAO<Post> {
 
     @Override
-    public Post create(Post entity) {
-        entity.setCreatedAt(new Date());
-        return super.create(entity);
+    public Post create(Post post) {
+        post.setCreatedAt(new Date());
+        return super.create(post);
     }
 
     @Override
-    public Post update(Post entity) {
-        entity.setUpdatedAt(new Date());
-        return super.update(entity);
+    public Post update(Post post) {
+        post.setUpdatedAt(new Date());
+        return super.update(post);
     }
 
     public List<Post> findAllCreateQuery() {

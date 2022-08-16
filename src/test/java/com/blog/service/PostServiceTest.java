@@ -35,7 +35,7 @@ public class PostServiceTest {
 
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = Exception.class)
     public void createFailPost() {
         PostDTO dto = new PostDTO();
         dto.setTitle("테스트 코드 작성");
@@ -52,16 +52,16 @@ public class PostServiceTest {
     public void findByPostIdSuccess() {
         PostDTO dto = new PostDTO();
         dto.setId(1);
-        boolean result = postService.findByPostId(dto.getId());
-        assertTrue(result);
+        Post result = postService.findByPostId(dto.getId());
+        assertNotEquals(result, dto);
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void findByPostIdFail() {
         PostDTO dto = new PostDTO();
         dto.setId(99);
-        boolean result = postService.findByPostId(dto.getId());
-        assertFalse(result);
+        Post result = postService.findByPostId(dto.getId());
+        assertNotEquals(result, dto);
     }
 
 
@@ -80,7 +80,7 @@ public class PostServiceTest {
 
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void updateFailPost() throws Exception {
         PostDTO dto = new PostDTO();
         dto.setId(99);
