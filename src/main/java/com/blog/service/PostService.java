@@ -59,7 +59,7 @@ public class PostService {
     public Optional<Post> updateOptionalPost(PostDTO dto) throws Exception {
         Post post = postDAO.find(Post.class, dto.getId());
         if (post == null) {
-            throw new Exception();
+            throw new RuntimeException();
         }
         addPostField(post, dto);
         postDAO.update(post);
