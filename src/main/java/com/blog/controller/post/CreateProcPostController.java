@@ -3,13 +3,11 @@ package com.blog.controller.post;
 import com.blog.controller.Controller;
 import com.blog.dto.PostDTO;
 import com.blog.entity.Post;
-import com.blog.entity.User;
 import com.blog.service.PostService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.util.Optional;
 
 public class CreateProcPostController implements Controller {
 
@@ -37,9 +35,9 @@ public class CreateProcPostController implements Controller {
         PostDTO dto = makeDTO(request);
         PostService postService = new PostService();
 
-        Post result = postService.createPost(dto);
+        Optional<Post> result = postService.createOptionalPost(dto);
 
-        if (result != null) {
+        if (result.isPresent()) {
             request.setAttribute("message", "게시글이 작성이 되었습니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";

@@ -5,10 +5,9 @@ import com.blog.dto.PostDTO;
 import com.blog.entity.Post;
 import com.blog.service.PostService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.util.Optional;
 
 public class EditProcPostController implements Controller {
 
@@ -38,9 +37,9 @@ public class EditProcPostController implements Controller {
         PostDTO dto = makeDTO(request);
         PostService postService = new PostService();
 
-        Post result = postService.updatePost(dto);
+        Optional<Post> result = postService.updateOptionalPost(dto);
 
-        if (result != null) {
+        if (result.isPresent()) {
             request.setAttribute("message", "게시글 변경이 완료되었습니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";

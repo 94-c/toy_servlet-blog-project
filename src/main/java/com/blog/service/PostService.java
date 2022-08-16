@@ -6,6 +6,7 @@ import com.blog.entity.Post;
 import com.blog.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PostService {
 
@@ -34,6 +35,13 @@ public class PostService {
         return newPost;
     }
 
+    public Optional<Post> createOptionalPost(PostDTO dto) {
+        Post newPost = new Post();
+        addPostField(newPost, dto);
+        Post post = postDAO.create(newPost);
+        return Optional.of(newPost);
+    }
+
     public Post findByPostId(Integer id) {
         return postDAO.find(Post.class, id);
     }
@@ -46,6 +54,16 @@ public class PostService {
         addPostField(post, dto);
         postDAO.update(post);
         return post;
+    }
+
+    public Optional<Post> updateOptionalPost(PostDTO dto) throws Exception {
+        Post post = postDAO.find(Post.class, dto.getId());
+        if (post == null) {
+            throw new Exception();
+        }
+        addPostField(post, dto);
+        postDAO.update(post);
+        return Optional.of(post);
     }
 
     public boolean deletePost(PostDTO dto) {
