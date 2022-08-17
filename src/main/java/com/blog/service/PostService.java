@@ -67,7 +67,7 @@ public class PostService {
     }
 
     public boolean deletePost(PostDTO dto) {
-        Post post = postDAO.find(Post.class, dto.getId());
+        Post post = postDAO.find(dto.getId());
         if (post == null) {
             return false;
         }
