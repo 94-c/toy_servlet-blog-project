@@ -25,6 +25,7 @@ public class User {
     private String password;
 
     private String name;
+
     @Column(columnDefinition = "tinyint(1) default 0")
     private Integer state;
 

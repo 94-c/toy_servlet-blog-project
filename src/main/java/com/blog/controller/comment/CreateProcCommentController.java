@@ -28,7 +28,7 @@ public class CreateProcCommentController implements Controller {
 
         dto.setUserId(Integer.valueOf(request.getParameter("userId")));
         dto.setPostId(Integer.valueOf(request.getParameter("postId")));
-        dto.setUserIp(UserIpUtil.userIp(request.getParameter("userIp")));
+        dto.setUserIp(UserIpUtil.userIp());
         dto.setBody(request.getParameter("body"));
 
         return dto;

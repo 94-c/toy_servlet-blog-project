@@ -8,8 +8,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class PostDAOTest {
 
@@ -28,7 +27,8 @@ public class PostDAOTest {
 
         Post result = postDAO.create(post);
 
-        assertEquals(result, post);
+        assertEquals(post, result);
+        assertEquals(Post.class, result.getClass());
     }
 
 
@@ -78,14 +78,20 @@ public class PostDAOTest {
         Post result = postDAO.update(post);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void updatePostFail() {
+        User user = new User();
+        user.setId(89);
+
         Post post = new Post();
         post.setId(1);
         post.setTitle("수정 중");
         post.setBody("수정 중");
+        post.setUser(user);
 
         Post result = postDAO.update(post);
+
+        assertNotEquals(result, post);
     }
 
     @Test

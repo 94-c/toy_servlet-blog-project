@@ -38,7 +38,7 @@ public class PostService {
     public Optional<Post> createOptionalPost(PostDTO dto) {
         Post newPost = new Post();
         addPostField(newPost, dto);
-        Post post = postDAO.create(newPost);
+        postDAO.create(newPost);
         return Optional.of(newPost);
     }
 

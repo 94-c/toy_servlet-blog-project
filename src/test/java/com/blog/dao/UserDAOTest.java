@@ -52,7 +52,29 @@ public class UserDAOTest {
 
 
     @Test
-    public void update() {
+    public void updateSuccess() {
+        User user = new User();
+        user.setId(89);
+        user.setEmail("hyeongwoo26@naver.com");
+        user.setPassword(Md5Util.md5("1234"));
+        user.setName("최형우");
+
+        User result = dao.update(user);
+
+        assertEquals(User.class, result.getClass());
+    }
+
+    @Test(expected = AssertionError.class)
+    public void updateUserFail() {
+        User user = new User();
+        user.setId(1);
+        user.setEmail("hyeongwoo26@naver.com");
+        user.setPassword(Md5Util.md5("1234"));
+        user.setName("최형우");
+
+        User result = dao.update(user);
+
+        assertNotEquals(result, user);
     }
 
     @Test
