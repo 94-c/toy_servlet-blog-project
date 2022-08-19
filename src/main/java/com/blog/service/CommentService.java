@@ -5,6 +5,7 @@ import com.blog.dto.CommentDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.User;
+import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -54,10 +55,10 @@ public class CommentService {
         return comment;
     }
 
-    public Comment deleteComment(CommentDTO dto) throws Exception {
+    public Comment deleteComment(CommentDTO dto) {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
-            throw new Exception();
+            throw new ExceptionUtil("예외테스트입니다.");
         }
         comment.setDeleteState(1);
         addCommentField(comment, dto);
