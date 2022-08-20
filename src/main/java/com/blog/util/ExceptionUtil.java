@@ -6,8 +6,4 @@ public class ExceptionUtil extends RuntimeException{
         super(msg);
     }
 
-    public CommonException(String msg) {
-
-    }
-
 }
