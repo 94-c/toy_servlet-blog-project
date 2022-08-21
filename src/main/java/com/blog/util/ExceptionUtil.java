@@ -6,4 +6,5 @@ public class ExceptionUtil extends RuntimeException{
         super(msg);
     }
 
+    예외처리
 }
