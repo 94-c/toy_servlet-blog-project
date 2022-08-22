@@ -4,6 +4,7 @@ import com.blog.dao.PostDAO;
 import com.blog.dto.PostDTO;
 import com.blog.entity.Post;
 import com.blog.entity.User;
+import com.blog.util.ExceptionUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +50,7 @@ public class PostService {
     public Post updatePost(PostDTO dto) throws Exception {
         Post post = postDAO.find(Post.class, dto.getId());
         if (post == null) {
-            throw new Exception();
+            throw new ExceptionUtil("updatePost Error");
         }
         addPostField(post, dto);
         postDAO.update(post);
