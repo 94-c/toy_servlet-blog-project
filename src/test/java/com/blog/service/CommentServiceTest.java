@@ -3,6 +3,7 @@ package com.blog.service;
 import com.blog.dto.CommentDTO;
 import com.blog.entity.Comment;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,6 +60,7 @@ public class CommentServiceTest {
     }
 
     @Test
+    @DisplayName("댓글 수정 가능")
     public void updateCommentSuccess() throws Exception {
         CommentDTO dto = new CommentDTO();
         dto.setId(18);
@@ -76,11 +78,12 @@ public class CommentServiceTest {
     }
 
     @Test(expected = Exception.class)
+    @DisplayName("게시글이 없어서 댓글을 수정 할 수 없을 때")
     public void updateCommentFail() throws Exception {
         CommentDTO dto = new CommentDTO();
         dto.setId(1);
         dto.setBody("코멘트 수정 테스트");
-        dto.setPostId(14);
+        dto.setPostId(99);
         dto.setUserId(96);
 
         Comment result = commentService.updateComment(dto);

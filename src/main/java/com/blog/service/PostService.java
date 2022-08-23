@@ -60,7 +60,7 @@ public class PostService {
     public Optional<Post> updateOptionalPost(PostDTO dto) throws Exception {
         Post post = postDAO.find(Post.class, dto.getId());
         if (post == null) {
-            throw new RuntimeException();
+            throw new ExceptionUtil("Error Update Post");
         }
         addPostField(post, dto);
         postDAO.update(post);
@@ -75,8 +75,8 @@ public class PostService {
         try {
             addPostField(post, dto);
             postDAO.deleteUpdate(post);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ExceptionUtil e) {
+            throw new ExceptionUtil("Error delete Post");
         }
         return true;
     }
