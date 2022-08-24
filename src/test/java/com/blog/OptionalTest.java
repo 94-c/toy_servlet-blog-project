@@ -148,8 +148,8 @@ public class OptionalTest {
                 .map(Post::getTitle)
                 .ifPresent(a -> System.out.println("title : " + a));
         System.out.println("title : " + post.getTitle());
-
     }
+
 
 
 }

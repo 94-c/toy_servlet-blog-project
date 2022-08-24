@@ -2,10 +2,12 @@ package com.blog.service;
 
 import com.blog.dto.PostDTO;
 import com.blog.entity.Post;
+import javafx.geometry.Pos;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -94,5 +96,18 @@ public class PostServiceTest {
         assertEquals(Post.class, post.getClass());
 
     }
+
+    @Test
+    public void optionalCreatePost() {
+        PostDTO dto = new PostDTO();
+        dto.setTitle("테스트 코드 업데이트 작성");
+        dto.setBody("테스트 코드 작성");
+        dto.setUserId(2);
+
+        Post post = postService.createPost(dto);
+
+        Optional.of(post);
+    }
+
 
 }
