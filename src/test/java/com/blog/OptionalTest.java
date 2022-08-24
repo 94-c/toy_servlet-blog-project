@@ -1,12 +1,11 @@
 package com.blog;
 
-import com.blog.dao.PostDAO;
 import com.blog.entity.Post;
 import com.blog.service.PostService;
-import javafx.geometry.Pos;
-import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -46,7 +45,7 @@ public class OptionalTest {
     }
 
     @Test
-    public void readPostId() {
+    public void ifPresent_readPostIdSuccess() {
         Integer postId = 16;
         Optional<Post> result = Optional.ofNullable(postService.findByPostId(postId));
 
@@ -56,6 +55,72 @@ public class OptionalTest {
             System.out.println(selectPost.getUser().getName());
         });
     }
+
+    @Test
+    public void ifPresent_readPostIdFail() {
+        Integer postId = 99;
+        Optional<Post> result = Optional.ofNullable(postService.findByPostId(postId));
+
+        result.ifPresent(selectPost -> {
+            System.out.println(selectPost.getTitle());
+            System.out.println(selectPost.getBody());
+            System.out.println(selectPost.getUser().getName());
+        });
+    }
+
+    @Test
+    public void isPresent_readPostIdSuccess() {
+        Integer postId = 16;
+        Post result = postService.findByPostId(postId);
+
+        Optional.of(result).isPresent(); //true
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void isPresent_readPostIdFail() {
+        Integer postId = 99;
+        Post result = postService.findByPostId(postId);
+
+        Optional.of(result).filter(m -> "존재하지않는 게시물 아이디입니다.".equals(m)).isPresent();
+    }
+
+    @Test
+    public void get_postIdSuccess() {
+        Integer postId = 16;
+        Optional<Post> result = Optional.of(postService.findByPostId(postId));
+
+        System.out.println(result.get());
+    }
+
+    //NoSuchElementException : 런타임 에러러
+   @Test(expected = NoSuchElementException.class)
+    public void get_postIdFail() {
+        Integer postId = 99;
+        Optional<Post> result = Optional.ofNullable(postService.findByPostId(postId));
+
+        System.out.println(result.get().toString());
+    }
+
+    @Test
+    @DisplayName("postId가 없을 경우에, postId1로 넘어가라")
+    public void orElse_postIdSuccess() {
+        Integer postId = 99;
+        Integer postId1 = 16;
+        Post result = Optional.ofNullable(postService.findByPostId(postId)).orElse(postService.findByPostId(postId1));
+
+        System.out.println(result);
+    }
+
+    @Test
+    @DisplayName("postId가 두가지 다 없을 경우")
+    public void orElse_postIdFail() {
+        Integer postId = 99;
+        Integer postId1 = 100;
+        Post result = Optional.ofNullable(postService.findByPostId(postId)).orElse(postService.findByPostId(postId1));
+
+        System.out.println(result);
+    }
+
 
     @Test
     public void isPresentReadPostId() {
