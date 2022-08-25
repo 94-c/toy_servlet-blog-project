@@ -2,6 +2,7 @@ package com.blog.service;
 
 import com.blog.dao.PostDAO;
 import com.blog.dto.PostDTO;
+import com.blog.dto.post.CreatePostDTO;
 import com.blog.entity.Post;
 import com.blog.entity.User;
 import com.blog.util.ExceptionUtil;
@@ -28,7 +29,7 @@ public class PostService {
     }
 
 
-    public Post createPost(PostDTO dto) {
+    public Post createPost(CreatePostDTO dto) {
         Post newPost = new Post();
         addPostField(newPost, dto);
         postDAO.create(newPost);
