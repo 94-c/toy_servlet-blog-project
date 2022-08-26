@@ -34,8 +34,6 @@ public class PostService {
         addPostField(newPost, dto);
         postDAO.create(newPost);
 
-
-
         return newPost;
     }
 
