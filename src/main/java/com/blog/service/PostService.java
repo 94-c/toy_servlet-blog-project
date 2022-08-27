@@ -33,6 +33,7 @@ public class PostService {
         Post newPost = new Post();
         addPostField(newPost, dto);
         postDAO.create(newPost);
+
         return newPost;
     }
 
