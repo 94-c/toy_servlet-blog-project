@@ -5,10 +5,10 @@ import com.blog.dao.PostDAO;
 import com.blog.dto.PostDTO;
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.dto.post.EditRequestPostDTO;
-import com.blog.dto.post.EditResponsePostDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.User;
+import com.blog.service.mapper.PostEditDTO;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -50,14 +50,18 @@ public class PostService {
         return Optional.of(newPost);
     }
 
-    public Post findByPostId(Integer id) {
+    public PostEditDTO findByPostId(Integer id) {
         Post findById = postDAO.find(id);
         if (findById == null) {
             throw new ExceptionUtil("findByPostId Error");
         }
         List<Comment> comment = commentDAO.findAllCommentByPostId(id);
 
-        return findById;
+        return PostEditDTO.builder()
+                .post(findById)
+                .commentList(comment)
+                .build();
+
     }
 
 

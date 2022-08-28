@@ -5,6 +5,7 @@ import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.service.CommentService;
 import com.blog.service.PostService;
+import com.blog.service.mapper.PostEditDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,7 @@ public class EditPostController implements Controller {
         PostService postService = new PostService();
         CommentService commentService = new CommentService();
 
-        Post result = postService.findByPostId(id);
+        PostEditDTO result = postService.findByPostId(id);
 
         //TODO 컨트롤러 하나당 하나의 서비스, 게시글하고 코멘트리스트 합친 서비스를 만들어야 한다.
         if (result == null) {
