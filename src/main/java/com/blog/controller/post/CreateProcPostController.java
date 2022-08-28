@@ -1,14 +1,12 @@
 package com.blog.controller.post;
 
 import com.blog.controller.Controller;
-import com.blog.dto.PostDTO;
-import com.blog.dto.post.CreatePostDTO;
+import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.entity.Post;
 import com.blog.service.PostService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Optional;
 
 public class CreateProcPostController implements Controller {
 
@@ -19,9 +17,9 @@ public class CreateProcPostController implements Controller {
         return CreateProcPostController.METHOD;
     }
 
-    private CreatePostDTO makeDTO(HttpServletRequest request) {
+    private CreateRequestPostDTO makeDTO(HttpServletRequest request) {
 
-        return CreatePostDTO.builder()
+        return CreateRequestPostDTO.builder()
                 .title(request.getParameter("title"))
                 .body(request.getParameter("body"))
                 .userId(Integer.valueOf(request.getParameter("userId")))
@@ -32,7 +30,7 @@ public class CreateProcPostController implements Controller {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        CreatePostDTO dto = makeDTO(request);
+        CreateRequestPostDTO dto = makeDTO(request);
 
         PostService postService = new PostService();
 

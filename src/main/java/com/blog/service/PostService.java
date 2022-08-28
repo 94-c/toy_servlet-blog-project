@@ -1,19 +1,24 @@
 package com.blog.service;
 
+import com.blog.dao.CommentDAO;
 import com.blog.dao.PostDAO;
 import com.blog.dto.PostDTO;
-import com.blog.dto.post.CreatePostDTO;
+import com.blog.dto.post.CreateRequestPostDTO;
+import com.blog.dto.post.EditRequestPostDTO;
+import com.blog.dto.post.EditResponsePostDTO;
+import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.User;
 import com.blog.util.ExceptionUtil;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
-
+@RequiredArgsConstructor
 public class PostService {
 
     private final PostDAO postDAO = new PostDAO();
-
+    private final CommentDAO commentDAO = new CommentDAO();
     private void addPostField(Post post, PostDTO dto) {
         User user = new User();
         user.setId(dto.getUserId());
@@ -29,7 +34,7 @@ public class PostService {
     }
 
 
-    public Post createPost(CreatePostDTO dto) {
+    public Post createPost(CreateRequestPostDTO dto) throws Exception {
         Post newPost = dto.ToEntity();
         Post result = postDAO.create(newPost);
         if (result == null) {
@@ -46,17 +51,26 @@ public class PostService {
     }
 
     public Post findByPostId(Integer id) {
-        return postDAO.find(Post.class, id);
+        Post findById = postDAO.find(id);
+        if (findById == null) {
+            throw new ExceptionUtil("findByPostId Error");
+        }
+        List<Comment> comment = commentDAO.findAllCommentByPostId(id);
+
+        return findById;
     }
 
-    public Post updatePost(PostDTO dto) throws Exception {
-        Post post = postDAO.find(Post.class, dto.getId());
-        if (post == null) {
+
+    public Post updatePost(EditRequestPostDTO dto) throws Exception {
+        Post findById = postDAO.find(dto.getId());
+        if (findById == null) {
+            throw new ExceptionUtil("findByPostId Error");
+        }
+        Post updatePost = postDAO.update(findById);
+        if (updatePost == null) {
             throw new ExceptionUtil("updatePost Error");
         }
-        addPostField(post, dto);
-        postDAO.update(post);
-        return post;
+        return findById;
     }
 
     public Optional<Post> updateOptionalPost(PostDTO dto) throws Exception {

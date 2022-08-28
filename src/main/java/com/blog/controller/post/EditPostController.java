@@ -31,18 +31,14 @@ public class EditPostController implements Controller {
 
         Post result = postService.findByPostId(id);
 
-
+        //TODO 컨트롤러 하나당 하나의 서비스, 게시글하고 코멘트리스트 합친 서비스를 만들어야 한다.
         if (result == null) {
             request.setAttribute("message", "등록 된 게시글이 없습니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
         }
         request.setAttribute("posts", result);
-
-        List<Comment> commentList = commentService.findAllCommentByPostId(id);
-        commentService.findAllCommentByPostId(id);
-
-        request.setAttribute("commentList", commentList);
+        request.setAttribute("commentList", result);
 
         return "/WEB-INF/views/post.jsp";
 

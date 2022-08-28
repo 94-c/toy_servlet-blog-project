@@ -9,7 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class CreatePostDTO {
+public class EditRequestPostDTO {
+
+    private final Integer id;
 
     private final String title;
     private final String body;

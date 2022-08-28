@@ -2,6 +2,8 @@ package com.blog.controller.post;
 
 import com.blog.controller.Controller;
 import com.blog.dto.PostDTO;
+import com.blog.dto.post.EditRequestPostDTO;
+import com.blog.dto.post.EditResponsePostDTO;
 import com.blog.entity.Post;
 import com.blog.service.PostService;
 
@@ -18,34 +20,31 @@ public class EditProcPostController implements Controller {
         return EditProcPostController.METHOD;
     }
 
-    private PostDTO makeDTO(HttpServletRequest request) {
-        PostDTO dto = new PostDTO();
-
-        dto.setId(Integer.valueOf(request.getParameter("id")));
-        dto.setUserId(Integer.valueOf(request.getParameter("userId")));
-        dto.setTitle(request.getParameter("title"));
-        dto.setBody(request.getParameter("body"));
-
-        return dto;
-
+    private EditRequestPostDTO makeDTO(HttpServletRequest request) {
+        return EditRequestPostDTO.builder()
+                .id(Integer.valueOf(request.getParameter("id")))
+                .userId(Integer.valueOf(request.getParameter("userId")))
+                .title(request.getParameter("title"))
+                .body(request.getParameter("body"))
+                .build();
     }
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        request.setCharacterEncoding("UTF-8");
 
-        PostDTO dto = makeDTO(request);
+        EditRequestPostDTO dto = makeDTO(request);
         PostService postService = new PostService();
 
-        Optional<Post> result = postService.updateOptionalPost(dto);
+        Post result = postService.updatePost(dto);
 
-        if (result.isPresent()) {
-            request.setAttribute("message", "게시글 변경이 완료되었습니다.");
-            request.setAttribute("target", "/main.do");
+        if (result == null) {
+            request.setAttribute("message", "게시글 변경이 실패하였습니다.");
+            request.setAttribute("target", "/post/edit.do=id" + dto.getId());
             return "/WEB-INF/common/redirect.jsp";
         }
-        request.setAttribute("message", "게시글 변경이 실패하였습니다.");
-        request.setAttribute("target", "/post/edit.do=id" + dto.getId());
+        request.setAttribute("message", "게시글 변경이 완료되었습니다.");
+        request.setAttribute("target", "/main.do");
         return "/WEB-INF/common/redirect.jsp";
+
     }
 }
