@@ -30,9 +30,11 @@ public class PostService {
 
 
     public Post createPost(CreatePostDTO dto) {
-        Post newPost = new Post();
-        addPostField(newPost, dto);
-        postDAO.create(newPost);
+        Post newPost = dto.ToEntity();
+        Post result = postDAO.create(newPost);
+        if (result == null) {
+            throw new ExceptionUtil("Create Error");
+        }
         return newPost;
     }
 

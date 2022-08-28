@@ -2,6 +2,7 @@ package com.blog.controller.post;
 
 import com.blog.controller.Controller;
 import com.blog.dto.PostDTO;
+import com.blog.dto.post.CreatePostDTO;
 import com.blog.entity.Post;
 import com.blog.service.PostService;
 
@@ -18,33 +19,34 @@ public class CreateProcPostController implements Controller {
         return CreateProcPostController.METHOD;
     }
 
-    private PostDTO makeDTO(HttpServletRequest request) {
-        PostDTO dto = new PostDTO();
+    private CreatePostDTO makeDTO(HttpServletRequest request) {
 
-        dto.setUserId(Integer.valueOf(request.getParameter("userId")));
-        dto.setTitle(request.getParameter("title"));
-        dto.setBody(request.getParameter("body"));
-
-        return dto;
+        return CreatePostDTO.builder()
+                .title(request.getParameter("title"))
+                .body(request.getParameter("body"))
+                .userId(Integer.valueOf(request.getParameter("userId")))
+                .build();
 
     }
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        PostDTO dto = makeDTO(request);
+        CreatePostDTO dto = makeDTO(request);
+
         PostService postService = new PostService();
 
-        Optional<Post> result = postService.createOptionalPost(dto);
+        Post result = postService.createPost(dto);
 
-        if (result.isPresent()) {
-            request.setAttribute("message", "게시글이 작성이 되었습니다.");
+        if (result == null) {
+            request.setAttribute("message", "게시글이 작성 실패하였습니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
         }
-        request.setAttribute("message", "게시글이 작성 실패하였습니다.");
+        request.setAttribute("message", "게시글이 작성이 되었습니다.");
         request.setAttribute("target", "/main.do");
         return "/WEB-INF/common/redirect.jsp";
+
 
     }
 }
