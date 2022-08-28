@@ -64,7 +64,6 @@ public class PostService {
 
     }
 
-
     public Post updatePost(EditRequestPostDTO dto) throws Exception {
         Post findById = postDAO.find(dto.getId());
         if (findById == null) {

@@ -14,7 +14,7 @@ public class OptionalTest {
 
     private final PostService postService = new PostService();
 
-    @Test
+    /*@Test
     public void optionalTestSuccess() {
         Integer id = 16;
 
@@ -36,8 +36,8 @@ public class OptionalTest {
         Optional<Post> post = Optional.ofNullable(postService.findByPostId(id));
         post.ifPresent(value -> System.out.println(value.getTitle()));
 
-        /*Optional<Post> post1 = Optional.of(post.get());
-        System.out.println(post1.get().getTitle());*/
+        *//*Optional<Post> post1 = Optional.of(post.get());
+        System.out.println(post1.get().getTitle());*//*
 
         Post resultPost = post.orElseGet(Post::new);
         System.out.println(resultPost.getTitle());
@@ -148,7 +148,7 @@ public class OptionalTest {
                 .map(Post::getTitle)
                 .ifPresent(a -> System.out.println("title : " + a));
         System.out.println("title : " + post.getTitle());
-    }
+    }*/
 
 
 

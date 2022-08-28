@@ -38,8 +38,8 @@ public class EditPostController implements Controller {
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
         }
-        request.setAttribute("posts", result);
-        request.setAttribute("commentList", result);
+        request.setAttribute("posts", result.getPost());
+        request.setAttribute("commentList", result.getCommentList());
 
         return "/WEB-INF/views/post.jsp";
 
