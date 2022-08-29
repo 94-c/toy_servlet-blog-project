@@ -11,8 +11,9 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class PostEditDTO {
+public class PostEditMapper {
 
     private final Post post;
     private final List<Comment> commentList;
+
 }

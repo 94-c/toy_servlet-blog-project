@@ -1,6 +1,5 @@
 package com.blog.service;
 
-import com.blog.dto.CommentDTO;
 import com.blog.entity.Comment;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;

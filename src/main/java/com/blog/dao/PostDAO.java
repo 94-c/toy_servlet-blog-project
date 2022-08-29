@@ -23,7 +23,7 @@ public class PostDAO extends JpaDAO<Post> {
         return super.update(post);
     }
 
-    public List<Post> findAllCreateQuery() {
+    public List<Post> findAllPostList() {
         return super.findWithNamedQuery("Post.findAll");
     }
 

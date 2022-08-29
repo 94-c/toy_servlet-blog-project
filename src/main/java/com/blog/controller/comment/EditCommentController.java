@@ -22,19 +22,21 @@ public class EditCommentController implements Controller {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         Integer commentId = Integer.valueOf(request.getParameter("commentId"));
 
         CommentService commentService = new CommentService();
 
         Comment result = commentService.findByCommentId(commentId);
 
-        if (result != null) {
-            request.setAttribute("comment", result);
+        if (result == null) {
+            request.setAttribute("message", "해당 댓글을 확인 할 수 없습니다.");
             return "/WEB-INF/views/commentInput.jsp";
         }
+        request.setAttribute("comment", result);
 
-        request.setAttribute("message", "해당 댓글을 확인 할 수 없습니다.");
         return "/WEB-INF/views/commentInput.jsp";
+
 
     }
 }

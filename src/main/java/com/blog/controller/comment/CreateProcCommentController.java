@@ -1,12 +1,8 @@
 package com.blog.controller.comment;
 
 import com.blog.controller.Controller;
-import com.blog.dto.CommentDTO;
-import com.blog.dto.PostDTO;
 import com.blog.entity.Comment;
 import com.blog.service.CommentService;
-import com.blog.service.PostService;
-import com.blog.service.UserLogService;
 import com.blog.util.UserIpUtil;
 
 import javax.servlet.ServletException;

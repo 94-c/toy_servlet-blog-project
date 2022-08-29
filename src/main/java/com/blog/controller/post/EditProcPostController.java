@@ -1,15 +1,12 @@
 package com.blog.controller.post;
 
 import com.blog.controller.Controller;
-import com.blog.dto.PostDTO;
 import com.blog.dto.post.EditRequestPostDTO;
-import com.blog.dto.post.EditResponsePostDTO;
 import com.blog.entity.Post;
 import com.blog.service.PostService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Optional;
 
 public class EditProcPostController implements Controller {
 

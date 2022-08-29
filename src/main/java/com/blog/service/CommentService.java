@@ -1,67 +1,51 @@
 package com.blog.service;
 
 import com.blog.dao.CommentDAO;
-import com.blog.dto.CommentDTO;
+import com.blog.dto.comment.CreateRequestCommentDTO;
+import com.blog.dto.comment.EditRequestCommentDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.User;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 public class CommentService {
 
     private static final CommentDAO commentDAO = new CommentDAO();
 
-    private void addCommentField(Comment comment, CommentDTO dto) {
-        User user = new User();
-        user.setId(dto.getUserId());
 
-        Post post = new Post();
-        post.setId(dto.getPostId());
-
-        comment.setId(dto.getId());
-        comment.setBody(dto.getBody());
-        comment.setParentsId(dto.getParentsCommentId());
-        comment.setUser(user);
-        comment.setPost(post);
-
-    }
-
-    public List<Comment> findAllCommentByPostId(Integer postId) {
-        return commentDAO.findAllCommentByPostId(postId);
-    }
-
-    public Comment createComment(CommentDTO dto) {
-        Comment newComment = new Comment();
-        addCommentField(newComment, dto);
-        commentDAO.create(newComment);
+    public Comment createComment(CreateRequestCommentDTO dto) throws ExceptionUtil {
+        Comment newComment = dto.ToEntity();
+        Comment result = commentDAO.create(newComment);
+        if (result == null) {
+            throw new ExceptionUtil("Create Comment Error");
+        }
         return newComment;
     }
 
-    public Comment findByCommentId(Integer commentId) {
+    public Comment findByCommentId(Integer commentId) throws ExceptionUtil {
+        Comment findByCommentId = commentDAO.find(commentId);
+        if (findByCommentId == null) {
+            throw new ExceptionUtil("findByCommentId Error");
+        }
         return commentDAO.find(commentId);
     }
 
-    public Comment updateComment(CommentDTO dto) throws Exception{
+    public Comment updateComment(EditRequestCommentDTO dto) throws ExceptionUtil {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
-            throw new Exception();
+            throw new ExceptionUtil("updateComment Error");
         }
-        addCommentField(comment, dto);
         commentDAO.update(comment);
         return comment;
     }
 
-    public Comment deleteComment(CommentDTO dto) {
+    public Comment deleteComment(EditRequestCommentDTO dto) throws ExceptionUtil {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
-            throw new ExceptionUtil("예외테스트입니다.");
+            throw new ExceptionUtil("findByComment Error");
         }
-        comment.setDeleteState(1);
-        addCommentField(comment, dto);
         commentDAO.deleteUpdate(comment);
         return comment;
     }

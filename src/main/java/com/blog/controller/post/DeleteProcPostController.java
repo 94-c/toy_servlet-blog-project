@@ -1,7 +1,6 @@
 package com.blog.controller.post;
 
 import com.blog.controller.Controller;
-import com.blog.dto.PostDTO;
 import com.blog.service.PostService;
 
 import javax.servlet.ServletException;
