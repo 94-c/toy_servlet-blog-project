@@ -14,7 +14,6 @@ public class CreateRequestParentCommentDTO {
     private final String body;
     private final String userIp;
     private final Integer parentsId;
-    private final Integer cGroup;
     private final Integer userId;
 
     public Comment ToParentCommentEntity() {
@@ -27,7 +26,6 @@ public class CreateRequestParentCommentDTO {
         parentComment.setBody(body);
         parentComment.setUserIp(userIp);
         parentComment.setParentsId(parentsId);
-        parentComment.setCGroup(cGroup);
 
         return parentComment;
     }

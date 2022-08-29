@@ -26,8 +26,6 @@ public class CreateProcCommentController implements Controller {
                 .postId(Integer.valueOf(request.getParameter("postId")))
                 .userIp(UserIpUtil.userIp())
                 .body(request.getParameter("body"))
-                .cDepth(0)
-                .cGroup(0)
                 .build();
 
     }

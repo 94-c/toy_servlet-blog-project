@@ -36,30 +36,55 @@
     </div>
     <div class="card-body repliesDiv">
         <c:if test="${commentList != null}">
-            <table class="table table-hover" style="width: 100%">
-                <colgroup>
-                    <col width="150px">
-                    <col width="50px">
-                    <col width="50px">
-                </colgroup>
+        <table class="table table-hover" style="width: 100%">
+            <colgroup>
+                <col width="150px">
+                <col width="50px">
+                <col width="50px">
+            </colgroup>
+            <tr>
+                <th>내용</th>
+                <th>작성자</th>
+                <th style="text-align: center">버튼</th>
+            </tr>
+            <c:forEach var="comment" items="${commentList}">
                 <tr>
-                    <th>내용</th>
-                    <th>작성자</th>
-                    <th style="text-align: center">버튼</th>
+                    <td>${comment.body}</td>
+                    <td>${comment.user.name}</td>
+                    <td>
+                        <div name="button" style="align-content: end; text-align: center">
+                            <c:if test="${comment.user.id == sessionScope.session_id}">
+                                <input type="hidden" name="postId" value="${param.id}">
+                                <button type="button" class="btn btn-outline-info btn-sm"
+                                        onclick="replyComment(${comment.id})">답변
+                                </button>
+                                <button type="button" class="btn btn-outline-warning btn-sm"
+                                        onclick="updateComment(${comment.id})">수정
+                                </button>
+                                <button type="button" class="btn btn-outline-danger btn-sm"
+                                        onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}+'&postId='+${param.id}">
+                                    삭제
+                                </button>
+                            </c:if>
+                        </div>
+                    </td>
                 </tr>
-                <c:forEach var="comment" items="${commentList}">
+            </c:forEach>
+                <c:forEach var="parentComment" items="${parentComment}">
                     <tr>
-                        <td>${comment.body}</td>
-                        <td>${comment.user.name}</td>
+                        <th>내용</th>
+                        <th>작성자</th>
+                        <th style="text-align: center">버튼</th>
+                    </tr>
+                    <tr>
+                        <td>${parentComment.body}</td>
+                        <td>${parentComment.user.name}</td>
                         <td>
-                            <div id="button" style="align-content: end; text-align: center">
-                                <c:if test="${comment.user.id == sessionScope.session_id}">
-                                    <input type="hidden" name="postId" value="${param.id}">
-                                    <button type="button" class="btn btn-outline-info btn-sm"
-                                            onclick="replyComment(${comment.id})">답변
-                                    </button>
+                            <div name="button" style="align-content: end; text-align: center">
+                                <c:if test="${parentComment.user.id == sessionScope.session_id}">
+                                    <input type="hidden" name="parentCommentId" value="${param.id}">
                                     <button type="button" class="btn btn-outline-warning btn-sm"
-                                            onclick="updateComment(${comment.id})">수정
+                                            onclick="replyEditComment(${parentComment.id})">수정
                                     </button>
                                     <button type="button" class="btn btn-outline-danger btn-sm"
                                             onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}+'&postId='+${param.id}">
@@ -71,16 +96,8 @@
                     </tr>
                 </c:forEach>
 
-                <c:if test="${parentComment.cGroup == comment.id}">
-                    <c:forEach var="parentComment" items="${parentComment}">
-                        <tr>
-                            <td>${parentComment.body}</td>
-                            <td>${parentComment.user.name}</td>
-                        </tr>
-                    </c:forEach>
-                </c:if>
-            </table>
-        </c:if>
+            </c:if>
+        </table>
     </div>
 </div>
 
@@ -93,5 +110,10 @@
     function replyComment(commentId) {
         window.name = "parentForm";
         window.open("/parenComment/create.do?commentId=" + commentId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
+    }
+
+    function replyEditComment(parentId) {
+        window.name = "parentForm";
+        window.open("/parenComment/Edit.do?parentId=" + parentId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
     }
 </script>

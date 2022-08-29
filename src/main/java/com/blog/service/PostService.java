@@ -10,6 +10,7 @@ import com.blog.service.mapper.PostEditMapper;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -38,7 +39,10 @@ public class PostService {
             throw new ExceptionUtil("findByPostId Error");
         }
         List<Comment> comment = commentDAO.findAllCommentByPostId(id);
-        List<Comment> parentComment = commentDAO.findAllParentCommentList(comment.size());
+
+        List<Comment> parentComment = new ArrayList<>();
+
+        for (Comment value : comment) parentComment = commentDAO.findAllParentCommentList(value.getId());
 
         return PostEditMapper.builder()
                 .post(findById)

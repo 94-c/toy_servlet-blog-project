@@ -17,9 +17,6 @@ public class CreateRequestCommentDTO {
     private final Integer postId;
     private final String body;
     private final String userIp;
-    private final Integer cDepth;
-    private final Integer cGroup;
-    private final Integer deleteState;
 
     public Comment ToEntity() {
         User user = new User();
@@ -32,8 +29,7 @@ public class CreateRequestCommentDTO {
         comment.setUser(user);
         comment.setPost(post);
         comment.setUserIp(userIp);
-        comment.setCDepth(cDepth);
-        comment.setCGroup(cGroup);
+        comment.setBody(body);
 
         return comment;
     }

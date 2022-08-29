@@ -14,7 +14,7 @@ import java.util.Date;
 @ToString
 @NamedQueries({
         @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id INNER JOIN Post p ON c.post.id = p.id WHERE c.deleteState = 0 AND c.post.id = :postId" ),
-        @NamedQuery(name = "Comment.findByParentComment", query = "SELECT c.user.id, u.name, c.body, c.parentsId, c.cGroup, c.createdAt FROM Comment c INNER JOIN User u ON c.user.id = u.id WHERE c.deleteState = 0 AND c.cGroup = :commentId")
+        @NamedQuery(name = "Comment.findByParentComment", query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id WHERE c.deleteState = 0 AND c.parentsId = :commentId")
 })
 public class Comment {
 
@@ -50,9 +50,5 @@ public class Comment {
     @Column(name = "delete_state", columnDefinition = "tinyint(1) default 0")
     private Integer deleteState;
 
-    @Column(name = "c_depth", columnDefinition = "tinyint(1) default 0")
-    private Integer cDepth;
 
-    @Column(name = "c_group", columnDefinition = "tinyint(1) default 0")
-    private Integer cGroup;
 }
