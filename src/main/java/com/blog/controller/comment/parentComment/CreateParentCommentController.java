@@ -1,4 +1,4 @@
-package com.blog.controller.comment;
+package com.blog.controller.comment.parentComment;
 
 import com.blog.controller.Controller;
 

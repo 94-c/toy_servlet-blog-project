@@ -42,6 +42,7 @@ public class DeleteProcPostController implements Controller {
         request.setAttribute("message", "게시글 삭제가 실패하였습니다.");
         request.setAttribute("target", "/main.do");
         return "/WEB-INF/common/redirect.jsp";*/
+        return null;
 
     }
 }

@@ -13,7 +13,8 @@ public class CommentServiceTest {
 
     private final CommentService commentService = new CommentService();
 
-    @Test(expected = Exception.class)
+    //TODO CommentTestCode 작성 해야 함
+    /*@Test(expected = Exception.class)
     public void findAllCommentByPostId() {
         Integer postId = 1;
 
@@ -118,5 +119,5 @@ public class CommentServiceTest {
         Comment result = commentService.deleteComment(dto);
 
         assertNotEquals(dto,result);
-    }
+    }*/
 }

@@ -97,7 +97,7 @@ public class PostDAOTest {
     @Test
     public void findAllCreateQuery() {
 
-        List<Post> findAllPostList = postDAO.findAllCreateQuery();
+        List<Post> findAllPostList = postDAO.findAllPostList();
 
         assertNotNull(findAllPostList);
 
