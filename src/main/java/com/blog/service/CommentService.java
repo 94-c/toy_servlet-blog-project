@@ -2,6 +2,7 @@ package com.blog.service;
 
 import com.blog.dao.CommentDAO;
 import com.blog.dto.comment.CreateRequestCommentDTO;
+import com.blog.dto.comment.DeleteResponseCommentDTO;
 import com.blog.dto.comment.EditRequestCommentDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
@@ -41,7 +42,7 @@ public class CommentService {
         return comment;
     }
 
-    public Comment deleteComment(EditRequestCommentDTO dto) throws ExceptionUtil {
+    public Comment deleteComment(DeleteResponseCommentDTO dto) throws ExceptionUtil {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
             throw new ExceptionUtil("findByComment Error");

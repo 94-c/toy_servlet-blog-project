@@ -1,6 +1,7 @@
 package com.blog.controller.comment;
 
 import com.blog.controller.Controller;
+import com.blog.dto.comment.DeleteResponseCommentDTO;
 import com.blog.entity.Comment;
 import com.blog.service.CommentService;
 
@@ -18,28 +19,20 @@ public class DeleteProcCommentController implements Controller {
         return DeleteProcCommentController.METHOD;
     }
 
-    private CommentDTO makeDTO(HttpServletRequest request) {
-        CommentDTO dto = new CommentDTO();
-
-        dto.setId(Integer.valueOf(request.getParameter("commentId")));
-        dto.setPostId(Integer.valueOf(request.getParameter("postId")));
-
-        return dto;
+    private DeleteResponseCommentDTO makeDTO(HttpServletRequest request) {
+        return DeleteResponseCommentDTO.builder()
+                .id(Integer.valueOf(request.getParameter("commentId")))
+                .postId(Integer.valueOf(request.getParameter("postId")))
+                .build();
     }
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        CommentDTO dto = makeDTO(request);
+        DeleteResponseCommentDTO dto = makeDTO(request);
         CommentService commentService = new CommentService();
 
-        Comment result = null;
-
-        try {
-            result = commentService.deleteComment(dto);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Comment result = commentService.deleteComment(dto);
 
         if (result == null) {
             request.setAttribute("message", "댓글 삭제가 실패하었습니다.");

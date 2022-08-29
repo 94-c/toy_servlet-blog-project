@@ -17,22 +17,23 @@ public class DeleteProcPostController implements Controller {
         return DeleteProcPostController.METHOD;
     }
 
-    private PostDTO makeDTO (HttpServletRequest request) {
+    //TODO 게시판 삭제 구현 해야 함
+   /* private PostDTO makeDTO (HttpServletRequest request) {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(Integer.valueOf(request.getParameter("id")));
 
         return postDTO;
-    }
+    }*/
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        PostDTO dto = makeDTO(request);
+        /*PostDTO dto = makeDTO(request);
         PostService postService = new PostService();
 
-        boolean result = postService.deletePost(dto);
+        boolean result = postService.deletePost(dto);*/
 
-        if (result) {
+        /*if (result) {
             request.setAttribute("message", "게시글 삭제가 완료되었습니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
@@ -40,7 +41,7 @@ public class DeleteProcPostController implements Controller {
 
         request.setAttribute("message", "게시글 삭제가 실패하였습니다.");
         request.setAttribute("target", "/main.do");
-        return "/WEB-INF/common/redirect.jsp";
+        return "/WEB-INF/common/redirect.jsp";*/
 
     }
 }

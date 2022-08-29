@@ -34,7 +34,7 @@
             </button>
         </div>
     </div>
-    <div class="card-body repliesDiv" >
+    <div class="card-body repliesDiv">
         <c:if test="${commentList != null}">
             <table class="table table-hover" style="width: 100%">
                 <colgroup>
@@ -42,22 +42,27 @@
                     <col width="50px">
                     <col width="50px">
                 </colgroup>
-                <tr >
+                <tr>
                     <th>내용</th>
                     <th>작성자</th>
                     <th style="text-align: center">버튼</th>
                 </tr>
                 <c:forEach var="comment" items="${commentList}">
-                    <tr >
+                    <tr>
                         <td>${comment.body}</td>
                         <td>${comment.user.name}</td>
                         <td>
                             <div id="button" style="align-content: end; text-align: center">
                                 <c:if test="${comment.user.id == sessionScope.session_id}">
                                     <input type="hidden" name="postId" value="${param.id}">
-                                    <button type="button" class="btn btn-outline-info btn-sm" onclick="replyComment(${comment.id})">답변</button>
-                                    <button type="button" class="btn btn-outline-warning btn-sm" onclick="updateComment(${comment.id})">수정</button>
-                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}+'&postId='+${param.id}">
+                                    <button type="button" class="btn btn-outline-info btn-sm"
+                                            onclick="replyComment(${comment.id})">답변
+                                    </button>
+                                    <button type="button" class="btn btn-outline-warning btn-sm"
+                                            onclick="updateComment(${comment.id})">수정
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm"
+                                            onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}+'&postId='+${param.id}">
                                         삭제
                                     </button>
                                 </c:if>
@@ -68,16 +73,16 @@
             </table>
         </c:if>
     </div>
+</div>
 
+<script type="text/javascript">
+    function updateComment(commentId) {
+        window.name = "parentForm";
+        window.open("/comment/edit.do?commentId=" + commentId, "updateForm", "width=570, height=350, resizable=no, scrollbars=no");
+    }
 
-    <script type="text/javascript">
-        function updateComment(commentId) {
-            window.name = "parentForm";
-            window.open("/comment/edit.do?commentId=" + commentId, "updateForm", "width=570, height=350, resizable=no, scrollbars=no");
-        }
-
-        function replyComment(commentId) {
-            window.name = "parentForm";
-            window.open("/parenComment/create.do?commentId=" + commentId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
-        }
-    </script>
+    function replyComment(commentId) {
+        window.name = "parentForm";
+        window.open("/parenComment/create.do?commentId=" + commentId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
+    }
+</script>

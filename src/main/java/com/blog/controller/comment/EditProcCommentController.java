@@ -1,6 +1,7 @@
 package com.blog.controller.comment;
 
 import com.blog.controller.Controller;
+import com.blog.dto.comment.EditRequestCommentDTO;
 import com.blog.entity.Comment;
 import com.blog.service.CommentService;
 
@@ -18,29 +19,22 @@ public class EditProcCommentController implements Controller {
         return EditProcCommentController.METHOD;
     }
 
-    private CommentDTO makeDTO(HttpServletRequest request) {
-        CommentDTO dto = new CommentDTO();
-
-        dto.setId(Integer.valueOf(request.getParameter("commentId")));
-        dto.setUserId(Integer.valueOf(request.getParameter("userId")));
-        dto.setPostId(Integer.valueOf(request.getParameter("postId")));
-        dto.setBody(request.getParameter("body"));
-
-        return dto;
+    private EditRequestCommentDTO makeDTO(HttpServletRequest request) {
+        return EditRequestCommentDTO.builder()
+                .id(Integer.valueOf(request.getParameter("commentId")))
+                .userId(Integer.valueOf(request.getParameter("userId")))
+                .postId(Integer.valueOf(request.getParameter("postId")))
+                .body(request.getParameter("body"))
+                .build();
     }
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        CommentDTO dto = makeDTO(request);
+        EditRequestCommentDTO dto = makeDTO(request);
         CommentService commentService = new CommentService();
 
-        Comment result = null;
-        try {
-            result = commentService.updateComment(dto);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Comment result = commentService.updateComment(dto);
 
         if (result == null) {
             request.setAttribute("message", "댓글 변경이 실패하였습니다.");
