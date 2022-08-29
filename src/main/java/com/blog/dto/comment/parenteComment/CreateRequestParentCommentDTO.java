@@ -13,7 +13,7 @@ public class CreateRequestParentCommentDTO {
 
     private final String body;
     private final String userIp;
-    private final Integer cDepth;
+    private final Integer parentsId;
     private final Integer cGroup;
     private final Integer userId;
 
@@ -26,7 +26,7 @@ public class CreateRequestParentCommentDTO {
         parentComment.setUser(user);
         parentComment.setBody(body);
         parentComment.setUserIp(userIp);
-        parentComment.setCDepth(cDepth);
+        parentComment.setParentsId(parentsId);
         parentComment.setCGroup(cGroup);
 
         return parentComment;

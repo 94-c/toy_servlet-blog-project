@@ -29,8 +29,12 @@ public class CommentDAO extends JpaDAO<Comment> {
         return super.update(comment);
     }
 
-
     public List<Comment> findAllCommentByPostId(Integer postId) {
-        return super.findWithNamedQuery("Commnet.findAll", "postId", postId);
+        return super.findWithNamedQuery("Comment.findAll", "postId", postId);
     }
+
+    public List<Comment> findAllParentCommentList(Integer commentId) {
+        return super.findWithNamedQuery("Comment.findByParentComment", "commentId", commentId);
+    }
+
 }

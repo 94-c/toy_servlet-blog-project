@@ -38,10 +38,12 @@ public class PostService {
             throw new ExceptionUtil("findByPostId Error");
         }
         List<Comment> comment = commentDAO.findAllCommentByPostId(id);
+        List<Comment> parentComment = commentDAO.findAllParentCommentList(comment.size());
 
         return PostEditMapper.builder()
                 .post(findById)
                 .commentList(comment)
+                .parentCommentList(parentComment)
                 .build();
 
     }

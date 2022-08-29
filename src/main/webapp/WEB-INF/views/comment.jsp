@@ -70,6 +70,15 @@
                         </td>
                     </tr>
                 </c:forEach>
+
+                <c:if test="${parentComment.cGroup == comment.id}">
+                    <c:forEach var="parentComment" items="${parentComment}">
+                        <tr>
+                            <td>${parentComment.body}</td>
+                            <td>${parentComment.user.name}</td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
             </table>
         </c:if>
     </div>
