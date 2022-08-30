@@ -3,9 +3,7 @@ package com.blog.dao;
 import com.blog.entity.Comment;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CommentDAO extends JpaDAO<Comment> {
 
@@ -28,6 +26,7 @@ public class CommentDAO extends JpaDAO<Comment> {
 
     //삭제 버튼 시, delete_state = 1로 변경
     public Comment deleteUpdate(Comment comment) {
+        comment.setDeleteState(1);
         return super.update(comment);
     }
 
