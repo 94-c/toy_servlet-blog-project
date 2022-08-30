@@ -26,6 +26,7 @@ public class CreateProcParentCommentController implements Controller {
                 .body(request.getParameter("parentBody"))
                 .userIp(UserIpUtil.userIp())
                 .parentsId(Integer.valueOf(request.getParameter("commentId")))
+                .postId(Integer.valueOf(request.getParameter("postId")))
                 .build();
     }
 

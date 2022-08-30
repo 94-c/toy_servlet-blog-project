@@ -40,8 +40,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Post> postList = new ArrayList<>();
 
-    public void addPost(Post post) {
-        postList.add(post);
-        post.setUser(this);
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Comment> commentList = new ArrayList<>();
+
 }

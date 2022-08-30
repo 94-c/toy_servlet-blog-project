@@ -4,6 +4,7 @@
 <div id="parent_comment_form">
     <form name="parent_comment_form" target="parentForm" method="post" action="/parenComment/createProc.do">
         <input type="hidden" id="commentId" name="commentId" value="${param.commentId}">
+        <input type="hidden" id="postId" name="postId" value="${param.postId}">
         <input type="hidden" id="userId" name="userId" value="${sessionScope.session_id}">
 
         <textarea type="rows" cols="50" name="parentBody"></textarea>
@@ -13,3 +14,7 @@
     </form>
 </div>
 </body>
+
+<script type="text/javascript">
+
+</script>

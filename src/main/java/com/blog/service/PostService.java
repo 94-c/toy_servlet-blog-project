@@ -40,16 +40,22 @@ public class PostService {
         }
         List<Comment> comment = commentDAO.findAllCommentByPostId(id);
 
-        List<Comment> parentComment = new ArrayList<>();
-
-        for (Comment value : comment) parentComment = commentDAO.findAllParentCommentList(value.getId());
-
+        if (comment.size() > 0) {
+            Integer commentId = comment.get(0).getId();
+            if (commentId != null){
+                System.out.println(commentId);
+                List<Comment> parentComment = commentDAO.findAllParentCommentList(commentId);
+                return PostEditMapper.builder()
+                        .post(findById)
+                        .commentList(comment)
+                        .parentCommentList(parentComment)
+                        .build();
+            }
+        }
         return PostEditMapper.builder()
                 .post(findById)
                 .commentList(comment)
-                .parentCommentList(parentComment)
                 .build();
-
     }
 
     public Post updatePost(EditRequestPostDTO dto) throws ExceptionUtil {

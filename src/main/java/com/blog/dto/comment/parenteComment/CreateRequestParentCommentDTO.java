@@ -1,6 +1,7 @@
 package com.blog.dto.comment.parenteComment;
 
 import com.blog.entity.Comment;
+import com.blog.entity.Post;
 import com.blog.entity.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,12 +17,17 @@ public class CreateRequestParentCommentDTO {
     private final Integer parentsId;
     private final Integer userId;
 
+    private final Integer postId;
+
     public Comment ToParentCommentEntity() {
         User user = new User();
         user.setId(userId);
 
-        Comment parentComment = new Comment();
+        Post post = new Post();
+        post.setId(postId);
 
+        Comment parentComment = new Comment();
+        parentComment.setPost(post);
         parentComment.setUser(user);
         parentComment.setBody(body);
         parentComment.setUserIp(userIp);

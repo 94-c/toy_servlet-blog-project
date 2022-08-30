@@ -56,7 +56,7 @@
                             <c:if test="${comment.user.id == sessionScope.session_id}">
                                 <input type="hidden" name="postId" value="${param.id}">
                                 <button type="button" class="btn btn-outline-info btn-sm"
-                                        onclick="replyComment(${comment.id})">답변
+                                        onclick="replyComment(${comment.id}, ${param.id})">답변
                                 </button>
                                 <button type="button" class="btn btn-outline-warning btn-sm"
                                         onclick="updateComment(${comment.id})">수정
@@ -70,13 +70,8 @@
                     </td>
                 </tr>
             </c:forEach>
-                <c:forEach var="parentComment" items="${parentComment}">
-                    <tr>
-                        <th>내용</th>
-                        <th>작성자</th>
-                        <th style="text-align: center">버튼</th>
-                    </tr>
-                    <tr>
+            <c:forEach var="parentComment" items="${parentComment}">
+                    <tr style="">
                         <td>${parentComment.body}</td>
                         <td>${parentComment.user.name}</td>
                         <td>
@@ -95,7 +90,6 @@
                         </td>
                     </tr>
                 </c:forEach>
-
             </c:if>
         </table>
     </div>
@@ -107,9 +101,9 @@
         window.open("/comment/edit.do?commentId=" + commentId, "updateForm", "width=570, height=350, resizable=no, scrollbars=no");
     }
 
-    function replyComment(commentId) {
+    function replyComment(commentId, postId) {
         window.name = "parentForm";
-        window.open("/parenComment/create.do?commentId=" + commentId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
+        window.open("/parenComment/create.do?commentId=" + commentId + "&&postId=" + postId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
     }
 
     function replyEditComment(parentId) {

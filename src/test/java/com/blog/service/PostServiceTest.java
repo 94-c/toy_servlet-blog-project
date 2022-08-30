@@ -2,12 +2,14 @@ package com.blog.service;
 
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.dto.post.EditRequestPostDTO;
+import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.service.mapper.PostEditMapper;
 import com.blog.util.ExceptionUtil;
 import org.junit.Test;
 
 import javax.persistence.Id;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -106,5 +108,19 @@ public class PostServiceTest {
 
         System.out.println(editPost.toString());
     }
+
+    @Test
+    public void findByPostCommentList() {
+        Integer postId  = 15;
+
+        PostEditMapper findByPostId = postService.findByPostId(postId);
+
+        List<Comment> listComment = postService.findByPostId(postId).getCommentList();
+
+        listComment.forEach(c -> System.out.println("게시글 아이디 : " + c.getPost().getId() + " 댓글 제목 : " + c.getBody()));
+
+        assertTrue(listComment.size() > 0);
+    }
+
 
 }

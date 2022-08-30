@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "comments")
@@ -13,7 +14,7 @@ import java.util.Date;
 @Setter
 @ToString
 @NamedQueries({
-        @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id INNER JOIN Post p ON c.post.id = p.id WHERE c.deleteState = 0 AND c.post.id = :postId" ),
+        @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id INNER JOIN Post p ON c.post.id = p.id WHERE c.deleteState = 0 AND c.post.id = :postId"),
         @NamedQuery(name = "Comment.findByParentComment", query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id WHERE c.deleteState = 0 AND c.parentsId = :commentId")
 })
 public class Comment {
@@ -23,11 +24,11 @@ public class Comment {
     @Column(name = "id", unique = true, nullable = true)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
 
@@ -38,6 +39,7 @@ public class Comment {
 
     @Column(name = "parents_comment_id")
     private Integer parentsId;
+
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
