@@ -43,7 +43,6 @@ public class PostService {
         if (comment.size() > 0) {
             Integer commentId = comment.get(0).getId();
             if (commentId != null){
-                System.out.println(commentId);
                 List<Comment> parentComment = commentDAO.findAllParentCommentList(commentId);
                 return PostEditMapper.builder()
                         .post(findById)

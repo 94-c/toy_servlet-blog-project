@@ -40,7 +40,6 @@ public class JpaDAO<E> {
             entityTransaction.begin();
             entityManager.merge(entity);
             entityTransaction.commit();
-            ;
             return entity;
         } catch (Exception e) {
             e.printStackTrace();

@@ -81,8 +81,7 @@
                                     <button type="button" class="btn btn-outline-warning btn-sm"
                                             onclick="replyEditComment(${parentComment.id})">수정
                                     </button>
-                                    <button type="button" class="btn btn-outline-danger btn-sm"
-                                            onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}+'&postId='+${param.id}">
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}+'&postId='+${param.id}">
                                         삭제
                                     </button>
                                 </c:if>
@@ -103,11 +102,11 @@
 
     function replyComment(commentId, postId) {
         window.name = "parentForm";
-        window.open("/parenComment/create.do?commentId=" + commentId + "&&postId=" + postId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
+        window.open("/parenComment/create.do?commentId=" + commentId + "&postId=" + postId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
     }
 
     function replyEditComment(parentId) {
         window.name = "parentForm";
-        window.open("/parenComment/Edit.do?parentId=" + parentId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
+        window.open("/parenComment/edit.do?parentId=" + parentId, "replyForm", "width=570, height=350, resizable=no, scrollbars=no");
     }
 </script>
