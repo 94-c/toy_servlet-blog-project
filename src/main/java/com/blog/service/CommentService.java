@@ -7,6 +7,8 @@ import com.blog.dto.comment.EditRequestCommentDTO;
 import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
 import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
 import com.blog.entity.Comment;
+import com.blog.service.exception.CommentServiceException;
+import com.blog.service.exception.ServiceException;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +21,7 @@ public class CommentService {
         Comment newComment = dto.ToEntity();
         Comment result = commentDAO.create(newComment);
         if (result == null) {
-            throw new ExceptionUtil("Create Comment Error");
+            throw new ServiceException("Create Comment Error");
         }
         return newComment;
     }
@@ -35,7 +37,7 @@ public class CommentService {
     public Comment updateComment(EditRequestCommentDTO dto) throws ExceptionUtil {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
-            throw new ExceptionUtil("updateComment Error");
+            throw new CommentServiceException("updateComment Error");
         }
         Comment updateCommentDto = dto.ToEntity();
         Comment updateComment = commentDAO.update(updateCommentDto);
@@ -70,6 +72,5 @@ public class CommentService {
         Comment updateParentComment = commentDAO.update(updateParentCommentDto);
         return updateParentComment;
     }
-
 
 }

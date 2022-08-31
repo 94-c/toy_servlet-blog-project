@@ -113,8 +113,6 @@ public class PostServiceTest {
     public void findByPostCommentList() {
         Integer postId  = 15;
 
-        PostEditMapper findByPostId = postService.findByPostId(postId);
-
         List<Comment> listComment = postService.findByPostId(postId).getCommentList();
 
         listComment.forEach(c -> System.out.println("게시글 아이디 : " + c.getPost().getId() + " 댓글 제목 : " + c.getBody()));

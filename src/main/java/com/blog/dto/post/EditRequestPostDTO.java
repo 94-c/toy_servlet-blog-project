@@ -17,11 +17,10 @@ public class EditRequestPostDTO {
     private final String body;
     private final Integer userId;
 
-    public Post ToEntity() {
+    public Post ToEntity(Post post) {
         User user = new User();
         user.setId(userId);
-
-        Post post = new Post();
+        
         post.setTitle(title);
         post.setBody(body);
         post.setUser(user);
