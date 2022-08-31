@@ -1,13 +1,14 @@
 package com.blog.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
-public class LoginDTO {
+@Builder
+public class LoginRequestDTO {
 
     private String email;
     private String password;

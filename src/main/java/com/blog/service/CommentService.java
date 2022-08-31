@@ -37,8 +37,9 @@ public class CommentService {
         if (comment == null) {
             throw new ExceptionUtil("updateComment Error");
         }
-        commentDAO.update(comment);
-        return comment;
+        Comment updateCommentDto = dto.ToEntity();
+        Comment updateComment = commentDAO.update(updateCommentDto);
+        return updateComment;
     }
 
     public Comment deleteComment(DeleteResponseCommentDTO dto) throws ExceptionUtil {
@@ -65,8 +66,9 @@ public class CommentService {
         if (parentComment == null) {
             throw new ExceptionUtil("updateParentComment Error");
         }
-        commentDAO.update(parentComment);
-        return parentComment;
+        Comment updateParentCommentDto = dto.ToParentCommentEntity();
+        Comment updateParentComment = commentDAO.update(updateParentCommentDto);
+        return updateParentComment;
     }
 
 

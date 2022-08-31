@@ -62,7 +62,8 @@ public class PostService {
         if (findById == null) {
             throw new ExceptionUtil("findByPostId Error");
         }
-        Post updatePost = postDAO.update(findById);
+        Post updatePostDto = dto.ToEntity();
+        Post updatePost = postDAO.update(updatePostDto);
         if (updatePost == null) {
             throw new ExceptionUtil("updatePost Error");
         }

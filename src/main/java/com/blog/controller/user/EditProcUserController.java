@@ -1,13 +1,11 @@
 package com.blog.controller.user;
 
 import com.blog.controller.Controller;
-import com.blog.dto.UserDTO;
+import com.blog.dto.user.EditRequestUserDTO;
 import com.blog.service.UserService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class EditProcUserController implements Controller {
 
@@ -18,24 +16,23 @@ public class EditProcUserController implements Controller {
         return EditProcUserController.METHOD;
     }
 
-    private UserDTO makeDTO(HttpServletRequest request) {
-        UserDTO dto = new UserDTO();
-
-        dto.setId(Integer.valueOf(request.getParameter("id")));
-        dto.setName(request.getParameter("name"));
-        dto.setEmail(request.getParameter("email"));
-        dto.setPassword(request.getParameter("password"));
-        dto.setState(Integer.valueOf(request.getParameter("state")));
-
-        return dto;
+    private EditRequestUserDTO makeDTO(HttpServletRequest request) {
+        return EditRequestUserDTO.builder()
+                .id(Integer.valueOf(request.getParameter("id")))
+                .email(request.getParameter("email"))
+                .name(request.getParameter("name"))
+                .password(request.getParameter("password"))
+                .state(Integer.valueOf(request.getParameter("state")))
+                .build();
     }
+
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        UserDTO dto = makeDTO(request);
-        UserService userService = new UserService();
+        EditRequestUserDTO dto = makeDTO(request);
 
+        UserService userService = new UserService();
 
         if (dto.getPassword().isEmpty()) {
             request.setAttribute("message", "회원 정보 수정이 실패하였습니다.");

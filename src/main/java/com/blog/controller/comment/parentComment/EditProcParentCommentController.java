@@ -43,11 +43,9 @@ public class EditProcParentCommentController implements Controller {
 
         if (result == null) {
             request.setAttribute("message", "대댓글 수정이 실패하었습니다.");
-            request.setAttribute("target", "javascript:history.back()");
             return "/WEB-INF/common/redirect.jsp";
         }
         request.setAttribute("message", "대댓글이 수정 되었습니다.");
-        request.setAttribute("target", "javascript:history.back()");
         return "/WEB-INF/common/redirect.jsp";
     }
 }

@@ -1,11 +1,9 @@
 package com.blog.controller;
 
 
-import com.blog.dto.EmailTokensDTO;
-import com.blog.dto.UserDTO;
+import com.blog.dto.user.CreateRequestUserDTO;
 import com.blog.entity.User;
 import com.blog.service.EmailService;
-import com.blog.service.EmailTokensService;
 import com.blog.service.UserService;
 
 import javax.servlet.ServletException;
@@ -22,21 +20,19 @@ public class JoinProcController implements Controller {
         return JoinProcController.METHOD;
     }
 
-    public UserDTO makeDTO(HttpServletRequest request) {
-        UserDTO dto = new UserDTO();
-
-        dto.setEmail(request.getParameter("email"));
-        dto.setPassword(request.getParameter("password"));
-        dto.setName(request.getParameter("name"));
-
-        return dto;
+    public CreateRequestUserDTO makeDTO(HttpServletRequest request) {
+        return CreateRequestUserDTO.builder()
+                .email(request.getParameter("email"))
+                .password(request.getParameter("password"))
+                .name(request.getParameter("name"))
+                .build();
     }
 
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        UserDTO dto = makeDTO(request);
+        CreateRequestUserDTO dto = makeDTO(request);
         UserService userService = new UserService();
         EmailService emailService = new EmailService();
 

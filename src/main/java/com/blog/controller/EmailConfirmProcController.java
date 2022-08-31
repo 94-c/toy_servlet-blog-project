@@ -1,6 +1,7 @@
 package com.blog.controller;
 
 import com.blog.dto.EmailTokensDTO;
+import com.blog.dto.email.EmailConfirmRequestDTO;
 import com.blog.entity.EmailTokens;
 import com.blog.service.EmailTokensService;
 import com.blog.service.UserService;
@@ -19,26 +20,23 @@ public class EmailConfirmProcController implements Controller {
         return EmailConfirmProcController.METHOD;
     }
 
-    private EmailTokensDTO makeDTO(HttpServletRequest request) {
-        EmailTokensDTO dto = new EmailTokensDTO();
-
-        dto.setToken(request.getParameter("token"));
-
-        return dto;
+    private EmailConfirmRequestDTO makeDTO(HttpServletRequest request) {
+        return EmailConfirmRequestDTO.builder()
+                .token(request.getParameter("token"))
+                .userId(Integer.valueOf(request.getParameter("userId")))
+                .build();
     }
 
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EmailTokensDTO dto = makeDTO(request);
+        EmailConfirmRequestDTO dto = makeDTO(request);
         EmailTokensService emailTokensService = new EmailTokensService();
         UserService userService = new UserService();
         
         
-        //TODO 이메일 토큰 보낼 때, 토큰 파라미터를 토대로 검색하여 가져오기
         boolean result = emailTokensService.updateState(dto);
 
-        //TODO 토큰 값으로 하여 인증번호 찾기
         if (result) {
             userService.updateState(dto.getUserId());
             request.setAttribute("message", "인증이 완료되었습니다.");

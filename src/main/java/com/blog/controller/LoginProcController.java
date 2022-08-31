@@ -1,16 +1,14 @@
 package com.blog.controller;
 
 
-import com.blog.dto.LoginDTO;
+import com.blog.dto.LoginRequestDTO;
 import com.blog.entity.User;
 import com.blog.service.UserService;
 import com.blog.util.Md5Util;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
 public class LoginProcController implements Controller {
 
@@ -21,17 +19,18 @@ public class LoginProcController implements Controller {
         return LoginProcController.METHOD;
     }
 
-    private LoginDTO makeDTO(HttpServletRequest request) {
-        LoginDTO dto = new LoginDTO();
-        dto.setEmail(request.getParameter("email"));
-        dto.setPassword(Md5Util.md5(request.getParameter("password")));
-        return dto;
+    private LoginRequestDTO makeDTO(HttpServletRequest request) {
+        return LoginRequestDTO.builder()
+                .email(request.getParameter("email"))
+                .password(Md5Util.md5(request.getParameter("password")))
+                .build();
     }
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         HttpSession session = request.getSession();
-        LoginDTO dto = makeDTO(request);
+        LoginRequestDTO dto = makeDTO(request);
         UserService userService = new UserService();
 
         User user = userService.login(dto);

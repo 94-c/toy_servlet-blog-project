@@ -1,41 +1,36 @@
 package com.blog.service;
 
 import com.blog.dao.UserDAO;
-import com.blog.dto.LoginDTO;
-import com.blog.dto.UserDTO;
+import com.blog.dto.LoginRequestDTO;
+import com.blog.dto.user.CreateRequestUserDTO;
+import com.blog.dto.user.EditRequestUserDTO;
 import com.blog.entity.User;
-import com.blog.util.Md5Util;
+import com.blog.util.ExceptionUtil;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class UserService {
 
     protected final UserDAO userDAO = new UserDAO();
 
-    private void userField(User user, UserDTO dto) {
-        user.setId(dto.getId());
-        user.setEmail(dto.getEmail());
-        user.setPassword(Md5Util.md5(dto.getPassword()));
-        user.setName(dto.getName());
-        user.setState(dto.getState());
-    }
-
     public boolean userEmailCheck(String email) {
-        try {
-            userDAO.emailCheck(email);
-            return false;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return true;
+        User result = userDAO.emailCheck(email);
+        if (result == null) {
+            throw new ExceptionUtil("userEmailCheck Error");
         }
+        return true;
     }
 
-    public User join(UserDTO dto) {
-        User user = new User();
-        userField(user, dto);
-        userDAO.create(user);
-        return user;
+    public User join(CreateRequestUserDTO dto) {
+        User newUser = dto.ToEntity();
+        User result = userDAO.create(newUser);
+        if (result == null) {
+            throw new ExceptionUtil("create User Error");
+        }
+        return newUser;
     }
 
-    public User login(LoginDTO dto) {
+    public User login(LoginRequestDTO dto) {
         return userDAO.login(dto.getEmail(), dto.getPassword());
     }
 
@@ -47,26 +42,23 @@ public class UserService {
     }
 
     public User findUserId(Integer id) {
-        User user = userDAO.find(User.class, id);
-        if (user == null) {
-            return null;
+        User findByUserId = userDAO.find(id);
+        if (findByUserId == null) {
+            throw new ExceptionUtil("findUserId Error");
         }
-        return user;
+        return findByUserId;
     }
 
-    public User updateUser(UserDTO dto) throws Exception {
+    public User updateUser(EditRequestUserDTO dto) throws Exception {
         User user = userDAO.find(User.class, dto.getId());
         if (user == null) {
             throw new Exception();
         }
-        try {
-            userField(user, dto);
-            userDAO.update(user);
-            return user;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new Exception();
+        User updateUser = userDAO.update(user);
+        if (updateUser == null) {
+            throw new ExceptionUtil("updateUser Error");
         }
+        return user;
     }
 
 
