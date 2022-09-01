@@ -24,7 +24,7 @@
             <button type="submit">등록</button>
         </c:if>
         <c:if test="${parentComment.parentsId != null}">
-            <button type="submit">수정</btton>
+            <button type="submit">수정</button>
         </c:if>
         <button type="button" onclick="window.close()">닫기</button>
     </form>
