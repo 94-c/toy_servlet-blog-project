@@ -20,14 +20,13 @@ public class EditRequestCommentDTO {
     private final String userIp;
 
 
-    public Comment ToEntity() {
+    public Comment ToEntity(Comment comment) {
         User user = new User();
         user.setId(userId);
 
         Post post = new Post();
         post.setId(postId);
 
-        Comment comment = new Comment();
         comment.setId(id);
         comment.setUser(user);
         comment.setPost(post);

@@ -39,9 +39,8 @@ public class CommentService {
         if (comment == null) {
             throw new CommentServiceException("updateComment Error");
         }
-        Comment updateCommentDto = dto.ToEntity();
-        Comment updateComment = commentDAO.update(updateCommentDto);
-        return updateComment;
+        Comment updateCommentDto = dto.ToEntity(comment);
+        return commentDAO.update(updateCommentDto);
     }
 
     public Comment deleteComment(DeleteResponseCommentDTO dto) throws ExceptionUtil {
