@@ -1,17 +1,23 @@
 package com.blog.service;
 
 import com.blog.dao.UserDAO;
+import com.blog.dao.UserLogDAO;
 import com.blog.dto.LoginRequestDTO;
+import com.blog.dto.email.EmailConfirmRequestDTO;
 import com.blog.dto.user.CreateRequestUserDTO;
 import com.blog.dto.user.EditRequestUserDTO;
 import com.blog.entity.User;
+import com.blog.service.exception.UserServiceException;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
+
+import java.util.logging.Level;
 
 @RequiredArgsConstructor
 public class UserService {
 
-    protected final UserDAO userDAO = new UserDAO();
+    private final UserDAO userDAO = new UserDAO();
+    private final UserLogDAO userLogDAO = new UserLogDAO();
 
     public boolean userEmailCheck(String email) {
         User result = userDAO.emailCheck(email);
@@ -35,10 +41,14 @@ public class UserService {
     }
 
 
-    public User updateState(Integer id) {
-        User user = userDAO.find(User.class, id);
-        userDAO.updateState(user);
-        return user;
+    public User updateEmailStateAuth(Integer id) {
+        User findByUserId = userDAO.find(id);
+        if (findByUserId == null) {
+            throw new UserServiceException("findByUserId", Level.WARNING);
+        }
+        //TODO 이메일 인가에 대한 state dto를 태워야 함.
+        User updateAuthState = userDAO.updateState(findByUserId);
+        return updateAuthState;
     }
 
     public User findUserId(Integer id) {
@@ -54,7 +64,8 @@ public class UserService {
         if (user == null) {
             throw new Exception();
         }
-        User updateUser = userDAO.update(user);
+        User updateUserDto = dto.ToEntity(user);
+        User updateUser = userDAO.update(updateUserDto);
         if (updateUser == null) {
             throw new ExceptionUtil("updateUser Error");
         }

@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class EditRequestUserDTO {
+public class EditRequestUserStateDTO {
 
     private final Integer id;
     private final String email;
