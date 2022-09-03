@@ -1,4 +1,4 @@
-package com.blog.service.mapper;
+package com.blog.dto.post;
 
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class PostEditMapper {
+public class EditResponsePostEditDto {
 
     private final Post post;
     private final List<Comment> commentList;
