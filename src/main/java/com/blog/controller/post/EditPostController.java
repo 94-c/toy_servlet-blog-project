@@ -2,7 +2,6 @@ package com.blog.controller.post;
 
 import com.blog.controller.Controller;
 import com.blog.service.PostService;
-import com.blog.service.mapper.PostEditMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

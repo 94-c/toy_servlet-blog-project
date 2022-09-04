@@ -73,6 +73,9 @@
                 </tr>
             </table>
         </form>
+        <c:if test="${sessionScope.session_id != null}">
+            <jsp:include page="tag.jsp"/>
+        </c:if>
         <c:if test="${posts != null}">
             <jsp:include page="comment.jsp"/>
         </c:if>

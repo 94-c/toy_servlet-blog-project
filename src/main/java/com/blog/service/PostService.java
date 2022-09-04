@@ -4,9 +4,9 @@ import com.blog.dao.CommentDAO;
 import com.blog.dao.PostDAO;
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.dto.post.EditRequestPostDTO;
+import com.blog.dto.post.EditResponsePostEditDto;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
-import com.blog.service.mapper.PostEditMapper;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -33,7 +33,7 @@ public class PostService {
         return newPost;
     }
 
-    public PostEditMapper findByPostId(Integer id) throws ExceptionUtil {
+    public EditResponsePostEditDto findByPostId(Integer id) throws ExceptionUtil {
         Post findById = postDAO.find(id);
         if (findById == null) {
             throw new ExceptionUtil("findByPostId Error");
@@ -44,7 +44,7 @@ public class PostService {
             Integer commentId = comment.get(0).getId();
             if (commentId != null){
                 List<Comment> parentComment = commentDAO.findAllParentCommentList(commentId);
-                return PostEditMapper.builder()
+                return EditResponsePostEditDto.builder()
                         .post(findById)
                         .commentList(comment)
                         .parentCommentList(parentComment)
