@@ -2,11 +2,14 @@ package com.blog.service;
 
 import com.blog.dao.CommentDAO;
 import com.blog.dao.PostDAO;
+import com.blog.dao.TagDAO;
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.dto.post.EditRequestPostDTO;
 import com.blog.dto.post.EditResponsePostEditDto;
+import com.blog.dto.tag.CreateRequestTagDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
+import com.blog.entity.Tag;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +22,7 @@ public class PostService {
     private final PostDAO postDAO = new PostDAO();
     private final CommentDAO commentDAO = new CommentDAO();
 
+    private final TagDAO tagDAO = new TagDAO();
     public List<Post> findAllPost() {
         return postDAO.findAllPostList();
     }
@@ -51,7 +55,7 @@ public class PostService {
                         .build();
             }
         }
-        return PostEditMapper.builder()
+        return EditResponsePostEditDto.builder()
                 .post(findById)
                 .commentList(comment)
                 .build();

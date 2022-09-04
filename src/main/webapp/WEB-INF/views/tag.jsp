@@ -1,13 +1,17 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="tr_hashTag_area">
-    <p><strong>해시태그 구현</strong></p>
     <div class="form-group">
         <input type="hidden" value="" name="tag" id="rdTag" />
     </div>
 
-    <ul id="tag-list"></ul>
+    <form id="tag-list" method="POST" action="/tag/createProc.do">
+        <input type="hidden" id="post_id" value="${posts.id}">
+        <ul id="tag_name">
+        </ul>
+    </form>
 
     <div class="form-group">
-        <input type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요." style="width: 300px;"/>
+        <input class="form-control input-sm" type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요."/>
     </div>
 </div>
 
@@ -20,6 +24,7 @@
         function addTag (value) {
             tag[counter] = value;
             counter++; // del-btn 의 고유 id 가 된다.
+            console.log(tag);
         }
 
         // tag 안에 있는 값을 array type 으로 만들어서 넘긴다.

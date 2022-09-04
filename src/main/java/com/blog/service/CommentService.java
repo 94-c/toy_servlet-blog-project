@@ -12,6 +12,8 @@ import com.blog.service.exception.ServiceException;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 
+import java.util.logging.Level;
+
 @RequiredArgsConstructor
 public class CommentService {
 
@@ -37,7 +39,7 @@ public class CommentService {
     public Comment updateComment(EditRequestCommentDTO dto) throws ExceptionUtil {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
-            throw new CommentServiceException("updateComment Error");
+            throw new CommentServiceException("updateComment Error", Level.WARNING);
         }
         Comment updateCommentDto = dto.ToEntity(comment);
         return commentDAO.update(updateCommentDto);

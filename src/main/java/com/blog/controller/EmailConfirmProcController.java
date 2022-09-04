@@ -38,7 +38,7 @@ public class EmailConfirmProcController implements Controller {
         boolean result = emailTokensService.updateState(dto);
 
         if (result) {
-            userService.updateState(dto.getUserId());
+            userService.updateEmailStateAuth(dto.getUserId());
             request.setAttribute("message", "인증이 완료되었습니다.");
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";

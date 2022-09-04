@@ -1,6 +1,7 @@
 package com.blog.controller.post;
 
 import com.blog.controller.Controller;
+import com.blog.dto.post.EditResponsePostEditDto;
 import com.blog.service.PostService;
 
 import javax.servlet.ServletException;
@@ -25,7 +26,7 @@ public class EditPostController implements Controller {
 
         PostService postService = new PostService();
 
-        PostEditMapper result = postService.findByPostId(id);
+        EditResponsePostEditDto result = postService.findByPostId(id);
 
         if (result == null) {
             request.setAttribute("message", "등록 된 게시글이 없습니다.");
