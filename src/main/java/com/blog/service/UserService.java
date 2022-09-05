@@ -22,16 +22,6 @@ public class UserService {
     private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
 
 
-    public EmailTokens createToken(CreateEmailTokenDTO dto) {
-        EmailTokens newToken = dto.ToEntity();
-        EmailTokens result = emailTokensDAO.create(newToken);
-        if (result == null) {
-            throw new ExceptionUtil("Error");
-        }
-        return result;
-    }
-
-
     public boolean userEmailCheck(String email) {
          return userDAO.emailCheck(email);
     }

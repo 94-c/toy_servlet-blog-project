@@ -18,7 +18,7 @@ import java.util.List;
         @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p INNER JOIN User u ON p.user.id = u.id WHERE p.deletedAt is null"),
         @NamedQuery(name = "Post.findById", query = "SELECT p.id, p.title, p.body FROM Post p WHERE p.id = :id")
 })
-public class Post {
+public class  Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

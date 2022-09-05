@@ -11,6 +11,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@NamedQueries(
+        @NamedQuery(name = "Like_findLikeWithUserAndPostId", query = "SELECT l.post.id, l.user.id FROM Like l INNER JOIN Post p ON p.id = :postId INNER JOIN User u ON u.id = :userId")
+)
 public class Like {
 
     @Id
@@ -18,13 +21,13 @@ public class Like {
     @Column(name = "id", unique = true, nullable = true)
     private Integer id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    private Post user;
+    private User user;
 
     private Integer type;
 
