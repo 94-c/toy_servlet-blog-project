@@ -79,12 +79,12 @@ public class PostServiceTest {
         if (findByPostId == null) {
             throw new ExceptionUtil("Error");
         }
-       /* Post editPost = postService.updatePost(edtPostDto);
+        Post editPost = postService.updatePost(edtPostDto);
 
         assertEquals(findByPostId.getPost().getId(), editPost.getId());
         assertTrue(editPost.getId() > 0);
 
-        System.out.println(editPost.toString());*/
+        System.out.println(editPost.toString());
     }
 
     @Test(expected = ExceptionUtil.class)
@@ -101,12 +101,12 @@ public class PostServiceTest {
         if (findByPostId == null) {
             throw new ExceptionUtil("Error");
         }
-        /*Post editPost = postService.updatePost(edtPostDto);
+        Post editPost = postService.updatePost(edtPostDto);
 
         assertEquals(findByPostId.getPost().getId(), editPost.getId());
         assertTrue(editPost.getId() > 0);
 
-        System.out.println(editPost.toString());*/
+        System.out.println(editPost.toString());
     }
 
     @Test

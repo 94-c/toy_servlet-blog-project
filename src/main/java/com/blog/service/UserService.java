@@ -3,7 +3,6 @@ package com.blog.service;
 import com.blog.dao.UserDAO;
 import com.blog.dao.UserLogDAO;
 import com.blog.dto.LoginRequestDTO;
-import com.blog.dto.email.EmailConfirmRequestDTO;
 import com.blog.dto.user.CreateRequestUserDTO;
 import com.blog.dto.user.EditRequestUserDTO;
 import com.blog.entity.User;
@@ -20,11 +19,7 @@ public class UserService {
     private final UserLogDAO userLogDAO = new UserLogDAO();
 
     public boolean userEmailCheck(String email) {
-        User result = userDAO.emailCheck(email);
-        if (result == null) {
-            throw new ExceptionUtil("userEmailCheck Error");
-        }
-        return true;
+         return userDAO.emailCheck(email);
     }
 
     public User join(CreateRequestUserDTO dto) {

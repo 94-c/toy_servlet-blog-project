@@ -3,6 +3,7 @@ package com.blog.controller.post;
 import com.blog.controller.Controller;
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.entity.Post;
+import com.blog.log.Log;
 import com.blog.request.post.CreatePostRequest;
 import com.blog.service.PostService;
 

@@ -42,12 +42,9 @@ public class UserDAO extends JpaDAO<User> {
     }
 
 
-    public User emailCheck(String email) {
+    public boolean emailCheck(String email) {
         List<User> result = super.findWithNamedQuery("User_Email_Check", "email", email);
-        if (result != null && result.size() > 0) {
-            return result.get(0);
-        }
-        return null;
+        return result != null && result.size() > 0;
     }
 
     public User updateState(User user) {

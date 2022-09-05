@@ -37,7 +37,7 @@ public class JoinProcController implements Controller {
         EmailService emailService = new EmailService();
 
         boolean emailCheck = userService.userEmailCheck(dto.getEmail());
-        if (!emailCheck) {
+        if (emailCheck) {
             request.setAttribute("message", "중복되는 이메일이 있습니다.");
             request.setAttribute("target", "/join.do");
             return "/WEB-INF/common/redirect.jsp";

@@ -10,6 +10,7 @@ import com.blog.dto.tag.CreateRequestTagDTO;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.Tag;
+import com.blog.log.Log;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,7 @@ public class PostService {
     private final CommentDAO commentDAO = new CommentDAO();
 
     private final TagDAO tagDAO = new TagDAO();
+    private final Log log = new Log();
     public List<Post> findAllPost() {
         return postDAO.findAllPostList();
     }
