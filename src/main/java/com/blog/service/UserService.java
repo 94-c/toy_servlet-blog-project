@@ -1,10 +1,12 @@
 package com.blog.service;
 
+import com.blog.dao.EmailTokensDAO;
 import com.blog.dao.UserDAO;
 import com.blog.dao.UserLogDAO;
 import com.blog.dto.LoginRequestDTO;
 import com.blog.dto.user.CreateRequestUserDTO;
 import com.blog.dto.user.EditRequestUserDTO;
+import com.blog.entity.EmailTokens;
 import com.blog.entity.User;
 import com.blog.service.exception.UserServiceException;
 import com.blog.util.ExceptionUtil;
@@ -17,6 +19,18 @@ public class UserService {
 
     private final UserDAO userDAO = new UserDAO();
     private final UserLogDAO userLogDAO = new UserLogDAO();
+    private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
+
+
+    public EmailTokens createToken(CreateEmailTokenDTO dto) {
+        EmailTokens newToken = dto.ToEntity();
+        EmailTokens result = emailTokensDAO.create(newToken);
+        if (result == null) {
+            throw new ExceptionUtil("Error");
+        }
+        return result;
+    }
+
 
     public boolean userEmailCheck(String email) {
          return userDAO.emailCheck(email);

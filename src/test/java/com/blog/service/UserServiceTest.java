@@ -1,6 +1,7 @@
 package com.blog.service;
 
 import com.blog.dao.UserDAO;
+import com.blog.dto.LoginRequestDTO;
 import com.blog.dto.user.CreateRequestUserDTO;
 import com.blog.entity.User;
 import com.blog.util.ExceptionUtil;
@@ -57,7 +58,6 @@ public class UserServiceTest {
     }
 
 
-
     @Test(expected = ExceptionUtil.class)
     public void findByUserIdFail() {
         Integer id = 56;
@@ -73,21 +73,13 @@ public class UserServiceTest {
                 .email("hyeongwoo26@naver.com")
                 .build();
 
-        List<User> findByEmail = userDAO.findWithNamedQuery("User_Email_Check", "email", findByEmailDto.getEmail());
+        boolean findByEmail = userService.userEmailCheck(findByEmailDto.getEmail());
 
-        assertTrue(findByEmail.size() > 0);
+        assertTrue(findByEmail);
     }
 
-    @Test
-    public void findByEmailCheckFail() {
-        CreateRequestUserDTO findByEmailDto = CreateRequestUserDTO.builder()
-                .email("hyeongwoo26@naver.com")
-                .build();
 
-        List<User> findByEmail = userDAO.findWithNamedQuery("User_Email_Check", "email", findByEmailDto.getEmail());
 
-        assertTrue(findByEmail.size() > 1);
-    }
 
 
 

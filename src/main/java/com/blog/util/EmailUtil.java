@@ -1,4 +1,4 @@
-package com.blog.service;
+package com.blog.util;
 
 import com.blog.dao.EmailTokensDAO;
 import com.blog.entity.EmailTokens;
@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 import java.util.Random;
 
-public class EmailService {
+public class EmailUtil {
 
     private static final EmailTokensDAO emailTokenDAO = new EmailTokensDAO();
 

@@ -3,7 +3,7 @@ package com.blog.controller;
 
 import com.blog.dto.user.CreateRequestUserDTO;
 import com.blog.entity.User;
-import com.blog.service.EmailService;
+import com.blog.util.EmailUtil;
 import com.blog.service.UserService;
 
 import javax.servlet.ServletException;
@@ -34,7 +34,7 @@ public class JoinProcController implements Controller {
 
         CreateRequestUserDTO dto = makeDTO(request);
         UserService userService = new UserService();
-        EmailService emailService = new EmailService();
+        EmailUtil emailUtil = new EmailUtil();
 
         boolean emailCheck = userService.userEmailCheck(dto.getEmail());
         if (emailCheck) {
@@ -49,7 +49,7 @@ public class JoinProcController implements Controller {
             return "/WEB-INF/common/redirect.jsp";
         } else {
             //인증 메일 보내기
-            emailService.sendEmail(result.getId(), dto.getEmail());
+            emailUtil.sendEmail(result.getId(), dto.getEmail());
 
             request.setAttribute("message", "회원가입 확인 메일이 전송 되었습니다.");
             request.setAttribute("message", "회원가입을 축하합니다.");
