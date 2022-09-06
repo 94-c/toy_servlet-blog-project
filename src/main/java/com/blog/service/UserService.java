@@ -22,6 +22,7 @@ public class UserService {
     private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
 
 
+
     public boolean userEmailCheck(String email) {
          return userDAO.emailCheck(email);
     }
