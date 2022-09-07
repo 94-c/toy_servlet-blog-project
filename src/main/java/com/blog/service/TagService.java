@@ -5,17 +5,18 @@ import com.blog.dto.tag.CreateRequestTagDTO;
 import com.blog.entity.Tag;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
+import org.apache.log4j.Level;
 
 @RequiredArgsConstructor
 public class TagService {
 
     private final TagDAO  tagDAO = new TagDAO();
 
-    public Tag createTage(CreateRequestTagDTO dto) {
+    public Tag createTage(CreateRequestTagDTO dto) throws ExceptionUtil {
         Tag newTag = dto.ToEntity();
         Tag result = tagDAO.create(newTag);
         if (result == null) {
-            throw new ExceptionUtil("Create Tag Error");
+            throw new ExceptionUtil("Create Tag Error", Level.ERROR);
         }
         return newTag;
     }

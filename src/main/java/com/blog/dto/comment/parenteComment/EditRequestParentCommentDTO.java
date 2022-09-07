@@ -19,14 +19,13 @@ public class EditRequestParentCommentDTO {
     private final Integer userId;
     private final Integer postId;
 
-    public Comment ToParentCommentEntity() {
+    public Comment ToParentCommentEntity(Comment parentComment) {
         User user = new User();
         user.setId(userId);
 
         Post post = new Post();
         post.setId(postId);
 
-        Comment parentComment = new Comment();
         parentComment.setId(id);
         parentComment.setPost(post);
         parentComment.setUser(user);

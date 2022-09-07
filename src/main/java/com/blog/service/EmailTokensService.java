@@ -4,6 +4,7 @@ import com.blog.dao.EmailTokensDAO;
 import com.blog.dto.email.EmailConfirmRequestDTO;
 import com.blog.entity.EmailTokens;
 import com.blog.util.ExceptionUtil;
+import org.apache.log4j.Level;
 
 
 public class EmailTokensService {
@@ -19,10 +20,10 @@ public class EmailTokensService {
         }
     }
 
-    public boolean updateState(EmailConfirmRequestDTO dto) {
+    public boolean updateState(EmailConfirmRequestDTO dto) throws ExceptionUtil {
         EmailTokens result = findByToken(dto.getToken());
         if (result == null) {
-            throw new ExceptionUtil("updateState Error");
+            throw new ExceptionUtil("updateState Error", Level.ERROR);
         }
             result.setToken(result.getToken());
             result.setState(1);

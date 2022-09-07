@@ -1,9 +1,7 @@
 package com.blog.service.exception;
 
-import com.sun.org.slf4j.internal.LoggerFactory;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 public class CommentServiceException extends ServiceException {
 

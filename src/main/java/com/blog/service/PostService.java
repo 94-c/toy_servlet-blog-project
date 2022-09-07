@@ -13,6 +13,7 @@ import com.blog.entity.Tag;
 import com.blog.log.Log;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
+import org.apache.log4j.Level;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,7 @@ public class PostService {
     private final PostDAO postDAO = new PostDAO();
     private final CommentDAO commentDAO = new CommentDAO();
 
-    private final TagDAO tagDAO = new TagDAO();
-    private final Log log = new Log();
+
     public List<Post> findAllPost() {
         return postDAO.findAllPostList();
     }
@@ -34,7 +34,7 @@ public class PostService {
         Post newPost = dto.ToEntity();
         Post result = postDAO.create(newPost);
         if (result == null) {
-            throw new ExceptionUtil("Create Post Error");
+            throw new ExceptionUtil("Create Post Error", Level.ERROR);
         }
         return newPost;
     }
@@ -42,7 +42,7 @@ public class PostService {
     public EditResponsePostEditDto findByPostId(Integer id) throws ExceptionUtil {
         Post findById = postDAO.find(id);
         if (findById == null) {
-            throw new ExceptionUtil("findByPostId Error");
+            throw new ExceptionUtil("findByPostId Error", Level.ERROR);
         }
         List<Comment> comment = commentDAO.findAllCommentByPostId(id);
 
@@ -66,12 +66,12 @@ public class PostService {
     public Post updatePost(EditRequestPostDTO dto) throws ExceptionUtil {
         Post findById = postDAO.find(dto.getId());
         if (findById == null) {
-            throw new ExceptionUtil("findByPostId Error");
+            throw new ExceptionUtil("findByPostId Error", Level.ERROR);
         }
         Post updatePostDto = dto.ToEntity(findById);
         Post updatePost = postDAO.update(updatePostDto);
         if (updatePost == null) {
-            throw new ExceptionUtil("updatePost Error");
+            throw new ExceptionUtil("updatePost Error", Level.ERROR);
         }
         return updatePost;
     }

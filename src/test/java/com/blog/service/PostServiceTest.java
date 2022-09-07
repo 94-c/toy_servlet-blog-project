@@ -6,6 +6,7 @@ import com.blog.dto.post.EditResponsePostEditDto;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.util.ExceptionUtil;
+import org.apache.log4j.Level;
 import org.junit.Test;
 
 import javax.persistence.Id;
@@ -77,7 +78,7 @@ public class PostServiceTest {
 
         EditResponsePostEditDto findByPostId = postService.findByPostId(edtPostDto.getId());
         if (findByPostId == null) {
-            throw new ExceptionUtil("Error");
+            throw new ExceptionUtil("Error", Level.ERROR);
         }
         Post editPost = postService.updatePost(edtPostDto);
 
@@ -99,7 +100,7 @@ public class PostServiceTest {
 
         EditResponsePostEditDto findByPostId = postService.findByPostId(edtPostDto.getId());
         if (findByPostId == null) {
-            throw new ExceptionUtil("Error");
+            throw new ExceptionUtil("Error", Level.ERROR);
         }
         Post editPost = postService.updatePost(edtPostDto);
 
