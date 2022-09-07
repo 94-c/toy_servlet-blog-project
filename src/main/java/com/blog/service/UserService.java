@@ -18,19 +18,17 @@ import java.util.logging.Level;
 public class UserService {
 
     private final UserDAO userDAO = new UserDAO();
-    private final UserLogDAO userLogDAO = new UserLogDAO();
-    private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
 
 
     public boolean userEmailCheck(String email) {
          return userDAO.emailCheck(email);
     }
 
-    public User join(CreateRequestUserDTO dto) {
+    public User join(CreateRequestUserDTO dto) throws UserServiceException{
         User newUser = dto.ToEntity();
         User result = userDAO.create(newUser);
         if (result == null) {
-            throw new ExceptionUtil("create User Error");
+            throw new UserServiceException("create User Error", Level.WARNING);
         }
         return newUser;
     }
@@ -40,7 +38,7 @@ public class UserService {
     }
 
 
-    public User updateEmailStateAuth(Integer id) {
+    public User updateEmailStateAuth(Integer id) throws UserServiceException {
         User findByUserId = userDAO.find(id);
         if (findByUserId == null) {
             throw new UserServiceException("findByUserId", Level.WARNING);
@@ -50,23 +48,23 @@ public class UserService {
         return updateAuthState;
     }
 
-    public User findUserId(Integer id) {
+    public User findUserId(Integer id) throws UserServiceException{
         User findByUserId = userDAO.find(id);
         if (findByUserId == null) {
-            throw new ExceptionUtil("findUserId Error");
+            throw new UserServiceException("findUserId Error", Level.WARNING);
         }
         return findByUserId;
     }
 
-    public User updateUser(EditRequestUserDTO dto) throws Exception {
+    public User updateUser(EditRequestUserDTO dto) throws UserServiceException {
         User user = userDAO.find(User.class, dto.getId());
         if (user == null) {
-            throw new Exception();
+            throw new UserServiceException("findUserId Error", Level.WARNING);
         }
         User updateUserDto = dto.ToEntity(user);
         User updateUser = userDAO.update(updateUserDto);
         if (updateUser == null) {
-            throw new ExceptionUtil("updateUser Error");
+            throw new UserServiceException("updateUser Error", Level.WARNING);
         }
         return user;
     }

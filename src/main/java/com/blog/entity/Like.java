@@ -11,9 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@NamedQueries(
-        @NamedQuery(name = "Like_findLikeWithUserAndPostId", query = "SELECT l.post.id, l.user.id FROM Like l INNER JOIN Post p ON p.id = :postId INNER JOIN User u ON u.id = :userId")
-)
+
 public class Like {
 
     @Id
