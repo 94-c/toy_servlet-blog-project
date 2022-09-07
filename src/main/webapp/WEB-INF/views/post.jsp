@@ -52,10 +52,20 @@
                 <tbody>
                 <input type="hidden" id="userId" name="userId" value="${sessionScope.session_id}">
                 <tr>
+                    <c:if test="${sessionScope.session_id != null}">
                     <td><input type="text" class="form-control" id="title" name="title" value="${posts.title}" maxlength="40" placeholder="글 제목을 입력해주세요."></td>
+                    </c:if>
+                    <c:if test="${sessionScope.session_id == null}">
+                        <td><input type="text" class="form-control" value="${posts.title}" maxlength="40" placeholder="글 제목을 입력해주세요." readonly></td>
+                    </c:if>
                 </tr>
                 <tr>
+                    <c:if test="${sessionScope.session_id != null}">
                     <td><input type="text" class="form-control" id="body" name="body" value="${posts.body}" maxlength="1024" style="height: 400px" placeholder="글 내용을 작성하세요."></td>
+                    </c:if>
+                    <c:if test="${sessionScope.session_id == null}">
+                        <td><input type="text" class="form-control" value="${posts.body}" maxlength="1024" style="height: 400px" placeholder="글 내용을 작성하세요." readonly></td>
+                    </c:if>
                 </tr>
                 </tbody>
                 <tr align="right">

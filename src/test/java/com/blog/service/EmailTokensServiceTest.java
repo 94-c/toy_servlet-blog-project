@@ -11,7 +11,6 @@ import static org.junit.Assert.*;
 public class EmailTokensServiceTest {
 
     private final EmailTokensService emailTokensService = new EmailTokensService();
-    private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
 
     @Test(expected = ClassCastException.class)
     public void findByTokenSuccess() {

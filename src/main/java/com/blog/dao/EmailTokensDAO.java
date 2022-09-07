@@ -32,7 +32,6 @@ public class EmailTokensDAO extends JpaDAO<EmailTokens> {
         if (result != null && result.size() > 0) {
             return result.get(0);
         }
-
         return null;
     }
 

@@ -4,12 +4,14 @@ import com.blog.dao.EmailTokensDAO;
 import com.blog.dto.email.EmailConfirmRequestDTO;
 import com.blog.entity.EmailTokens;
 import com.blog.util.ExceptionUtil;
+import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Level;
 
 
+@RequiredArgsConstructor
 public class EmailTokensService {
 
-    private final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
+    private static final EmailTokensDAO emailTokensDAO = new EmailTokensDAO();
 
     public EmailTokens findByToken(String token) {
         try {

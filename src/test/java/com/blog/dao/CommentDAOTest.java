@@ -152,7 +152,6 @@ public class CommentDAOTest {
 
         assertEquals(comment, newParenComment);
         assertTrue(newParenComment != null && newParenComment.getId() > 0);
-        System.out.println(newParenComment.toString());
     }
 
 

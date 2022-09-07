@@ -4,6 +4,9 @@ import com.blog.entity.User;
 import com.blog.util.Md5Util;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class UserDAOTest {
@@ -48,5 +51,14 @@ public class UserDAOTest {
         assertTrue(emailCheck);
     }
 
+    @Test
+    public void emailCheck_fail() {
+
+        String email = "hyeongwoo26@naver.commmmmm";
+
+        boolean emailCheck = userDAO.emailCheck(email);
+
+        assertTrue(emailCheck);
+    }
 
 }
