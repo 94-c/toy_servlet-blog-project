@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @ToString
 @NamedQueries({
-        @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p INNER JOIN User u ON p.user.id = u.id WHERE p.deletedAt is null"),
+        @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p INNER JOIN User u ON p.user.id = u.id WHERE p.deletedAt is null ORDER BY p.createdAt DESC "),
         @NamedQuery(name = "Post.findById", query = "SELECT p.id, p.title, p.body FROM Post p WHERE p.id = :id")
 })
 public class  Post {
@@ -29,7 +29,7 @@ public class  Post {
 
     private String body;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 

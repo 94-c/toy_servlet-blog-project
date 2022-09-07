@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CreateProcPostController implements Controller {
     private static final String METHOD = "POST";
+
     private final PostService postService;
 
     public CreateProcPostController() {
