@@ -1,18 +1,11 @@
 package com.blog.service;
 
 import com.blog.dao.UserDAO;
-import com.blog.dto.LoginRequestDTO;
 import com.blog.dto.user.CreateRequestUserDTO;
 import com.blog.entity.User;
-import com.blog.util.ExceptionUtil;
-import com.blog.util.HibernateUtil;
+import com.blog.service.exception.PostServiceException;
 import com.blog.util.Md5Util;
 import org.junit.Test;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -58,7 +51,7 @@ public class UserServiceTest {
     }
 
 
-    @Test(expected = ExceptionUtil.class)
+    @Test(expected = PostServiceException.class)
     public void findByUserIdFail() {
         Integer id = 56;
 

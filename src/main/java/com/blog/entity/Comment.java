@@ -14,8 +14,10 @@ import java.util.List;
 @Setter
 @ToString
 @NamedQueries({
-        @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id INNER JOIN Post p ON c.post.id = p.id WHERE c.deleteState = 0 AND c.post.id = :postId AND c.parentsId is null"),
-        @NamedQuery(name = "Comment.findByParentComment", query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id WHERE c.deleteState = 0 AND c.parentsId = :commentId")
+        @NamedQuery(name = "Comment.findAll",
+                query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id INNER JOIN Post p ON c.post.id = p.id WHERE c.deleteState = 0 AND c.post.id = :postId AND c.parentsId is null"),
+        @NamedQuery(name = "Comment.findByParentComment",
+                query = "SELECT c FROM Comment c INNER JOIN User u ON c.user.id = u.id WHERE c.deleteState = 0 AND c.parentsId = :commentId")
 })
 public class Comment {
 

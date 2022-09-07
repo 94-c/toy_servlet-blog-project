@@ -5,7 +5,7 @@ import com.blog.dto.comment.EditRequestCommentDTO;
 import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
 import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
 import com.blog.entity.Comment;
-import com.blog.util.ExceptionUtil;
+import com.blog.service.exception.PostServiceException;
 import com.blog.util.UserIpUtil;
 import org.junit.Test;
 
@@ -54,7 +54,7 @@ public class CommentServiceTest {
         assertNotNull(findByCommentId);
     }
 
-    @Test(expected = ExceptionUtil.class)
+    @Test(expected = PostServiceException.class)
     public void findByCommentIdFail() {
 
         Integer commentId = 99;
@@ -82,7 +82,7 @@ public class CommentServiceTest {
         System.out.println(editComment.toString());
     }
 
-    @Test(expected = ExceptionUtil.class)
+    @Test(expected = PostServiceException.class)
     public void updateCommentFail() {
         EditRequestCommentDTO editCommentDto = EditRequestCommentDTO.builder()
                 .id(1000)
@@ -120,7 +120,7 @@ public class CommentServiceTest {
         System.out.println(editComment.toString());
     }
 
-    @Test(expected = ExceptionUtil.class)
+    @Test(expected = PostServiceException.class)
     public void updateParentCommentFail() {
         EditRequestParentCommentDTO editCommentDto = EditRequestParentCommentDTO.builder()
                 .id(10051)

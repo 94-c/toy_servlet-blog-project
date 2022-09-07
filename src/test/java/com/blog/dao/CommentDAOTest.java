@@ -3,7 +3,6 @@ package com.blog.dao;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.entity.User;
-import com.blog.util.ExceptionUtil;
 import com.blog.util.UserIpUtil;
 import org.junit.Test;
 

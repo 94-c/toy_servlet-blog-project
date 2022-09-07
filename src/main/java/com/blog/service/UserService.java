@@ -1,16 +1,11 @@
 package com.blog.service;
 
-import com.blog.dao.EmailTokensDAO;
 import com.blog.dao.UserDAO;
-import com.blog.dao.UserLogDAO;
 import com.blog.dto.LoginRequestDTO;
-import com.blog.dto.email.EmailConfirmRequestDTO;
 import com.blog.dto.user.CreateRequestUserDTO;
 import com.blog.dto.user.EditRequestUserDTO;
-import com.blog.entity.EmailTokens;
 import com.blog.entity.User;
 import com.blog.service.exception.UserServiceException;
-import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Level;
 

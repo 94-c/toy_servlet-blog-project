@@ -5,7 +5,7 @@ import com.blog.dto.post.EditRequestPostDTO;
 import com.blog.responseDto.EditResponsePostEditDto;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
-import com.blog.util.ExceptionUtil;
+import com.blog.service.exception.PostServiceException;
 import org.apache.log4j.Level;
 import org.junit.Test;
 
@@ -52,7 +52,7 @@ public class PostServiceTest {
 
     }
 
-    @Test(expected = ExceptionUtil.class)
+    @Test(expected = PostServiceException.class)
     public void findByPostIdFail() {
 
         Integer postId  = 99;
@@ -75,7 +75,7 @@ public class PostServiceTest {
 
         EditResponsePostEditDto findByPostId = postService.findByPostId(edtPostDto.getId());
         if (findByPostId == null) {
-            throw new ExceptionUtil("Error", Level.ERROR);
+            throw new PostServiceException("Error", Level.ERROR);
         }
         Post editPost = postService.updatePost(edtPostDto);
 
@@ -85,7 +85,7 @@ public class PostServiceTest {
         System.out.println(editPost.toString());
     }
 
-    @Test(expected = ExceptionUtil.class)
+    @Test(expected = PostServiceException.class)
     public void updatePostFail() {
 
         EditRequestPostDTO edtPostDto = EditRequestPostDTO.builder()
@@ -97,7 +97,7 @@ public class PostServiceTest {
 
         EditResponsePostEditDto findByPostId = postService.findByPostId(edtPostDto.getId());
         if (findByPostId == null) {
-            throw new ExceptionUtil("Error", Level.ERROR);
+            throw new PostServiceException("Error", Level.ERROR);
         }
         Post editPost = postService.updatePost(edtPostDto);
 

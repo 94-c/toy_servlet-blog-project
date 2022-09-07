@@ -31,7 +31,9 @@ public class EditRequestParentCommentDTO {
         parentComment.setUser(user);
         parentComment.setBody(body);
         parentComment.setUserIp(userIp);
-        parentComment.setParentsId(parentsId);
+        if (parentsId != null) {
+            parentComment.setParentsId(parentsId);
+        }
 
         return parentComment;
     }
