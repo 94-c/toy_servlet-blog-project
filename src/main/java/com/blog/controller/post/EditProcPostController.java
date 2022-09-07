@@ -3,35 +3,30 @@ package com.blog.controller.post;
 import com.blog.controller.Controller;
 import com.blog.dto.post.EditRequestPostDTO;
 import com.blog.entity.Post;
+import com.blog.requestDto.EditRequestDto;
 import com.blog.service.PostService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class EditProcPostController implements Controller {
-
     private static final String METHOD = "POST";
+
+    private final PostService postService;
+
+    public EditProcPostController() {
+        this.postService = new PostService();
+    }
 
     @Override
     public String getMethod() {
         return EditProcPostController.METHOD;
     }
 
-    private EditRequestPostDTO makeDTO(HttpServletRequest request) {
-        return EditRequestPostDTO.builder()
-                .id(Integer.valueOf(request.getParameter("id")))
-                .userId(Integer.valueOf(request.getParameter("userId")))
-                .title(request.getParameter("title"))
-                .body(request.getParameter("body"))
-                .build();
-    }
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        EditRequestPostDTO dto = makeDTO(request);
-        PostService postService = new PostService();
-
+        EditRequestPostDTO dto = new EditRequestDto().toPostDto(request);
         Post result = postService.updatePost(dto);
 
         if (result == null) {

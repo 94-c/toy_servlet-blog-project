@@ -2,37 +2,30 @@ package com.blog.controller.user;
 
 import com.blog.controller.Controller;
 import com.blog.dto.user.EditRequestUserDTO;
+import com.blog.requestDto.EditRequestDto;
 import com.blog.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class EditProcUserController implements Controller {
-
     private static final String METHOD = "POST";
+    private final UserService userService;
+
+    public EditProcUserController() {
+        this.userService = new UserService();
+    }
 
     @Override
     public String getMethod() {
         return EditProcUserController.METHOD;
     }
 
-    private EditRequestUserDTO makeDTO(HttpServletRequest request) {
-        return EditRequestUserDTO.builder()
-                .id(Integer.valueOf(request.getParameter("id")))
-                .email(request.getParameter("email"))
-                .name(request.getParameter("name"))
-                .password(request.getParameter("password"))
-                .state(Integer.valueOf(request.getParameter("state")))
-                .build();
-    }
 
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        EditRequestUserDTO dto = makeDTO(request);
-
-        UserService userService = new UserService();
+        EditRequestUserDTO dto = new EditRequestDto().toUserDto(request);
 
         if (dto.getPassword().isEmpty()) {
             request.setAttribute("message", "회원 정보 수정이 실패하였습니다.");

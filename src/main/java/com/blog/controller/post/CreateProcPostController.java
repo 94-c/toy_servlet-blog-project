@@ -3,8 +3,7 @@ package com.blog.controller.post;
 import com.blog.controller.Controller;
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.entity.Post;
-import com.blog.log.Log;
-import com.blog.request.post.CreatePostRequest;
+import com.blog.requestDto.CreateRequestDto;
 import com.blog.service.PostService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +25,7 @@ public class CreateProcPostController implements Controller {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        CreateRequestPostDTO dto = new CreatePostRequest().toDto(request);
+        CreateRequestPostDTO dto = new CreateRequestDto().toPostDto(request);
         Post result = postService.createPost(dto);
         if (result == null) {
             request.setAttribute("message", "게시글이 작성 실패하였습니다.");

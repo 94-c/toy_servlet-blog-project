@@ -2,20 +2,15 @@ package com.blog.service;
 
 import com.blog.dao.CommentDAO;
 import com.blog.dao.PostDAO;
-import com.blog.dao.TagDAO;
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.dto.post.EditRequestPostDTO;
-import com.blog.dto.post.EditResponsePostEditDto;
-import com.blog.dto.tag.CreateRequestTagDTO;
+import com.blog.responseDto.EditResponsePostEditDto;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
-import com.blog.entity.Tag;
-import com.blog.log.Log;
 import com.blog.util.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Level;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor

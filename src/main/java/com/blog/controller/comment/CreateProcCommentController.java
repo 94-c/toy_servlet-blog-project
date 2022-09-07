@@ -3,8 +3,8 @@ package com.blog.controller.comment;
 import com.blog.controller.Controller;
 import com.blog.dto.comment.CreateRequestCommentDTO;
 import com.blog.entity.Comment;
+import com.blog.requestDto.CreateRequestDto;
 import com.blog.service.CommentService;
-import com.blog.util.UserIpUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,30 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CreateProcCommentController implements Controller {
-
     private static final String METHOD = "POST";
+
+    private final CommentService commentService;
+
+    public CreateProcCommentController() {
+        this.commentService = new CommentService();
+    }
 
     @Override
     public String getMethod() {
         return CreateProcCommentController.METHOD;
     }
 
-    private CreateRequestCommentDTO makeDTO(HttpServletRequest request) {
-        return CreateRequestCommentDTO.builder()
-                .userId(Integer.valueOf(request.getParameter("userId")))
-                .postId(Integer.valueOf(request.getParameter("postId")))
-                .userIp(UserIpUtil.userIp())
-                .body(request.getParameter("body"))
-                .build();
 
-    }
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        CreateRequestCommentDTO dto = makeDTO(request);
-        CommentService commentService = new CommentService();
-
+        CreateRequestCommentDTO dto = new CreateRequestDto().toCommentDto(request);
         Comment result = commentService.createComment(dto);
 
         if (result == null) {

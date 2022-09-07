@@ -2,16 +2,13 @@ package com.blog.service;
 
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.dto.post.EditRequestPostDTO;
-import com.blog.dto.post.EditResponsePostEditDto;
+import com.blog.responseDto.EditResponsePostEditDto;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
 import com.blog.util.ExceptionUtil;
 import org.apache.log4j.Level;
 import org.junit.Test;
 
-import javax.persistence.Id;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;

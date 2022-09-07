@@ -1,4 +1,4 @@
-package com.blog.dto.post;
+package com.blog.responseDto;
 
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
