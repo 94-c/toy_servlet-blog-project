@@ -78,10 +78,9 @@
                             <div name="button" style="align-content: end; text-align: center">
                                 <c:if test="${parentComment.user.id == sessionScope.session_id}">
                                     <input type="hidden" name="parentCommentId" value="${param.id}">
-                                    <button type="button" class="btn btn-outline-warning btn-sm"
-                                            onclick="replyEditComment(${parentComment.id})">수정
+                                    <button type="button" class="btn btn-outline-warning btn-sm" onclick="replyEditComment(${parentComment.id})">수정
                                     </button>
-                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='/comment/deleteProc.do?commentId='+${comment.id}+'&postId='+${param.id}">
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='/parenComment/deleteProc.do?parentId='+${parentComment.id}+'&postId='+${param.id}">
                                         삭제
                                     </button>
                                 </c:if>

@@ -29,7 +29,7 @@ public class  Post {
 
     private String body;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
