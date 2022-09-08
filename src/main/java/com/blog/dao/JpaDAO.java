@@ -120,5 +120,5 @@ public class JpaDAO<E> {
 
         return result;
     }
-
+ㅂㅈㄷ
 }
