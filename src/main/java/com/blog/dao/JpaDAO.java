@@ -115,7 +115,6 @@ public class JpaDAO<E> {
         query.setParameter(paramName, paramValue);
 
         List<E> result = query.getResultList();
-
         entityManager.close();
 
         return result;
