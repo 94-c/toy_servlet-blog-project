@@ -2,8 +2,14 @@ package com.blog.service;
 
 import com.blog.dao.CommentDAO;
 import com.blog.dao.PostDAO;
+import com.blog.dao.PostTagDAO;
+import com.blog.dao.TagDAO;
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.dto.post.EditRequestPostDTO;
+import com.blog.dto.postTag.CreateRequestPostTagDTO;
+import com.blog.dto.tag.CreateRequestTagDTO;
+import com.blog.entity.PostTag;
+import com.blog.entity.Tag;
 import com.blog.responseDto.EditResponsePostEditDto;
 import com.blog.entity.Comment;
 import com.blog.entity.Post;
@@ -20,7 +26,8 @@ public class PostService {
     private final PostDAO postDAO = new PostDAO();
     private final CommentDAO commentDAO = new CommentDAO();
 
-
+    private final PostTagDAO postTagDAO = new PostTagDAO();
+    private final TagDAO tagDAO = new TagDAO();
     public List<Post> findAllPost() {
         return postDAO.findAllPostList();
     }
@@ -32,6 +39,11 @@ public class PostService {
         if (newPost == null) {
             throw new PostServiceException("Create Post Error", Level.ERROR);
         }
+        CreateRequestPostTagDTO createRequestPostTagDTO = CreateRequestPostTagDTO.builder()
+                .postId(newPost.getId())
+                .build();
+        PostTag postTag = createRequestPostTagDTO.toEntity();
+        PostTag newPostTag = postTagDAO.create(postTag);
 
         return newPost;
     }
