@@ -39,11 +39,11 @@ public class PostService {
         if (newPost == null) {
             throw new PostServiceException("Create Post Error", Level.ERROR);
         }
+        PostTag newPostTag = postTagDAO.create();
         CreateRequestPostTagDTO createRequestPostTagDTO = CreateRequestPostTagDTO.builder()
                 .postId(newPost.getId())
                 .build();
         PostTag postTag = createRequestPostTagDTO.toEntity();
-        PostTag newPostTag = postTagDAO.create(postTag);
 
         return newPost;
     }
