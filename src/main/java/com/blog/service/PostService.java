@@ -28,6 +28,7 @@ public class PostService {
 
     private final PostTagDAO postTagDAO = new PostTagDAO();
     private final TagDAO tagDAO = new TagDAO();
+    private final TagService tagService = new TagService();
     public List<Post> findAllPost() {
         return postDAO.findAllPostList();
     }
@@ -39,7 +40,7 @@ public class PostService {
         if (newPost == null) {
             throw new PostServiceException("Create Post Error", Level.ERROR);
         }
-        PostTag newPostTag = postTagDAO.create();
+        tagService.createTage();
         CreateRequestPostTagDTO createRequestPostTagDTO = CreateRequestPostTagDTO.builder()
                 .postId(newPost.getId())
                 .build();
