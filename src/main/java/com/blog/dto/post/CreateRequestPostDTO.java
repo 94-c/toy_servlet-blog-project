@@ -1,6 +1,8 @@
 package com.blog.dto.post;
 
 import com.blog.entity.Post;
+import com.blog.entity.PostTag;
+import com.blog.entity.Tag;
 import com.blog.entity.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +16,8 @@ public class CreateRequestPostDTO {
     private final String title;
     private final String body;
     private final Integer userId;
+
+    private final String tagName;
 
     public Post ToEntity() {
         User user = new User();

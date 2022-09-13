@@ -27,6 +27,7 @@ public class CreateProcPostController implements Controller {
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
         CreateRequestPostDTO dto = new CreateRequestDto().toPostDto(request);
         Post result = postService.createPost(dto);
+
         if (result == null) {
             request.setAttribute("message", "게시글이 작성 실패하였습니다.");
             request.setAttribute("target", "/main.do");

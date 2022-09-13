@@ -12,5 +12,9 @@ public class TagDAO extends JpaDAO<Tag> {
         return super.create(tag);
     }
 
+    public Tag find(Object tag) {
+        return super.find(Tag.class, tag);
+    }
+
 
 }

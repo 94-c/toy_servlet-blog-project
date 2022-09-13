@@ -40,12 +40,6 @@ public class PostService {
         if (newPost == null) {
             throw new PostServiceException("Create Post Error", Level.ERROR);
         }
-        tagService.createTage();
-        CreateRequestPostTagDTO createRequestPostTagDTO = CreateRequestPostTagDTO.builder()
-                .postId(newPost.getId())
-                .build();
-        PostTag postTag = createRequestPostTagDTO.toEntity();
-
         return newPost;
     }
 

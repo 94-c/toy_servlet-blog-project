@@ -4,11 +4,9 @@
         <input type="hidden" value="" name="tag" id="rdTag" />
     </div>
 
-    <form id="tag-list" method="POST" action="/tag/createProc.do">
         <input type="hidden" id="post_id" value="${posts.id}">
         <ul id="tag_name">
         </ul>
-    </form>
 
     <div class="form-group">
         <input class="form-control input-sm" type="text" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요."/>

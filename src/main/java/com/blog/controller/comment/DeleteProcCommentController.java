@@ -32,16 +32,15 @@ public class DeleteProcCommentController implements Controller {
         DeleteResponseCommentDTO dto = makeDTO(request);
         CommentService commentService = new CommentService();
 
-        Comment result = commentService.deleteComment(dto);
-
-        if (result == null) {
-            request.setAttribute("message", "댓글 삭제가 실패하었습니다.");
+        try {
+            commentService.deleteComment(dto);
+            request.setAttribute("message", "대댓글 삭제가 성공하었습니다.");
+            request.setAttribute("target", "/post/edit.do?id="+dto.getPostId());
+            return "/WEB-INF/common/redirect.jsp";
+        }catch (Exception e) {
+            request.setAttribute("message", "대댓글 삭제가 실패하었습니다.");
             request.setAttribute("target", "/post/edit.do?id="+dto.getPostId());
             return "/WEB-INF/common/redirect.jsp";
         }
-        request.setAttribute("message", "댓글 삭제가 성공하었습니다.");
-        request.setAttribute("target", "/post/edit.do?id="+dto.getPostId());
-        return "/WEB-INF/common/redirect.jsp";
-
     }
 }
