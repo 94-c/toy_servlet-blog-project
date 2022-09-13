@@ -11,7 +11,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-
+@NamedQueries(
+        @NamedQuery(name = "like_check", query = "UPDATE Like l SET l.type = l.type + 1")
+)
 public class Like {
 
     @Id

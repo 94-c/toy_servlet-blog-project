@@ -2,6 +2,7 @@ package com.blog.controller;
 
 import com.blog.controller.comment.*;
 import com.blog.controller.comment.parentComment.*;
+import com.blog.controller.like.CreateProcLikeController;
 import com.blog.controller.post.*;
 import com.blog.controller.user.EditProcUserController;
 import com.blog.controller.user.EditUserController;
@@ -51,6 +52,8 @@ public class FrontController extends HttpServlet {
         router.put("/parenComment/edit.do", new EditParentCommentController());
         router.put("/parenComment/editProc.do", new EditProcParentCommentController());
         router.put("/parenComment/deleteProc.do", new DeleteProcParentCommentController());
+
+        router.put("/like/createLikeProc.do", new CreateProcLikeController());
 
         router.put("/main.do", new PostListController());
 

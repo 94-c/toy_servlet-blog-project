@@ -26,7 +26,6 @@ public class CreateProcCommentController implements Controller {
     }
 
 
-
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CreateRequestCommentDTO dto = new CreateRequestDto().toCommentDto(request);

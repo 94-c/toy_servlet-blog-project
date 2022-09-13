@@ -66,6 +66,7 @@
                     <c:if test="${sessionScope.session_id == null}">
                         <td><input type="text" class="form-control" value="${posts.body}" maxlength="1024" style="height: 400px" placeholder="글 내용을 작성하세요." readonly></td>
                     </c:if>
+                    <td><input type="button" class="btn btn-outline-light" id="likeButton">좋아요</td>
                 </tr>
                 </tbody>
                 <tr align="right">
@@ -92,4 +93,22 @@
         </c:if>
     </div>
 </main>
+<script type="text/javascript">
+    $(function () {
+        $("#likeButton").click(function (){
+            $.ajax({
+                url: "/like/createLikeProc.do",
+                type: "POST",
+                data: {
+                    no : ${posts.id},
+                    id : '${id}'
+                },
+                success: function () {
+                    recCount();
+                },
+
+            })
+        })
+    })
+</script>
 <jsp:include page="../layout/footer.jsp"/>

@@ -4,6 +4,7 @@ import com.blog.dto.LoginRequestDTO;
 import com.blog.dto.comment.CreateRequestCommentDTO;
 import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
 import com.blog.dto.email.EmailConfirmRequestDTO;
+import com.blog.dto.like.CreateRequestLikeDTO;
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.dto.user.CreateRequestUserDTO;
 import com.blog.util.Md5Util;
@@ -60,6 +61,13 @@ public class CreateRequestDto {
         return LoginRequestDTO.builder()
                 .email(request.getParameter("email"))
                 .password(Md5Util.md5(request.getParameter("password")))
+                .build();
+    }
+
+    public CreateRequestLikeDTO toLikeDto(HttpServletRequest request) {
+        return CreateRequestLikeDTO.builder()
+                .postId(Integer.valueOf(request.getParameter("postId")))
+                .userId(Integer.valueOf(request.getParameter("userId")))
                 .build();
     }
 
