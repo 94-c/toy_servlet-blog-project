@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -47,5 +48,13 @@ public class  Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.PERSIST)
     private List<Comment> commentList = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "post_tag",
+            joinColumns = {@JoinColumn(name = "post_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")}
+    )
+   private List<Tag> tags = new ArrayList<>();
 
 }

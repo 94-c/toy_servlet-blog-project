@@ -16,7 +16,7 @@ public class CreateRequestUserDTO {
     private final String name;
     private final Integer state;
 
-    public User ToEntity() {
+    public User toEntity() {
         User user = new User();
         user.setEmail(email);
         user.setPassword(Md5Util.md5(password));

@@ -5,7 +5,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tag")
@@ -29,4 +31,6 @@ public class Tag {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    @ManyToMany(mappedBy = "tags");
+    List<Post> posts = new ArrayList<>();
 }

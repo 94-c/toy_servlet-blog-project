@@ -25,10 +25,9 @@ public class PostService {
 
     private final PostDAO postDAO = new PostDAO();
     private final CommentDAO commentDAO = new CommentDAO();
-
     private final PostTagDAO postTagDAO = new PostTagDAO();
     private final TagDAO tagDAO = new TagDAO();
-    private final TagService tagService = new TagService();
+
     public List<Post> findAllPost() {
         return postDAO.findAllPostList();
     }
@@ -36,6 +35,12 @@ public class PostService {
 
     public Post createPost(CreateRequestPostDTO dto) throws PostServiceException {
         Post post = dto.toEntity();
+        Tag tag = new Tag();
+        //TODO addTag라는 클래스 안에 dao를 하나로 통합 
+        post.addTag(tag1);
+        post.addTag(tag2);
+        post.addTag(tag3);
+        post.addTag(tag4);
         Post newPost = postDAO.create(post);
         if (newPost == null) {
             throw new PostServiceException("Create Post Error", Level.ERROR);

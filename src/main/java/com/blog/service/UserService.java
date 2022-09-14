@@ -58,7 +58,7 @@ public class UserService {
         if (user == null) {
             throw new UserServiceException("findUserId Error", Level.ERROR);
         }
-        User updateUserDto = dto.ToEntity(user);
+        User updateUserDto = dto.toEntity(user);
         User updateUser = userDAO.update(updateUserDto);
         if (updateUser == null) {
             throw new UserServiceException("updateUser Error", Level.ERROR);
