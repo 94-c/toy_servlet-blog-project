@@ -17,7 +17,7 @@ public class EditRequestPostDTO {
     private final String body;
     private final Integer userId;
 
-    public Post ToEntity(Post post) {
+    public Post toEntity(Post post) {
         User user = new User();
         user.setId(userId);
         

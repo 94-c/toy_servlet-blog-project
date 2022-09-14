@@ -16,7 +16,7 @@ public class EditRequestUserStateDTO {
     private final String name;
     private final Integer state;
 
-    public User ToEntity(User user) {
+    public User toEntity(User user) {
         user.setId(id);
         user.setEmail(email);
         user.setPassword(password);

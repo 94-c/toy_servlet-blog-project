@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public User join(CreateRequestUserDTO dto) throws UserServiceException{
-        User newUser = dto.ToEntity();
+        User newUser = dto.toEntity();
         User result = userDAO.create(newUser);
         if (result == null) {
             throw new UserServiceException("create User Error", Level.ERROR);

@@ -35,7 +35,7 @@ public class PostService {
 
 
     public Post createPost(CreateRequestPostDTO dto) throws PostServiceException {
-        Post post = dto.ToEntity();
+        Post post = dto.toEntity();
         Post newPost = postDAO.create(post);
         if (newPost == null) {
             throw new PostServiceException("Create Post Error", Level.ERROR);
@@ -115,7 +115,7 @@ public class PostService {
         if (findById == null) {
             throw new PostServiceException("findByPostId Error", Level.ERROR);
         }
-        Post updatePostDto = dto.ToEntity(findById);
+        Post updatePostDto = dto.toEntity(findById);
         Post updatePost = postDAO.update(updatePostDto);
         if (updatePost == null) {
             throw new PostServiceException("updatePost Error", Level.ERROR);

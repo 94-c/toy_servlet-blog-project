@@ -13,7 +13,7 @@ public class CreateRequestTagDTO {
 
     private final String name;
 
-    public Tag ToEntity() {
+    public Tag toEntity() {
         Tag tag = new Tag();
 
         tag.setName(name);

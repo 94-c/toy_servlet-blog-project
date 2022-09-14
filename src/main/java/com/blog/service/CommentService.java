@@ -17,7 +17,7 @@ public class CommentService {
     private static final CommentDAO commentDAO = new CommentDAO();
 
     public Comment createComment(CreateRequestCommentDTO dto) throws CommentServiceException {
-        Comment comment = dto.ToEntity();
+        Comment comment = dto.toEntity();
         Comment newComment = commentDAO.create(comment);
         if (newComment == null) {
             throw new CommentServiceException("createComment Error", Level.ERROR);
@@ -38,7 +38,7 @@ public class CommentService {
         if (comment == null) {
             throw new CommentServiceException("updateComment Error", Level.ERROR);
         }
-        Comment updateCommentDto = dto.ToEntity(comment);
+        Comment updateCommentDto = dto.toEntity(comment);
         return commentDAO.update(updateCommentDto);
     }
 

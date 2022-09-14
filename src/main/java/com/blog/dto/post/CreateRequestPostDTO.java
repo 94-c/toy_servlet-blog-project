@@ -19,7 +19,7 @@ public class CreateRequestPostDTO {
 
     private final String tagName;
 
-    public Post ToEntity() {
+    public Post toEntity() {
         User user = new User();
         user.setId(userId);
 

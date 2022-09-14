@@ -18,7 +18,7 @@ public class CreateRequestCommentDTO {
     private final String body;
     private final String userIp;
 
-    public Comment ToEntity() {
+    public Comment toEntity() {
         User user = new User();
         user.setId(userId);
 

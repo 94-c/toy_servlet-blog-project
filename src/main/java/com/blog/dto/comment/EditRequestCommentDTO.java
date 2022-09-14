@@ -20,7 +20,7 @@ public class EditRequestCommentDTO {
     private final String userIp;
 
 
-    public Comment ToEntity(Comment comment) {
+    public Comment toEntity(Comment comment) {
         User user = new User();
         user.setId(userId);
 
