@@ -1,6 +1,5 @@
 package com.blog.controller;
 
-import com.blog.dto.comment.DeleteResponseCommentDTO;
 import com.blog.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;

@@ -3,13 +3,11 @@ package com.blog.controller.comment.parentComment;
 import com.blog.controller.Controller;
 import com.blog.data.entity.Comment;
 import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
-import com.blog.requestDto.EditRequestDto;
+import com.blog.mapper.EditRequestDto;
 import com.blog.service.CommentService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class EditParentCommentController implements Controller {
     private final CommentService commentService;

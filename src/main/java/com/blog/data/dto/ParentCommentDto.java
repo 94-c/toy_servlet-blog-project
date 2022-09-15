@@ -1,4 +1,4 @@
-package com.blog.dto.comment.parenteComment;
+package com.blog.data.dto;
 
 import com.blog.data.entity.Comment;
 import com.blog.data.entity.Post;
@@ -10,16 +10,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class CreateRequestParentCommentDTO {
+public class ParentCommentDto {
 
+    private final Integer id;
     private final String body;
     private final String userIp;
     private final Integer parentsId;
     private final Integer userId;
-
     private final Integer postId;
 
-    public Comment ToParentCommentEntity() {
+    public Comment toParentCommentCreateEntity() {
         User user = new User();
         user.setId(userId);
 
@@ -32,6 +32,25 @@ public class CreateRequestParentCommentDTO {
         parentComment.setBody(body);
         parentComment.setUserIp(userIp);
         parentComment.setParentsId(parentsId);
+
+        return parentComment;
+    }
+
+    public Comment toParentCommentEditEntity(Comment parentComment) {
+        User user = new User();
+        user.setId(userId);
+
+        Post post = new Post();
+        post.setId(postId);
+
+        parentComment.setId(id);
+        parentComment.setPost(post);
+        parentComment.setUser(user);
+        parentComment.setBody(body);
+        parentComment.setUserIp(userIp);
+        if (parentsId != null) {
+            parentComment.setParentsId(parentsId);
+        }
 
         return parentComment;
     }

@@ -1,8 +1,7 @@
 package com.blog.controller;
 
 import com.blog.data.entity.Comment;
-import com.blog.dto.comment.CreateRequestCommentDTO;
-import com.blog.requestDto.CreateRequestDto;
+import com.blog.mapper.CreateRequestDto;
 import com.blog.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;

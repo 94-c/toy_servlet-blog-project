@@ -1,6 +1,5 @@
-package com.blog.requestDto;
+package com.blog.mapper;
 
-import com.blog.dto.comment.CreateRequestCommentDTO;
 import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
 import com.blog.data.dto.EmailConfirmDto;
 import com.blog.dto.like.CreateRequestLikeDTO;

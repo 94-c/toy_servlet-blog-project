@@ -6,7 +6,7 @@ import com.blog.data.dao.PostTagDAO;
 import com.blog.data.dao.TagDAO;
 import com.blog.data.dto.PostDto;
 import com.blog.data.entity.Tag;
-import com.blog.responseDto.EditResponsePostEditDto;
+import com.blog.mapper.EditResponsePostEditDto;
 import com.blog.data.entity.Comment;
 import com.blog.data.entity.Post;
 import com.blog.service.exception.PostServiceException;

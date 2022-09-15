@@ -1,7 +1,5 @@
 package com.blog.service;
 
-import com.blog.dto.comment.CreateRequestCommentDTO;
-import com.blog.dto.comment.EditRequestCommentDTO;
 import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
 import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
 import com.blog.data.entity.Comment;

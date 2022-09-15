@@ -1,11 +1,8 @@
 package com.blog.service;
 
 import com.blog.data.dao.CommentDAO;
-import com.blog.dto.comment.CreateRequestCommentDTO;
-import com.blog.dto.comment.DeleteResponseCommentDTO;
-import com.blog.dto.comment.EditRequestCommentDTO;
-import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
-import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
+import com.blog.data.dto.CommentDto;
+import com.blog.data.dto.ParentCommentDto;
 import com.blog.data.entity.Comment;
 import com.blog.service.exception.CommentServiceException;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +13,8 @@ public class CommentService {
 
     private static final CommentDAO commentDAO = new CommentDAO();
 
-    public Comment createComment(CreateRequestCommentDTO dto) throws CommentServiceException {
-        Comment comment = dto.toEntity();
+    public Comment createComment(CommentDto dto) throws CommentServiceException {
+        Comment comment = dto.toCreateEntity();
         Comment newComment = commentDAO.create(comment);
         if (newComment == null) {
             throw new CommentServiceException("createComment Error", Level.ERROR);
@@ -33,16 +30,16 @@ public class CommentService {
         return findByCommentId;
     }
 
-    public Comment updateComment(EditRequestCommentDTO dto) throws CommentServiceException {
+    public Comment updateComment(CommentDto dto) throws CommentServiceException {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
             throw new CommentServiceException("updateComment Error", Level.ERROR);
         }
-        Comment updateCommentDto = dto.toEntity(comment);
+        Comment updateCommentDto = dto.toEditEntity(comment);
         return commentDAO.update(updateCommentDto);
     }
 
-    public void deleteComment(DeleteResponseCommentDTO dto) throws CommentServiceException {
+    public void deleteComment(CommentDto dto) throws CommentServiceException {
         Comment comment = commentDAO.find(dto.getId());
         if (comment == null) {
             throw new CommentServiceException("findComment Error", Level.ERROR);
@@ -56,8 +53,8 @@ public class CommentService {
     }
 
 
-    public Comment createParentComment(CreateRequestParentCommentDTO dto) throws CommentServiceException {
-        Comment comment = dto.ToParentCommentEntity();
+    public Comment createParentComment(ParentCommentDto dto) throws CommentServiceException {
+        Comment comment = dto.toParentCommentCreateEntity();
         Comment newComment = commentDAO.create(comment);
         if (newComment == null) {
             throw new CommentServiceException("createParent Error", Level.ERROR);
@@ -65,12 +62,12 @@ public class CommentService {
         return newComment;
     }
 
-    public Comment updateParentComment(EditRequestParentCommentDTO dto) throws CommentServiceException {
+    public Comment updateParentComment(ParentCommentDto dto) throws CommentServiceException {
         Comment parentComment = commentDAO.find(dto.getId());
         if (parentComment == null) {
             throw new CommentServiceException("updateParent Error", Level.ERROR);
         }
-        Comment updateParentCommentDto = dto.ToParentCommentEntity(parentComment);
+        Comment updateParentCommentDto = dto.toParentCommentEditEntity(parentComment);
         return commentDAO.update(updateParentCommentDto);
     }
 

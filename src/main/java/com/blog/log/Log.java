@@ -1,7 +1,5 @@
 package com.blog.log;
 
-import com.blog.dto.LogDTO;
-
 public class Log implements LogDTO{
 
     public String login(LogDTO dto) {

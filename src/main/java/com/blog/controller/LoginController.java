@@ -1,7 +1,7 @@
 package com.blog.controller;
 
 import com.blog.data.entity.User;
-import com.blog.requestDto.CreateRequestDto;
+import com.blog.mapper.CreateRequestDto;
 import com.blog.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;

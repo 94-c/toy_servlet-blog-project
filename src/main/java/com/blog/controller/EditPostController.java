@@ -1,16 +1,13 @@
 package com.blog.controller;
 
-import com.blog.controller.Controller;
 import com.blog.data.entity.Post;
 import com.blog.dto.post.EditRequestPostDTO;
-import com.blog.requestDto.EditRequestDto;
-import com.blog.responseDto.EditResponsePostEditDto;
+import com.blog.mapper.EditRequestDto;
+import com.blog.mapper.EditResponsePostEditDto;
 import com.blog.service.PostService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class EditPostController implements Controller {
 

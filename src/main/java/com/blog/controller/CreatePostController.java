@@ -1,15 +1,12 @@
 package com.blog.controller;
 
-import com.blog.controller.Controller;
 import com.blog.data.entity.Post;
 import com.blog.dto.post.CreateRequestPostDTO;
-import com.blog.requestDto.CreateRequestDto;
+import com.blog.mapper.CreateRequestDto;
 import com.blog.service.PostService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class CreatePostController implements Controller {
     private final PostService postService;

@@ -1,4 +1,4 @@
-package com.blog.responseDto;
+package com.blog.mapper;
 
 import com.blog.data.entity.Comment;
 import com.blog.data.entity.Post;

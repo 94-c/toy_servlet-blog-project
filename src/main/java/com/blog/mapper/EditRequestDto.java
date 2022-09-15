@@ -1,6 +1,5 @@
-package com.blog.requestDto;
+package com.blog.mapper;
 
-import com.blog.dto.comment.EditRequestCommentDTO;
 import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
 import com.blog.dto.post.EditRequestPostDTO;
 import com.blog.dto.user.EditRequestUserDTO;
