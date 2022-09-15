@@ -1,8 +1,8 @@
 package com.blog.controller;
 
+import com.blog.data.dto.PostDto;
 import com.blog.data.entity.Post;
-import com.blog.dto.post.CreateRequestPostDTO;
-import com.blog.mapper.CreateRequestDto;
+import com.blog.mapper.PostMapper;
 import com.blog.service.PostService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class CreatePostController implements Controller {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
-        CreateRequestPostDTO dto = new CreateRequestDto().toPostDto(request);
+        PostDto dto = PostMapper.mapToCreatePostDto(request);
         Post result = postService.createPost(dto);
 
         if (result == null) {

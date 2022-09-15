@@ -1,9 +1,9 @@
 package com.blog.controller;
 
+import com.blog.data.dto.PostDto;
 import com.blog.data.entity.Post;
-import com.blog.dto.post.EditRequestPostDTO;
-import com.blog.mapper.EditRequestDto;
 import com.blog.mapper.EditResponsePostEditDto;
+import com.blog.mapper.PostMapper;
 import com.blog.service.PostService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +37,7 @@ public class EditPostController implements Controller {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
-        EditRequestPostDTO dto = new EditRequestDto().toPostDto(request);
+        PostDto dto = PostMapper.mapToEditPostDto(request);
         Post result = postService.updatePost(dto);
 
         if (result == null) {
