@@ -4,7 +4,7 @@
 
 <html>
 <body>
-<form action="/emailConfirmProc.do" method="post">
+<form action="/emailConfirm.do" method="post">
     <input type="hidden" name="token" value="${param.token}">
 
     <h1>회원가입을 축하드립니다.</h1>

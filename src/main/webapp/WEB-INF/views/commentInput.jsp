@@ -14,7 +14,7 @@
     <div class="card-body">
         <h5 class="card-title">댓글 상세보기</h5>
         <div id="commentUpdateForm">
-            <form name="comment_update_form" target="parentForm" action="/comment/editProc.do" method="POST">
+            <form name="comment_update_form" target="parentForm" action="/comment/edit.do" method="POST">
                 <input type="hidden" name="commentId" value="${comment.id}">
                 <input type="hidden" name="postId" value="${comment.post.id}">
                 <input type="hidden" name="userId" value="${sessionScope.session_id}">

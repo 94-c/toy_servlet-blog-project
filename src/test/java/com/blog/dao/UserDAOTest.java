@@ -1,11 +1,9 @@
 package com.blog.dao;
 
-import com.blog.entity.User;
+import com.blog.data.dao.UserDAO;
+import com.blog.data.entity.User;
 import com.blog.util.Md5Util;
 import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.Assert.*;
 

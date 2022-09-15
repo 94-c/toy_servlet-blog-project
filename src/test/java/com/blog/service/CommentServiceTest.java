@@ -4,7 +4,7 @@ import com.blog.dto.comment.CreateRequestCommentDTO;
 import com.blog.dto.comment.EditRequestCommentDTO;
 import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
 import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
-import com.blog.entity.Comment;
+import com.blog.data.entity.Comment;
 import com.blog.service.exception.PostServiceException;
 import com.blog.util.UserIpUtil;
 import org.junit.Test;

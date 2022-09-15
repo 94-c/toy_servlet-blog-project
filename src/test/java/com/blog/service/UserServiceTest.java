@@ -1,8 +1,8 @@
 package com.blog.service;
 
-import com.blog.dao.UserDAO;
+import com.blog.data.dao.UserDAO;
 import com.blog.dto.user.CreateRequestUserDTO;
-import com.blog.entity.User;
+import com.blog.data.entity.User;
 import com.blog.service.exception.PostServiceException;
 import com.blog.util.Md5Util;
 import org.junit.Test;

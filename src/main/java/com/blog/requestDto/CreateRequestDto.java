@@ -1,9 +1,8 @@
 package com.blog.requestDto;
 
-import com.blog.dto.LoginRequestDTO;
 import com.blog.dto.comment.CreateRequestCommentDTO;
 import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
-import com.blog.dto.email.EmailConfirmRequestDTO;
+import com.blog.data.dto.EmailConfirmDto;
 import com.blog.dto.like.CreateRequestLikeDTO;
 import com.blog.dto.post.CreateRequestPostDTO;
 import com.blog.dto.user.CreateRequestUserDTO;
@@ -14,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CreateRequestDto {
 
-    public EmailConfirmRequestDTO toEmailConfirmDto(HttpServletRequest request) {
-        return EmailConfirmRequestDTO.builder()
+    public EmailConfirmDto toEmailConfirmDto(HttpServletRequest request) {
+        return EmailConfirmDto.builder()
                 .token(request.getParameter("token"))
                 .userId(Integer.valueOf(request.getParameter("userId")))
                 .build();

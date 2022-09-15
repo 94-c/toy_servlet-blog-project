@@ -1,8 +1,8 @@
 package com.blog.service;
 
-import com.blog.dao.LikeDAO;
+import com.blog.data.dao.LikeDAO;
 import com.blog.dto.like.CreateRequestLikeDTO;
-import com.blog.entity.Like;
+import com.blog.data.entity.Like;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

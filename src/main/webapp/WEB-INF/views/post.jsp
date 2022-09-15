@@ -42,7 +42,7 @@
 </style>
 <main class="flex-shrink-0">
     <div class="container" >
-        <c:set var="action" value="${posts == null ? '/post/createProc.do' : '/post/editProc.do'}"/>
+        <c:set var="action" value="${posts == null ? '/post/create.do' : '/post/edit.do'}"/>
         <form action="${action}" name="post_form" method="POST">
             <c:if test="${posts != null}">
                 <input type="hidden" id="id" name="id" value="${posts.id}">

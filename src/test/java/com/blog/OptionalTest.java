@@ -1,14 +1,6 @@
 package com.blog;
 
-import com.blog.entity.Post;
 import com.blog.service.PostService;
-import org.junit.Test;
-import org.junit.jupiter.api.DisplayName;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
-
-import static org.junit.Assert.*;
 
 public class OptionalTest {
 

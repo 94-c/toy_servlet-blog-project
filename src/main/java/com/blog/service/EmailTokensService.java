@@ -1,8 +1,8 @@
 package com.blog.service;
 
-import com.blog.dao.EmailTokensDAO;
-import com.blog.dto.email.EmailConfirmRequestDTO;
-import com.blog.entity.EmailTokens;
+import com.blog.data.dao.EmailTokensDAO;
+import com.blog.data.dto.EmailConfirmDto;
+import com.blog.data.entity.EmailTokens;
 import com.blog.service.exception.PostServiceException;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Level;
@@ -22,7 +22,7 @@ public class EmailTokensService {
         }
     }
 
-    public boolean updateState(EmailConfirmRequestDTO dto) throws PostServiceException {
+    public boolean updateState(EmailConfirmDto dto) throws PostServiceException {
         EmailTokens result = findByToken(dto.getToken());
         if (result == null) {
             throw new PostServiceException("updateState Error", Level.ERROR);

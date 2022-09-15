@@ -54,7 +54,7 @@
 <main class="form-join">
     <div class="container">
         <h3 class="text-center">회원가입</h3>
-        <form id="join_form" method="post" action="/joinProc.do">
+        <form id="join_form" method="post" action="/join.do">
             <div class="form-floating">
                 <input type="email" class="form-control rounded-3" id="email" name="email" placeholder="name@example.com">
                 <label for="email">Email address</label>

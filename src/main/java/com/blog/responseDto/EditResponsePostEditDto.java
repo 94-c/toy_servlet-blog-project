@@ -1,7 +1,7 @@
 package com.blog.responseDto;
 
-import com.blog.entity.Comment;
-import com.blog.entity.Post;
+import com.blog.data.entity.Comment;
+import com.blog.data.entity.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

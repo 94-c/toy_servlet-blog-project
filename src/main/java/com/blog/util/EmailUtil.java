@@ -1,7 +1,7 @@
 package com.blog.util;
 
-import com.blog.dao.EmailTokensDAO;
-import com.blog.entity.EmailTokens;
+import com.blog.data.dao.EmailTokensDAO;
+import com.blog.data.entity.EmailTokens;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

@@ -1,25 +1,42 @@
 package com.blog.controller;
 
+import com.blog.data.dto.EmailConfirmDto;
+import com.blog.requestDto.CreateRequestDto;
 import com.blog.service.EmailTokensService;
 import com.blog.service.UserService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class EmailConfirmController implements Controller{
 
-    private static final String METHOD = "GET";
+    private final EmailTokensService emailTokensService;
+    private final UserService userService;
 
-    @Override
-    public String getMethod() {
-        return EmailConfirmController.METHOD;
+    public EmailConfirmController() {
+        this.emailTokensService = new EmailTokensService();
+        this.userService = new UserService();
     }
 
     @Override
-    public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    public String doGet(HttpServletRequest request, HttpServletResponse response) {
         return "/WEB-INF/common/emailConfirm.jsp";
+    }
+
+    @Override
+    public String doPost(HttpServletRequest request, HttpServletResponse response) {
+        EmailConfirmDto dto = new CreateRequestDto().toEmailConfirmDto(request);
+
+        boolean result = emailTokensService.updateState(dto);
+
+        if (result) {
+            userService.updateEmailStateAuth(dto.getUserId());
+            request.setAttribute("message", "인증이 완료되었습니다.");
+            request.setAttribute("target", "/main.do");
+            return "/WEB-INF/common/redirect.jsp";
+        }
+        request.setAttribute("message", "인증이 실패하었습니다.");
+        request.setAttribute("target", "/main.do");
+        return "/WEB-INF/common/redirect.jsp";
     }
 }

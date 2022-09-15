@@ -7,16 +7,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LogOutController implements Controller{
-
-    private static final String METHOD = "GET";
-
     @Override
-    public String getMethod() {
-        return LogOutController.METHOD;
-    }
-
-    @Override
-    public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String doGet(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
 
         try{
@@ -30,5 +22,10 @@ public class LogOutController implements Controller{
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
         }
+    }
+
+    @Override
+    public String doPost(HttpServletRequest request, HttpServletResponse response) {
+        return null;
     }
 }

@@ -1,7 +1,6 @@
 package com.blog.dto.tag;
 
-import com.blog.entity.PostTag;
-import com.blog.entity.Tag;
+import com.blog.data.entity.Tag;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

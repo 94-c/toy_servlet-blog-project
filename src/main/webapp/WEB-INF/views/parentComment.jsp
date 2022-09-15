@@ -3,7 +3,7 @@
 <body id="wrap">
 <h2>댓글 답변</h2>
 <div id="parent_comment_form">
-    <c:set var="action" value="${parentComment == null ? '/parenComment/createProc.do' : '/parenComment/editProcProc.do'}"/>
+    <c:set var="action" value="${parentComment == null ? '/parenComment/create.do' : '/parenComment/edit.do'}"/>
     <form name="parent_comment_form" target="parentForm" method="post" action="${action}">
         <c:if test="${parentComment.parentsId == null}">
             <input type="hidden" id="commentId" name="commentId" value="${param.commentId}">

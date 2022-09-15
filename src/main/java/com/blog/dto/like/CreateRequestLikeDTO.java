@@ -1,11 +1,9 @@
 package com.blog.dto.like;
 
-import com.blog.entity.Like;
-import com.blog.entity.Post;
-import com.blog.entity.User;
+import com.blog.data.entity.Like;
+import com.blog.data.entity.Post;
+import com.blog.data.entity.User;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter

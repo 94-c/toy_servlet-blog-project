@@ -1,10 +1,7 @@
 package com.blog.service;
 
-import com.blog.dao.EmailTokensDAO;
-import com.blog.entity.EmailTokens;
+import com.blog.data.entity.EmailTokens;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.*;
 

@@ -1,10 +1,8 @@
 package com.blog.service;
 
-import com.blog.dao.UserDAO;
-import com.blog.dto.LoginRequestDTO;
-import com.blog.dto.user.CreateRequestUserDTO;
-import com.blog.dto.user.EditRequestUserDTO;
-import com.blog.entity.User;
+import com.blog.data.dao.UserDAO;
+import com.blog.data.dto.UserDto;
+import com.blog.data.entity.User;
 import com.blog.service.exception.UserServiceException;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Level;
@@ -19,8 +17,8 @@ public class UserService {
          return userDAO.emailCheck(email);
     }
 
-    public User join(CreateRequestUserDTO dto) throws UserServiceException{
-        User newUser = dto.toEntity();
+    public User join(UserDto dto) throws UserServiceException{
+        User newUser = dto.toCreateEntity();
         User result = userDAO.create(newUser);
         if (result == null) {
             throw new UserServiceException("create User Error", Level.ERROR);
@@ -28,8 +26,8 @@ public class UserService {
         return newUser;
     }
 
-    public User login(LoginRequestDTO dto) throws UserServiceException{
-        User result = userDAO.login(dto.getEmail(), dto.getPassword());
+    public User login(UserDto dto) throws UserServiceException{
+        User result = userDAO.login(dto.toLoginEntity().getEmail(), dto.toLoginEntity().getPassword());
         if (result == null) {
             throw new UserServiceException("login Error", Level.ERROR);
         }
@@ -53,12 +51,12 @@ public class UserService {
         return findByUserId;
     }
 
-    public User updateUser(EditRequestUserDTO dto) throws UserServiceException {
+    public User updateUser(UserDto dto) throws UserServiceException {
         User user = userDAO.find(User.class, dto.getId());
         if (user == null) {
             throw new UserServiceException("findUserId Error", Level.ERROR);
         }
-        User updateUserDto = dto.toEntity(user);
+        User updateUserDto = dto.toEditEntity(user);
         User updateUser = userDAO.update(updateUserDto);
         if (updateUser == null) {
             throw new UserServiceException("updateUser Error", Level.ERROR);

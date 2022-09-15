@@ -1,8 +1,9 @@
 package com.blog.dao;
 
-import com.blog.entity.Comment;
-import com.blog.entity.Post;
-import com.blog.entity.User;
+import com.blog.data.dao.CommentDAO;
+import com.blog.data.entity.Comment;
+import com.blog.data.entity.Post;
+import com.blog.data.entity.User;
 import com.blog.util.UserIpUtil;
 import org.junit.Test;
 

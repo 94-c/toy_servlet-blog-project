@@ -1,18 +1,14 @@
 package com.blog.service;
 
-import com.blog.dao.CommentDAO;
-import com.blog.dao.PostDAO;
-import com.blog.dao.PostTagDAO;
-import com.blog.dao.TagDAO;
-import com.blog.dto.post.CreateRequestPostDTO;
-import com.blog.dto.post.EditRequestPostDTO;
-import com.blog.dto.postTag.CreateRequestPostTagDTO;
-import com.blog.dto.tag.CreateRequestTagDTO;
-import com.blog.entity.PostTag;
-import com.blog.entity.Tag;
+import com.blog.data.dao.CommentDAO;
+import com.blog.data.dao.PostDAO;
+import com.blog.data.dao.PostTagDAO;
+import com.blog.data.dao.TagDAO;
+import com.blog.data.dto.PostDto;
+import com.blog.data.entity.Tag;
 import com.blog.responseDto.EditResponsePostEditDto;
-import com.blog.entity.Comment;
-import com.blog.entity.Post;
+import com.blog.data.entity.Comment;
+import com.blog.data.entity.Post;
 import com.blog.service.exception.PostServiceException;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Level;
@@ -33,14 +29,14 @@ public class PostService {
     }
 
 
-    public Post createPost(CreateRequestPostDTO dto) throws PostServiceException {
-        Post post = dto.toEntity();
+    public Post createPost(PostDto dto) throws PostServiceException {
+        Post post = dto.toCreateEntity();
         Tag tag = new Tag();
         //TODO addTag라는 클래스 안에 dao를 하나로 통합 
-        post.addTag(tag1);
+        /*post.addTag(tag1);
         post.addTag(tag2);
         post.addTag(tag3);
-        post.addTag(tag4);
+        post.addTag(tag4);*/
         Post newPost = postDAO.create(post);
         if (newPost == null) {
             throw new PostServiceException("Create Post Error", Level.ERROR);
@@ -115,12 +111,12 @@ public class PostService {
                 .build();
     }
 
-    public Post updatePost(EditRequestPostDTO dto) throws PostServiceException {
+    public Post updatePost(PostDto dto) throws PostServiceException {
         Post findById = postDAO.find(dto.getId());
         if (findById == null) {
             throw new PostServiceException("findByPostId Error", Level.ERROR);
         }
-        Post updatePostDto = dto.toEntity(findById);
+        Post updatePostDto = dto.toEditEntity(findById);
         Post updatePost = postDAO.update(updatePostDto);
         if (updatePost == null) {
             throw new PostServiceException("updatePost Error", Level.ERROR);

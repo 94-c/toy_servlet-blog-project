@@ -6,8 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public interface Controller {
-
-    String getMethod();
-    String process(HttpServletRequest request, HttpServletResponse response) throws Exception;
+    String doGet(HttpServletRequest request, HttpServletResponse response);
+    String doPost(HttpServletRequest request, HttpServletResponse response);
 
 }

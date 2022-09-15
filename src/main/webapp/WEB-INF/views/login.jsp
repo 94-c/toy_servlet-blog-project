@@ -29,7 +29,7 @@
 <main class="form-sign">
     <div class="container">
         <h3 class="text-center">로그인</h3>
-        <form id="login_form" method="post" action="/loginProc.do">
+        <form id="login_form" method="post" action="/login.do">
             <div class="form-floating">
                 <input type="email" class="form-control rounded-3" id="email" name="email" placeholder="name@example.com">
                 <label for="email">Email address</label>

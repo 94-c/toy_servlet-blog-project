@@ -1,12 +1,12 @@
 package com.blog.service;
 
-import com.blog.dao.CommentDAO;
+import com.blog.data.dao.CommentDAO;
 import com.blog.dto.comment.CreateRequestCommentDTO;
 import com.blog.dto.comment.DeleteResponseCommentDTO;
 import com.blog.dto.comment.EditRequestCommentDTO;
 import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
 import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
-import com.blog.entity.Comment;
+import com.blog.data.entity.Comment;
 import com.blog.service.exception.CommentServiceException;
 import lombok.RequiredArgsConstructor;
 import org.apache.log4j.Level;

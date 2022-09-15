@@ -39,7 +39,7 @@
 <main class="form-userEdit">
     <div class="container">
         <h3 class="text-center">회원정보</h3>
-        <c:set var="action" value="${'/user/editProc.do'}"/>
+        <c:set var="action" value="${'/user/edit.do'}"/>
         <form id="user_edit_form" method="post" action="${action}">
             <input type="hidden" name="id" value="${param.id}">
             <input type="hidden" name="state" value="${user.state}">
