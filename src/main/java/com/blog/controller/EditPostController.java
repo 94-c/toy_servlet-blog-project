@@ -2,7 +2,6 @@ package com.blog.controller;
 
 import com.blog.data.dto.PostDto;
 import com.blog.data.entity.Post;
-import com.blog.mapper.EditResponsePostEditDto;
 import com.blog.mapper.PostMapper;
 import com.blog.service.PostService;
 

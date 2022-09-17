@@ -1,8 +1,11 @@
 package com.blog.mapper;
 
 import com.blog.data.dto.PostDto;
+import com.blog.data.entity.Comment;
+import com.blog.data.entity.Post;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public class PostMapper {
 
@@ -22,4 +25,6 @@ public class PostMapper {
                 .userId(Integer.valueOf(request.getParameter("userId")))
                 .build();
     }
+
+
 }

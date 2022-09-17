@@ -1,10 +1,13 @@
 package com.blog.data.dto;
 
+import com.blog.data.entity.Comment;
 import com.blog.data.entity.Post;
 import com.blog.data.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,6 +18,10 @@ public class PostDto {
     private final String title;
     private final String body;
     private final Integer userId;
+
+    private final Post post;
+    private final List<Comment> commentList;
+    private final List<Comment> parentCommentList;
 
     public Post toCreateEntity() {
         User user = new User();
@@ -38,4 +45,5 @@ public class PostDto {
 
         return post;
     }
+
 }

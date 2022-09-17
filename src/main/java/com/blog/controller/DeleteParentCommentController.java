@@ -1,5 +1,7 @@
 package com.blog.controller;
 
+import com.blog.data.dto.ParentCommentDto;
+import com.blog.mapper.ParentCommentMapper;
 import com.blog.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,16 +14,9 @@ public class DeleteParentCommentController implements Controller {
         this.commentService = new CommentService();
     }
 
-    private DeleteResponseCommentDTO makeDTO(HttpServletRequest request) {
-        return DeleteResponseCommentDTO.builder()
-                .id(Integer.valueOf(request.getParameter("parentId")))
-                .postId(Integer.valueOf(request.getParameter("postId")))
-                .build();
-    }
-
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) {
-        DeleteResponseCommentDTO dto = makeDTO(request);
+        ParentCommentDto dto = ParentCommentMapper.mapToDeleteParentCommentDto(request);
 
         try {
             commentService.deleteComment(dto);

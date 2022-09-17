@@ -6,7 +6,6 @@ import com.blog.data.dao.PostTagDAO;
 import com.blog.data.dao.TagDAO;
 import com.blog.data.dto.PostDto;
 import com.blog.data.entity.Tag;
-import com.blog.mapper.EditResponsePostEditDto;
 import com.blog.data.entity.Comment;
 import com.blog.data.entity.Post;
 import com.blog.service.exception.PostServiceException;
@@ -87,7 +86,7 @@ public class PostService {
      * @return
      * @throws PostServiceException
      */
-    public EditResponsePostEditDto findByPostId(Integer id) throws PostServiceException {
+    public PostDto findByPostId(Integer id) throws PostServiceException {
         Post findById = postDAO.find(id);
         if (findById == null) {
             throw new PostServiceException("findByPostId Error", Level.ERROR);
@@ -105,7 +104,7 @@ public class PostService {
             }
         });
 
-        return EditResponsePostEditDto.builder()
+        return PostDto.builder()
                 .post(findById)
                 .commentList(mergeComments)
                 .build();

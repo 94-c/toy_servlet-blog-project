@@ -1,8 +1,6 @@
 package com.blog.controller;
 
 import com.blog.data.entity.User;
-import com.blog.dto.user.EditRequestUserDTO;
-import com.blog.mapper.EditRequestDto;
 import com.blog.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;

@@ -44,7 +44,6 @@ public class CommentService {
         if (comment == null) {
             throw new CommentServiceException("findComment Error", Level.ERROR);
         }
-
         try {
             commentDAO.deleteUpdate(comment);
         } catch (Exception e) {

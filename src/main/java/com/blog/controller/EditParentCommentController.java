@@ -3,7 +3,6 @@ package com.blog.controller.comment.parentComment;
 import com.blog.controller.Controller;
 import com.blog.data.entity.Comment;
 import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
-import com.blog.mapper.EditRequestDto;
 import com.blog.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
