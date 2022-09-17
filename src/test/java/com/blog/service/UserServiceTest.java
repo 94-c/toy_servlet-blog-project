@@ -1,7 +1,7 @@
 package com.blog.service;
 
 import com.blog.data.dao.UserDAO;
-import com.blog.dto.user.CreateRequestUserDTO;
+import com.blog.data.dto.UserDto;
 import com.blog.data.entity.User;
 import com.blog.service.exception.PostServiceException;
 import com.blog.util.Md5Util;
@@ -12,11 +12,10 @@ import static org.junit.Assert.*;
 public class UserServiceTest {
 
     private final UserService userService = new UserService();
-    private final UserDAO userDAO = new UserDAO();
 
     @Test
     public void joinSuccess() {
-        CreateRequestUserDTO newCreateDto = CreateRequestUserDTO.builder()
+        UserDto newCreateDto = UserDto.builder()
                 .email("aaa@aaa.aaa")
                 .password(Md5Util.md5("1234"))
                 .build();
@@ -28,7 +27,7 @@ public class UserServiceTest {
 
     @Test
     public void joinFail() {
-        CreateRequestUserDTO newCreateDto = CreateRequestUserDTO.builder()
+        UserDto newCreateDto = UserDto.builder()
                 .email("")
                 .password("")
                 .name("테스트")
@@ -62,7 +61,7 @@ public class UserServiceTest {
 
     @Test
     public void findByEmailCheckSuccess() {
-        CreateRequestUserDTO findByEmailDto = CreateRequestUserDTO.builder()
+        UserDto findByEmailDto = UserDto.builder()
                 .email("hyeongwoo26@naver.com")
                 .build();
 
