@@ -1,7 +1,7 @@
 package com.blog.controller;
 
 import com.blog.data.entity.Comment;
-import com.blog.mapper.CreateRequestDto;
+import com.blog.mapper.EmailConfirmMapper;
 import com.blog.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class CreateCommentController implements Controller {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
-        CreateRequestCommentDTO dto = new CreateRequestDto().toCommentDto(request);
+        CreateRequestCommentDTO dto = new EmailConfirmMapper().toCommentDto(request);
         Comment result = commentService.createComment(dto);
 
         if (result == null) {

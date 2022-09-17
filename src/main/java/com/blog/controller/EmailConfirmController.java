@@ -1,7 +1,7 @@
 package com.blog.controller;
 
 import com.blog.data.dto.EmailConfirmDto;
-import com.blog.mapper.CreateRequestDto;
+import com.blog.mapper.EmailConfirmMapper;
 import com.blog.service.EmailTokensService;
 import com.blog.service.UserService;
 
@@ -25,7 +25,7 @@ public class EmailConfirmController implements Controller{
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
-        EmailConfirmDto dto = new CreateRequestDto().toEmailConfirmDto(request);
+        EmailConfirmDto dto = EmailConfirmMapper.mapToEmailConfirmDto(request);
 
         boolean result = emailTokensService.updateState(dto);
 

@@ -1,8 +1,8 @@
 package com.blog.controller;
 
+import com.blog.data.dto.UserDto;
 import com.blog.data.entity.User;
-import com.blog.dto.user.CreateRequestUserDTO;
-import com.blog.mapper.CreateRequestDto;
+import com.blog.mapper.UserMapper;
 import com.blog.service.UserService;
 import com.blog.util.EmailUtil;
 
@@ -24,8 +24,7 @@ public class CreateUserController implements Controller {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
-        CreateRequestUserDTO dto = new CreateRequestDto().toUserDto(request);
-
+        UserDto dto = UserMapper.mapToCreateUser(request);
         boolean emailCheck = userService.userEmailCheck(dto.getEmail());
 
         if (emailCheck) {
