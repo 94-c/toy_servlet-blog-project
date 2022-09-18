@@ -1,7 +1,9 @@
 package com.blog.controller;
 
+import com.blog.data.dto.UserDto;
 import com.blog.data.entity.User;
 import com.blog.mapper.EmailConfirmMapper;
+import com.blog.mapper.UserMapper;
 import com.blog.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,7 @@ public class LoginController implements Controller {
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        LoginRequestDTO dto = new EmailConfirmMapper().toLoginDto(request);
+        UserDto dto = UserMapper.mapToLogin(request);
 
         User user = userService.login(dto);
 

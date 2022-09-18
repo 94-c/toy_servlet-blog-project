@@ -14,6 +14,7 @@ public class CreatePostController implements Controller {
     public CreatePostController() {
         this.postService = new PostService();
     }
+
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) {
         return "/WEB-INF/views/post.jsp";

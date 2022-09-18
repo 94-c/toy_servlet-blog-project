@@ -1,7 +1,6 @@
 package com.blog.service;
 
-import com.blog.dto.post.CreateRequestPostDTO;
-import com.blog.dto.post.EditRequestPostDTO;
+import com.blog.data.dto.PostDto;
 import com.blog.data.entity.Comment;
 import com.blog.data.entity.Post;
 import com.blog.service.exception.PostServiceException;
@@ -28,7 +27,7 @@ public class PostServiceTest {
     @Test
     public void createPost() {
 
-        CreateRequestPostDTO newPostDto = CreateRequestPostDTO.builder()
+        PostDto newPostDto = PostDto.builder()
                 .title("테스트 코드 작성 중")
                 .body("테스트 코드")
                 .userId(59)
@@ -45,7 +44,7 @@ public class PostServiceTest {
 
         Integer postId  = 67;
 
-        EditResponsePostEditDto findByPostId = postService.findByPostId(postId);
+        PostDto findByPostId = postService.findByPostId(postId);
 
         assertNotNull(findByPostId);
 
@@ -56,7 +55,7 @@ public class PostServiceTest {
 
         Integer postId  = 99;
 
-        EditResponsePostEditDto findByPostId = postService.findByPostId(postId);
+        PostDto findByPostId = postService.findByPostId(postId);
 
         assertNotNull(findByPostId);
 
@@ -65,14 +64,14 @@ public class PostServiceTest {
     @Test
     public void updatePostSuccess() {
 
-        EditRequestPostDTO edtPostDto = EditRequestPostDTO.builder()
+        PostDto edtPostDto = PostDto.builder()
                 .id(67)
                 .title("테스트 코드 작성 중")
                 .body("테스트 코드")
                 .userId(59)
                 .build();
 
-        EditResponsePostEditDto findByPostId = postService.findByPostId(edtPostDto.getId());
+        PostDto findByPostId = postService.findByPostId(edtPostDto.getId());
         if (findByPostId == null) {
             throw new PostServiceException("Error", Level.ERROR);
         }
@@ -87,14 +86,14 @@ public class PostServiceTest {
     @Test(expected = PostServiceException.class)
     public void updatePostFail() {
 
-        EditRequestPostDTO edtPostDto = EditRequestPostDTO.builder()
+        PostDto edtPostDto = PostDto.builder()
                 .id(99)
                 .title("테스트 코드 작성 중")
                 .body("테스트 코드")
                 .userId(59)
                 .build();
 
-        EditResponsePostEditDto findByPostId = postService.findByPostId(edtPostDto.getId());
+        PostDto findByPostId = postService.findByPostId(edtPostDto.getId());
         if (findByPostId == null) {
             throw new PostServiceException("Error", Level.ERROR);
         }

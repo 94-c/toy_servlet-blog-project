@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/*.do")
+@WebServlet("*.do")
 public class WebRouter extends HttpServlet {
     private final Map<String, Controller> routers = new HashMap<>();
 

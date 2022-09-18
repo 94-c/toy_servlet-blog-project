@@ -20,7 +20,7 @@ public class EditPostController implements Controller {
     public String doGet(HttpServletRequest request, HttpServletResponse response) {
         Integer id = Integer.valueOf(request.getParameter("id"));
 
-        EditResponsePostEditDto result = postService.findByPostId(id);
+        PostDto result = postService.findByPostId(id);
 
         if (result == null) {
             request.setAttribute("message", "등록 된 게시글이 없습니다.");

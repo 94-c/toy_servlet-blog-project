@@ -18,6 +18,8 @@ public class CommentDto {
     private final String body;
     private final String userIp;
 
+    private final Integer parentsId;
+
     public Comment toCreateEntity() {
         User user = new User();
         user.setId(userId);
@@ -48,5 +50,7 @@ public class CommentDto {
 
         return comment;
     }
+
+
 
 }

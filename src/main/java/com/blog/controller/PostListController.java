@@ -14,6 +14,7 @@ public class PostListController implements Controller {
     public PostListController() {
         this.postService = new PostService();
     }
+
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) {
         List<Post> postList = postService.findAllPost();

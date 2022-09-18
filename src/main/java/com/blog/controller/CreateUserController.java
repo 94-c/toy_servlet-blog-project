@@ -17,6 +17,7 @@ public class CreateUserController implements Controller {
         this.userService = new UserService();
         this.emailUtil = new EmailUtil();
     }
+
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) {
         return "/WEB-INF/views/join.jsp";

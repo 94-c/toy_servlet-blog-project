@@ -1,5 +1,7 @@
 package com.blog.controller;
 
+import com.blog.data.dto.CommentDto;
+import com.blog.mapper.CommentMapper;
 import com.blog.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,22 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DeleteCommentController implements Controller {
     private final CommentService commentService;
-
     public DeleteCommentController() {
         this.commentService = new CommentService();
-    }
-    //TODO makeDTO를 Mapper로 합쳐야 한다.
-    private DeleteResponseCommentDTO makeDTO(HttpServletRequest request) {
-        return DeleteResponseCommentDTO.builder()
-                .id(Integer.valueOf(request.getParameter("commentId")))
-                .postId(Integer.valueOf(request.getParameter("postId")))
-                .build();
     }
 
     @Override
     public String doGet(HttpServletRequest request, HttpServletResponse response) {
-        DeleteResponseCommentDTO dto = makeDTO(request);
-        CommentService commentService = new CommentService();
+        CommentDto dto = CommentMapper.mapToDeleteCommentDto(request);
 
         try {
             commentService.deleteComment(dto);

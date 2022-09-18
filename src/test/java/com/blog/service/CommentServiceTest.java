@@ -1,7 +1,7 @@
 package com.blog.service;
 
-import com.blog.dto.comment.parenteComment.CreateRequestParentCommentDTO;
-import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
+import com.blog.data.dto.CommentDto;
+import com.blog.data.dto.ParentCommentDto;
 import com.blog.data.entity.Comment;
 import com.blog.service.exception.PostServiceException;
 import com.blog.util.UserIpUtil;
@@ -15,7 +15,7 @@ public class CommentServiceTest {
 
     @Test
     public void createCommentSuccess() {
-        CreateRequestCommentDTO newCommentDto = CreateRequestCommentDTO.builder()
+        CommentDto newCommentDto = CommentDto.builder()
                 .body("테스트 코멘트 작성 중")
                 .postId(14)
                 .userId(96)
@@ -29,7 +29,7 @@ public class CommentServiceTest {
 
     @Test
     public void createParentCommentSuccess() {
-        CreateRequestParentCommentDTO newParentCommentDto = CreateRequestParentCommentDTO.builder()
+        ParentCommentDto newParentCommentDto = ParentCommentDto.builder()
                 .body("테스트 코멘트 작성 중")
                 .postId(14)
                 .userId(96)
@@ -64,7 +64,7 @@ public class CommentServiceTest {
 
     @Test
     public void updateCommentSuccess() {
-        EditRequestCommentDTO editCommentDto = EditRequestCommentDTO.builder()
+        CommentDto editCommentDto = CommentDto.builder()
                 .id(50)
                 .body("테스트 코드 재작성중")
                 .userId(96)
@@ -82,7 +82,7 @@ public class CommentServiceTest {
 
     @Test(expected = PostServiceException.class)
     public void updateCommentFail() {
-        EditRequestCommentDTO editCommentDto = EditRequestCommentDTO.builder()
+        CommentDto editCommentDto = CommentDto.builder()
                 .id(1000)
                 .body("테스트 코드 재작성중")
                 .userId(96)
@@ -101,7 +101,7 @@ public class CommentServiceTest {
 
     @Test
     public void updateParentCommentSuccess() {
-        EditRequestParentCommentDTO editCommentDto = EditRequestParentCommentDTO.builder()
+       ParentCommentDto editCommentDto = ParentCommentDto.builder()
                 .id(51)
                 .body("테스트 코드 재작성중")
                 .userId(96)
@@ -120,7 +120,7 @@ public class CommentServiceTest {
 
     @Test(expected = PostServiceException.class)
     public void updateParentCommentFail() {
-        EditRequestParentCommentDTO editCommentDto = EditRequestParentCommentDTO.builder()
+        ParentCommentDto editCommentDto = ParentCommentDto.builder()
                 .id(10051)
                 .body("테스트 코드 재작성중")
                 .userId(96)

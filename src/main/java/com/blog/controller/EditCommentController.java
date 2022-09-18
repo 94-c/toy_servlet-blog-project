@@ -1,6 +1,8 @@
 package com.blog.controller;
 
+import com.blog.data.dto.CommentDto;
 import com.blog.data.entity.Comment;
+import com.blog.mapper.CommentMapper;
 import com.blog.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +35,7 @@ public class EditCommentController implements Controller {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
-        EditRequestCommentDTO dto = new EditRequestDto().toCommentDto(request);
+        CommentDto dto = CommentMapper.mapToEditCommentDto(request);
         Comment result = commentService.updateComment(dto);
 
         if (result == null) {

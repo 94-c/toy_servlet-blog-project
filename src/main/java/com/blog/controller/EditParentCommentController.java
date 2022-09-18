@@ -1,8 +1,8 @@
-package com.blog.controller.comment.parentComment;
+package com.blog.controller;
 
-import com.blog.controller.Controller;
+import com.blog.data.dto.ParentCommentDto;
 import com.blog.data.entity.Comment;
-import com.blog.dto.comment.parenteComment.EditRequestParentCommentDTO;
+import com.blog.mapper.ParentCommentMapper;
 import com.blog.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +33,7 @@ public class EditParentCommentController implements Controller {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
-        EditRequestParentCommentDTO dto = new EditRequestDto().toParentDto(request);
+        ParentCommentDto dto = ParentCommentMapper.mapToEditCommentDto(request);
         Comment result = commentService.updateParentComment(dto);
 
         if (result == null) {

@@ -1,6 +1,8 @@
 package com.blog.controller;
 
+import com.blog.data.dto.UserDto;
 import com.blog.data.entity.User;
+import com.blog.mapper.UserMapper;
 import com.blog.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +34,7 @@ public class EditUserController implements Controller {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
-        EditRequestUserDTO dto = new EditRequestDto().toUserDto(request);
+        UserDto dto = UserMapper.mapToEditUser(request);
 
         if (dto.getPassword().isEmpty()) {
             request.setAttribute("message", "회원 정보 수정이 실패하였습니다.");

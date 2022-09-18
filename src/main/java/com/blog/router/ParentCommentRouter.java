@@ -1,8 +1,9 @@
 package com.blog.router;
 
 import com.blog.controller.Controller;
-import com.blog.controller.comment.parentComment.CreateParentCommentController;
-import com.blog.controller.comment.parentComment.EditParentCommentController;
+import com.blog.controller.CreateParentCommentController;
+import com.blog.controller.DeleteParentCommentController;
+import com.blog.controller.EditParentCommentController;
 
 import java.util.Map;
 
@@ -13,6 +14,10 @@ public class ParentCommentRouter {
 
         // 대댓글 수정
         routers.put("/parentComment/edit.do", new EditParentCommentController());
+
+        // 대댓글 삭제
+        routers.put("/parentComment/delete.do", new DeleteParentCommentController());
+
 
     }
 }
