@@ -66,9 +66,14 @@
                     <c:if test="${sessionScope.session_id == null}">
                         <td><input type="text" class="form-control" value="${posts.body}" maxlength="1024" style="height: 400px" placeholder="글 내용을 작성하세요." readonly></td>
                     </c:if>
-                    <td><input type="button" class="btn btn-outline-light" id="likeButton">좋아요</td>
+                    <td>
                 </tr>
                 </tbody>
+                <c:if test="${sessionScope.session_id != null}">
+                    <tr>
+                        <td><input type="button" class="btn btn-outline-light" id="likeButton">좋아요</td>
+                    </tr>
+                </c:if>
                 <tr align="right">
                     <td colspan="2">
                         <c:if test="${posts == null}">
@@ -94,21 +99,21 @@
     </div>
 </main>
 <script type="text/javascript">
-    $(function () {
-        $("#likeButton").click(function (){
-            $.ajax({
-                url: "/like/createLikeProc.do",
-                type: "POST",
-                data: {
-                    no : ${posts.id},
-                    id : '${id}'
-                },
-                success: function () {
-                    recCount();
-                },
-
-            })
+    document.getElementById("likeButton").onclick = function () {
+        const postId = ${posts.id};
+        const userId = ${sessionScope.session_id};
+        $.ajax({
+            type : 'POST',
+            url : '/like/create.do',
+            data:{
+                "postId" : postId,
+                "userId" : userId
+            },
+            success: function (data) {
+                alert("게시물 좋아요")
+            }
         })
-    })
+    }
+
 </script>
 <jsp:include page="../layout/footer.jsp"/>

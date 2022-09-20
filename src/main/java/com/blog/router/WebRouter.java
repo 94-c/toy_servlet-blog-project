@@ -23,6 +23,7 @@ public class WebRouter extends HttpServlet {
         new PostRouter(routers);
         new CommentRouter(routers);
         new ParentCommentRouter(routers);
+        new LikeRouter(routers);
     }
 
     @Override
