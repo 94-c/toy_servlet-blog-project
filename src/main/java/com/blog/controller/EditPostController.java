@@ -36,6 +36,7 @@ public class EditPostController implements Controller {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
+
         PostDto dto = PostMapper.mapToEditPostDto(request);
         Post result = postService.updatePost(dto);
 

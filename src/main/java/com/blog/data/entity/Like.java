@@ -7,10 +7,13 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "like")
+@Table(name = "likes")
 @Getter
 @Setter
 @ToString
+@NamedQueries(
+        @NamedQuery(name = "findLike", query = "SELECT COUNT(l) FROM Like l WHERE Post.id = :postId AND User.id = :userId")
+)
 public class Like {
 
     @Id
@@ -26,6 +29,7 @@ public class Like {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "type")
     private String type;
 
 }

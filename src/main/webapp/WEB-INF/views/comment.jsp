@@ -3,7 +3,7 @@
 <div class="card-body">
     <c:if test="${sessionScope.session_id != null}">
         <form class="form-horizontal" action="/comment/create.do" name="create_comment" method="POST">
-   1         <input type="hidden" id="postId" name="postId" value="${param.id}">
+            <input type="hidden" id="postId" name="postId" value="${param.id}">
             <input type="hidden" id="userId" name="userId" value="${sessionScope.session_id}">
             <div class="row">
                 <div class="form-group col-sm-9">

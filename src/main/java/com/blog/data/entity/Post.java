@@ -18,7 +18,7 @@ import java.util.List;
         @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p INNER JOIN User u ON p.user.id = u.id WHERE p.deletedAt is null ORDER BY p.createdAt DESC "),
         @NamedQuery(name = "Post.findById", query = "SELECT p.id, p.title, p.body FROM Post p WHERE p.id = :id")
 })
-public class  Post {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,6 +54,9 @@ public class  Post {
             joinColumns = {@JoinColumn(name = "post_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "id")}
     )
-   private List<Tag> tags = new ArrayList<>();
+    private List<Tag> tags = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.PERSIST)
+    private List<Like> likeList = new ArrayList<>();
 
 }

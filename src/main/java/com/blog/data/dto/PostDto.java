@@ -1,6 +1,7 @@
 package com.blog.data.dto;
 
 import com.blog.data.entity.Comment;
+import com.blog.data.entity.Like;
 import com.blog.data.entity.Post;
 import com.blog.data.entity.User;
 import lombok.Builder;
@@ -22,6 +23,7 @@ public class PostDto {
     private final Post post;
     private final List<Comment> commentList;
     private final List<Comment> parentCommentList;
+    private final List<Like> likeList;
 
     public Post toCreateEntity() {
         User user = new User();

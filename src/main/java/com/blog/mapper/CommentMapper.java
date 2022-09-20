@@ -13,7 +13,7 @@ public class CommentMapper {
         return CommentDto.builder()
                 .userId(Integer.valueOf(request.getParameter("userId")))
                 .postId(Integer.valueOf(request.getParameter("postId")))
-                .userIp(request.getParameter("userIp"))
+                .userIp(UserIpUtil.userIp(request.getParameter("userIp")))
                 .body(request.getParameter("body"))
                 .build();
     }
