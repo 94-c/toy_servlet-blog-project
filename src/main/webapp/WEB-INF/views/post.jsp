@@ -81,7 +81,7 @@
                 </c:if>
                 <c:if test="${sessionScope.session_id != null}">
                     <tr>
-                        <td><input type="button" class="btn btn-outline-light" id="likeButton">좋아요 [${totalLikeCount}]</td>
+                        <td><input type="button" class="btn btn-outline-light" id="likeButton"><img src="../img/heart.png">좋아요 [${totalLikeCount}]</td>
                     </tr>
                 </c:if>
 
