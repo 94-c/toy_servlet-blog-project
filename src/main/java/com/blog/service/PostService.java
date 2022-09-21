@@ -1,10 +1,8 @@
 package com.blog.service;
 
-import com.blog.data.dao.CommentDAO;
-import com.blog.data.dao.PostDAO;
-import com.blog.data.dao.PostTagDAO;
-import com.blog.data.dao.TagDAO;
+import com.blog.data.dao.*;
 import com.blog.data.dto.PostDto;
+import com.blog.data.entity.Like;
 import com.blog.data.entity.Tag;
 import com.blog.data.entity.Comment;
 import com.blog.data.entity.Post;
@@ -20,8 +18,7 @@ public class PostService {
 
     private final PostDAO postDAO = new PostDAO();
     private final CommentDAO commentDAO = new CommentDAO();
-    private final PostTagDAO postTagDAO = new PostTagDAO();
-    private final TagDAO tagDAO = new TagDAO();
+    private final LikeDAO likeDAO = new LikeDAO();
 
     public List<Post> findAllPost() {
         return postDAO.findAllPostList();
@@ -96,17 +93,18 @@ public class PostService {
         List<Comment> comments = commentDAO.findAllCommentByPostId(id);
         comments.forEach(comment -> {
             mergeComments.add(comment);
-
             // find child comment and add comments
             List<Comment> childComment = commentDAO.findAllParentCommentList(comment.getId());
             if (childComment.size() > 0) {
                 mergeComments.addAll(childComment);
             }
         });
+        long likeCount = likeDAO.count(findById.getId());
 
         return PostDto.builder()
                 .post(findById)
                 .commentList(mergeComments)
+                .postByLike(likeCount)
                 .build();
     }
 

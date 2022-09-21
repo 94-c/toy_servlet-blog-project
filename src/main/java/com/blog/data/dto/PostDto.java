@@ -23,7 +23,7 @@ public class PostDto {
     private final Post post;
     private final List<Comment> commentList;
     private final List<Comment> parentCommentList;
-    private final List<Like> likeList;
+    private final long postByLike;
 
     public Post toCreateEntity() {
         User user = new User();

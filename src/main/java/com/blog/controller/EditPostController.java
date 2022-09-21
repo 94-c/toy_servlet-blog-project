@@ -30,6 +30,7 @@ public class EditPostController implements Controller {
         request.setAttribute("posts", result.getPost());
         request.setAttribute("commentList", result.getCommentList());
         request.setAttribute("parentComment", result.getParentCommentList());
+        request.setAttribute("totalLikeCount", result.getPostByLike());
 
         return "/WEB-INF/views/post.jsp";
     }

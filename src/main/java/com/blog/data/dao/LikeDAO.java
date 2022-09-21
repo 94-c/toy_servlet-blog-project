@@ -16,4 +16,8 @@ public class LikeDAO extends JpaDAO<Like> {
         return super.update(like);
     }
 
+    public long count(Integer postId) {
+        return super.countWithNamedQuery("findLike", "postId", postId);
+    }
+
 }

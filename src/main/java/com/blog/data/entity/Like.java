@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NamedQueries(
-        @NamedQuery(name = "findLike", query = "SELECT COUNT(l) FROM Like l WHERE Post.id = :postId AND User.id = :userId")
+        @NamedQuery(name = "findLike", query = "SELECT COUNT(l) FROM Like l WHERE l.post.id = :postId")
 )
 public class Like {
 

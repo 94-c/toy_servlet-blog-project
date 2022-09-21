@@ -74,9 +74,14 @@
                 </tr>
                 </tbody>
 
+                <c:if test="${sessionScope.session_id == null}">
+                    <tr>
+                        <td><input type="hidden" class="btn btn-outline-light">좋아요 [${totalLikeCount}]</td>
+                    </tr>
+                </c:if>
                 <c:if test="${sessionScope.session_id != null}">
                     <tr>
-                        <td><input type="button" class="btn btn-outline-light" id="likeButton">좋아요</td>
+                        <td><input type="button" class="btn btn-outline-light" id="likeButton">좋아요 [${totalLikeCount}]</td>
                     </tr>
                 </c:if>
 
@@ -175,6 +180,7 @@
                     if (result.length == 0) {
                         $("#tag-list").append("<li class='tag-item'>"+tagValue+"<span class='del-btn' idx='"+counter+"'>x</span></li>");
                         addTag(tagValue);
+                        console.log(tagValue)
                     } else {
                         alert("태그값이 중복됩니다.");
                     }

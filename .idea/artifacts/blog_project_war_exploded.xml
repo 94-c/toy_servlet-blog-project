@@ -19,7 +19,7 @@
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="blog_project/web/웹" />
+      <element id="javaee-facet-resources" facet="blog_project/web/Web" />
     </root>
   </artifact>
 </component>

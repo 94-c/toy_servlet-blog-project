@@ -29,4 +29,5 @@ public class LikeDAOTest {
         assertEquals(like, newLike);
         assertTrue(newLike != null && newLike.getId() > 0);
     }
+
 }

@@ -14,11 +14,7 @@ public class LikeService {
 
     public Like createLike(LikeDto dto) {
         Like likeDto = dto.toCreateEntity();
-        Like newLike = likeDAO.create(likeDto);
-        if (newLike == null) {
-            return null;
-        }
-        return newLike;
+        return likeDAO.create(likeDto);
     }
 
 }

@@ -59,4 +59,5 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.PERSIST)
     private List<Like> likeList = new ArrayList<>();
 
+
 }
