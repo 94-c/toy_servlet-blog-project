@@ -1,9 +1,6 @@
 package com.blog.data.dto;
 
-import com.blog.data.entity.Comment;
-import com.blog.data.entity.Like;
-import com.blog.data.entity.Post;
-import com.blog.data.entity.User;
+import com.blog.data.entity.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

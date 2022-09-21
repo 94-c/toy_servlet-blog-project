@@ -81,7 +81,9 @@
                 </c:if>
                 <c:if test="${sessionScope.session_id != null}">
                     <tr>
-                        <td><input type="button" class="btn btn-outline-light" id="likeButton"><img src="../img/heart.png">좋아요 [${totalLikeCount}]</td>
+                        <td><input type="button" class="btn btn-outline-light" id="likeButton"><img
+                                src="../img/heart.png">좋아요 [${totalLikeCount}]
+                        </td>
                     </tr>
                 </c:if>
 
@@ -101,8 +103,6 @@
                         </button>
                         </c:if>
                 </tr>
-
-
             </table>
             <div class="tr_hashTag_area">
                 <p><strong>태그</strong></p>
@@ -110,9 +110,7 @@
                     <input type="hidden" value="" name="tag" id="rdTag"/>
                 </div>
 
-                <ul id="tag-list"></ul>
-
-                <div class="form-group">
+                <div id="tag-list">
                     <input type="text" class="form-control" id="tag" size="7" placeholder="엔터로 해시태그를 등록해주세요."/>
                 </div>
             </div>
@@ -137,6 +135,7 @@
             },
             success: function (data) {
                 alert("게시물 좋아요")
+                location.reload();
             }
         })
     }
@@ -145,13 +144,13 @@
         var counter = 0;
 
         // 입력한 값을 태그로 생성한다.
-        function addTag (value) {
+        function addTag(value) {
             tag[counter] = value;
             counter++; // del-btn 의 고유 id 가 된다.
         }
 
         // tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
-        function marginTag () {
+        function marginTag() {
             return Object.values(tag).filter(function (word) {
                 return word !== "";
             });
@@ -178,9 +177,10 @@
                     })
                     // 해시태그가 중복되었는지 확인
                     if (result.length == 0) {
-                        $("#tag-list").append("<li class='tag-item'>"+tagValue+"<span class='del-btn' idx='"+counter+"'>x</span></li>");
+                        $("#tag-list").append("<div class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x</span></div>");
                         addTag(tagValue);
-                        console.log(tagValue)
+                        console.log(tagValue);
+                        console.log(document.getElementsByName('tag'));
                     } else {
                         alert("태그값이 중복됩니다.");
                     }
