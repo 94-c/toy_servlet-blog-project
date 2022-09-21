@@ -1,6 +1,7 @@
 package com.blog.router;
 
 import com.blog.controller.Controller;
+import com.blog.util.SessionUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,6 +32,8 @@ public class WebRouter extends HttpServlet {
         String url = request.getRequestURI();
         String contextPath = request.getContextPath();
         String path = url.substring(contextPath.length());
+
+        SessionUtil.getInstance().setSession(request.getSession());
 
         if (routers.containsKey(path)) {
             Controller controller = routers.get(path);

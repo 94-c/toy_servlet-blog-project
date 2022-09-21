@@ -5,6 +5,7 @@ import com.blog.data.entity.User;
 import com.blog.mapper.EmailConfirmMapper;
 import com.blog.mapper.UserMapper;
 import com.blog.service.UserService;
+import com.blog.util.SessionUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,6 @@ public class LoginController implements Controller {
 
     @Override
     public String doPost(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
         UserDto dto = UserMapper.mapToLogin(request);
 
         User user = userService.login(dto);
@@ -32,9 +32,10 @@ public class LoginController implements Controller {
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
         }
-        session.setAttribute("session_id", user.getId());
-        session.setAttribute("session_name", user.getName());
-        session.setAttribute("session_email", user.getEmail());
+
+        SessionUtil.getInstance()
+                .set("session_id", user.getId());
+
         request.setAttribute("message", "로그인을 환영합니다.");
         request.setAttribute("target", "/main.do");
         return "/WEB-INF/common/redirect.jsp";

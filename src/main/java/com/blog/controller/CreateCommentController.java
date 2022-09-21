@@ -4,6 +4,7 @@ import com.blog.data.dto.CommentDto;
 import com.blog.data.entity.Comment;
 import com.blog.mapper.CommentMapper;
 import com.blog.service.CommentService;
+import com.blog.util.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

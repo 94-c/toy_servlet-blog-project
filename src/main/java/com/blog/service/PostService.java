@@ -27,12 +27,6 @@ public class PostService {
 
     public Post createPost(PostDto dto) throws PostServiceException {
         Post post = dto.toCreateEntity();
-        Tag tag = new Tag();
-        //TODO addTag라는 클래스 안에 dao를 하나로 통합 
-        /*post.addTag(tag1);
-        post.addTag(tag2);
-        post.addTag(tag3);
-        post.addTag(tag4);*/
         Post newPost = postDAO.create(post);
         if (newPost == null) {
             throw new PostServiceException("Create Post Error", Level.ERROR);

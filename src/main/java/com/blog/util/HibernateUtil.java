@@ -8,13 +8,11 @@ public class HibernateUtil {
     private static EntityManagerFactory entityManagerFactory;
 
     static {
-        if (entityManagerFactory == null) {
-            try{
-                entityManagerFactory = Persistence.createEntityManagerFactory("blog");
-            }catch (Exception e){
-                System.out.println("Hibernate Util Error");
-                e.printStackTrace();
-            }
+        try{
+            entityManagerFactory = Persistence.createEntityManagerFactory("blog");
+        }catch (Exception e){
+            System.out.println("Hibernate Util Error");
+            e.printStackTrace();
         }
     }
 

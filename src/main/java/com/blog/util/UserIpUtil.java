@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 
 public class UserIpUtil {
 
+    //TODO String userIp를 어디서 사용을 하는지? 확인(0921)
     public static String userIp(String userIp) {
         String ip = null;
         InetAddress address;
