@@ -52,7 +52,6 @@ public class PostService {
             }
         });
         long likeCount = likeDAO.count(findById.getId());
-
         return PostDto.builder()
                 .post(findById)
                 .commentList(mergeComments)

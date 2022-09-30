@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +33,9 @@ public class WebRouter extends HttpServlet {
         String url = request.getRequestURI();
         String contextPath = request.getContextPath();
         String path = url.substring(contextPath.length());
+        /*HttpSession session = request.getSession();
 
-        SessionUtil.getInstance().setSession(request.getSession());
+        SessionUtil.getInstance().setSession(session);*/
 
         if (routers.containsKey(path)) {
             Controller controller = routers.get(path);
