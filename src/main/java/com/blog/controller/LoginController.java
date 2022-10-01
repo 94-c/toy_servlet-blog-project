@@ -32,6 +32,8 @@ public class LoginController implements Controller {
             request.setAttribute("target", "/main.do");
             return "/WEB-INF/common/redirect.jsp";
         }
+        SessionUtil.getInstance().setSession(request.getSession());
+
 
         SessionUtil.getInstance()
                 .set("session_id", user.getId());
